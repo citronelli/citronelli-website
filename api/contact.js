@@ -2,7 +2,7 @@ const { Resend } = require('resend');
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const TO_EMAIL = 'contact.aydiner@gmail.com';
+const TO_EMAIL = 'citronelli@quell-frisch.de';
 const FROM_EMAIL = 'Citronelli Website <noreply@contact.quell-frisch.de>';
 
 function buildEmail({ name, unternehmen, email, anfrage, nachricht }) {
