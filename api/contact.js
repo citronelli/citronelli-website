@@ -96,7 +96,7 @@ function buildEmail({ name, unternehmen, email, anfrage, nachricht }) {
         <!-- CTA -->
         <tr>
           <td style="background-color:#ffffff;padding:0 48px 48px;">
-            <a href="mailto:${email}?subject=Re: Ihre Anfrage bei Quellfrisch" style="display:inline-block;background-color:#0f2e2a;color:#99e1d9;font-size:10px;letter-spacing:0.13em;text-transform:uppercase;text-decoration:none;padding:14px 30px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:500;">Direkt antworten &rarr;</a>
+            <a href="mailto:${email}?subject=Re%3A%20Ihre%20Anfrage%20%E2%80%94%20${encodeURIComponent(anfrage || 'Quellfrisch')}&body=Guten%20Tag%20${encodeURIComponent(name)}%2C%0A%0AVielen%20Dank%20f%C3%BCr%20Ihre%20Anfrage.%0A%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen%0ACitronelli%20%E2%80%94%20Quellfrisch%20GmbH%0Aquell-frisch.de" style="display:inline-block;background-color:#0f2e2a;color:#99e1d9;font-size:10px;letter-spacing:0.13em;text-transform:uppercase;text-decoration:none;padding:14px 30px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:500;">Direkt antworten &rarr;</a>
           </td>
         </tr>
 
