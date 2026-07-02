@@ -605,7 +605,7 @@
     <div class="photo-grid-item"><img src="pictures/wellen_400x240.png" alt=""></div>
     <div class="photo-grid-item"><img src="pictures/blasen_400x240.png" alt=""></div>
     <div class="photo-grid-item"><img src="pictures/labor_400x240.png" alt=""></div>
-    <div class="photo-grid-item"><img src="pictures/eiswürfel_400x240.png" alt=""></div>
+    <div class="photo-grid-item"><img src="pictures/eiswuerfel_400x240.png" alt=""></div>
   </div>
 </div>
 
@@ -993,7 +993,7 @@
         </div>
         <div style="margin-bottom:20px;">
           <p class="label" style="margin-bottom:6px;">Telefon</p>
-          <p class="body-xs">+49 89 000 000 00</p>
+          <p class="body-xs">+49 176 833 9469 2</p>
         </div>
         <div>
           <p class="label" style="margin-bottom:6px;">E-Mail</p>
@@ -1003,31 +1003,33 @@
     </div>
     <div style="padding:80px 64px;display:flex;flex-direction:column;justify-content:center;background:#fff;">
       <p class="label sr" style="color:var(--violet-60);margin-bottom:32px;">Anfrage senden</p>
-      <div style="display:flex;flex-direction:column;gap:32px;" class="sr sr-d1">
+      <form id="kontakt-form" action="https://api.web3forms.com/submit" method="POST" style="display:flex;flex-direction:column;gap:32px;" class="sr sr-d1">
         <div>
           <label class="form-label">Ihr Name</label>
-          <input class="form-input" type="text" placeholder="Vorname Nachname">
+          <input class="form-input" type="text" name="name" placeholder="Vorname Nachname" required>
         </div>
         <div>
           <label class="form-label">Unternehmen</label>
-          <input class="form-input" type="text" placeholder="Firma GmbH">
+          <input class="form-input" type="text" name="unternehmen" placeholder="Firma GmbH">
         </div>
         <div>
           <label class="form-label">E-Mail</label>
-          <input class="form-input" type="email" placeholder="name@firma.de">
+          <input class="form-input" type="email" name="email" placeholder="name@firma.de" required>
         </div>
         <div>
           <label class="form-label">Anfrage</label>
-          <input class="form-input" type="text" placeholder="Listing / Verkostung / Partnerschaft / Sonstiges">
+          <input class="form-input" type="text" name="anfrage" placeholder="Listing / Verkostung / Partnerschaft / Sonstiges">
         </div>
         <div>
           <label class="form-label">Nachricht</label>
-          <textarea class="form-input" rows="3" placeholder="Ihre Nachricht an uns …" style="resize:none;"></textarea>
+          <textarea class="form-input" rows="3" name="nachricht" placeholder="Ihre Nachricht an uns …" style="resize:none;" required></textarea>
         </div>
         <div>
-          <span class="btn-violet" style="cursor:pointer;">Anfrage senden</span>
+          <button type="submit" class="btn-violet" style="cursor:pointer;border:none;font-family:inherit;">Anfrage senden</button>
         </div>
-      </div>
+        <p id="form-success" style="display:none;font-size:11px;letter-spacing:0.08em;color:#4b3c6e;padding:14px 18px;background:rgba(75,60,110,0.07);border-left:3px solid var(--violet);">Vielen Dank! Wir melden uns in Kürze bei Ihnen.</p>
+        <p id="form-error" style="display:none;font-size:11px;letter-spacing:0.08em;color:#c0392b;padding:14px 18px;background:rgba(192,57,43,0.06);border-left:3px solid #c0392b;">Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.</p>
+      </form>
     </div>
   </section>
 
@@ -1380,6 +1382,44 @@
     });
   })();
   // ── END GESCHICHTE HERO CURSOR PROXIMITY ────────────────────────────────
+
+  // ── KONTAKT FORM ────────────────────────────────────────────────────────
+  document.getElementById('kontakt-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('button[type="submit"]');
+    const successEl = document.getElementById('form-success');
+    const errorEl = document.getElementById('form-error');
+    btn.disabled = true;
+    btn.textContent = 'Wird gesendet …';
+    successEl.style.display = 'none';
+    errorEl.style.display = 'none';
+    try {
+      const fd = new FormData(this);
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: fd.get('name'),
+          unternehmen: fd.get('unternehmen'),
+          email: fd.get('email'),
+          anfrage: fd.get('anfrage'),
+          nachricht: fd.get('nachricht'),
+        })
+      });
+      const data = await res.json();
+      if (data.success) {
+        successEl.style.display = 'block';
+        this.reset();
+      } else {
+        errorEl.style.display = 'block';
+      }
+    } catch {
+      errorEl.style.display = 'block';
+    }
+    btn.disabled = false;
+    btn.textContent = 'Anfrage senden';
+  });
+  // ── END KONTAKT FORM ─────────────────────────────────────────────────────
 </script>
 </body>
 </html>
