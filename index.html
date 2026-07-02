@@ -368,6 +368,179 @@
     .legal-link:hover { color: var(--aqua); }
     .legal-sep { color: rgba(255,255,255,0.15); margin: 0 10px; font-size: 10px; }
     .legal-copy { font-size: 10.5px; color: rgba(255,255,255,0.28); letter-spacing: 0.02em; }
+
+    /* ══════════════════════════════════════════════
+       RESPONSIVE SYSTEM
+       ══════════════════════════════════════════════ */
+
+    /* ── BURGER BUTTON ────────────────────────────── */
+    .nav-burger {
+      display: none;
+      flex-direction: column; justify-content: center; gap: 5px;
+      cursor: pointer; padding: 8px 4px;
+      background: none; border: none;
+    }
+    .nav-burger span {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--aqua-800);
+      transition: transform 0.3s var(--eOut), opacity 0.2s;
+    }
+    .nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ── MOBILE NAV OVERLAY ───────────────────────── */
+    .mobile-nav {
+      display: none; position: fixed;
+      top: 64px; left: 0; right: 0; bottom: 0;
+      background: rgba(255,255,255,0.98); backdrop-filter: blur(14px);
+      z-index: 999; flex-direction: column;
+      padding: 32px 24px 48px; overflow-y: auto;
+    }
+    .mobile-nav.open { display: flex; }
+    .mob-nav-link {
+      font-size: 14px; font-weight: 400; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--aqua-800);
+      cursor: pointer; padding: 18px 0;
+      border-bottom: 1px solid rgba(153,225,217,0.25);
+      transition: color 0.2s;
+    }
+    .mob-nav-link:hover, .mob-nav-link:active { color: var(--aqua-700); }
+    .mob-nav-cta {
+      margin-top: 28px; display: block; text-align: center;
+      font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase;
+      color: var(--aqua-900); border: 1px solid var(--aqua);
+      padding: 16px 28px; cursor: pointer; background: transparent;
+      transition: background 0.25s;
+    }
+    .mob-nav-cta:active { background: var(--aqua); }
+    .mob-nav-lang { display: flex; gap: 16px; margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(153,225,217,0.15); }
+    .mob-lang { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--violet-60); cursor: pointer; }
+
+    /* ── RESPONSIVE GRID HELPERS ──────────────────── */
+    .hero-split {
+      min-height: calc(100vh - 64px);
+      display: grid; grid-template-columns: 1fr 1fr;
+      overflow: hidden; position: relative;
+    }
+    .g-2col    { display: grid; grid-template-columns: 1fr 1fr; }
+    .g-3col    { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .g-4col    { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .g-5col    { display: grid; grid-template-columns: repeat(5, 1fr); }
+    .g-sidebar { display: grid; grid-template-columns: 300px 1fr; }
+    .g-3stats  { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .g-kontakt { display: grid; grid-template-columns: 1fr 1fr; min-height: 520px; }
+    .g-footer  { display: grid; grid-template-columns: repeat(3, 1fr); }
+
+    /* ── TABLET  769 – 1024px ─────────────────────── */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .nav        { padding: 0 28px; }
+      .nav-links  { gap: 18px; }
+      .sec        { padding: 72px 40px; }
+      .sec-sm     { padding: 48px 40px; }
+      .sec-lg     { padding: 96px 40px; }
+      .legal-footer { padding: 18px 32px; }
+      .g-3col     { grid-template-columns: repeat(2, 1fr); }
+      .g-4col     { grid-template-columns: repeat(2, 1fr); }
+      .g-5col     { grid-template-columns: repeat(3, 1fr); }
+      .g-sidebar  { grid-template-columns: 220px 1fr; }
+    }
+
+    /* ── MOBILE  ≤ 768px ──────────────────────────── */
+    @media (max-width: 768px) {
+      /* Nav */
+      .nav            { padding: 0 20px; }
+      .nav-links      { display: none; }
+      .nav-right      { display: none; }
+      .nav-burger     { display: flex; }
+      .nav-logo-text  { display: none; }
+
+      /* Sections */
+      .sec    { padding: 48px 20px; }
+      .sec-sm { padding: 36px 20px; }
+      .sec-lg { padding: 56px 20px; }
+
+      /* Grid stack */
+      .hero-split { grid-template-columns: 1fr; min-height: auto; }
+      .g-2col     { grid-template-columns: 1fr; }
+      .g-3col     { grid-template-columns: 1fr; }
+      .g-4col     { grid-template-columns: 1fr; }
+      .g-5col     { grid-template-columns: 1fr 1fr; }
+      .g-sidebar  { grid-template-columns: 1fr; }
+      .g-3stats   { grid-template-columns: 1fr; }
+      .g-kontakt  { grid-template-columns: 1fr; min-height: auto; }
+      .g-footer   { grid-template-columns: 1fr; }
+
+      /* Photo grid */
+      .photo-grid      { grid-template-columns: repeat(2, 1fr); height: auto; }
+      .photo-grid-item { height: 140px; }
+
+      /* Components */
+      .ingr-card { padding: 24px 20px 32px; }
+      .occ-card  { padding: 24px 20px 32px; }
+      .val-item  { gap: 14px; }
+
+      /* Inline-padded sections */
+      .mob-sec   { padding: 48px 20px !important; }
+      .mob-sec-t { padding: 48px 20px 0 !important; }
+
+      /* Named panels */
+      #hero-left-panel    { padding: 48px 24px 56px !important; }
+      #hero-right-panel   { padding: 48px 24px !important; }
+      #produkt-left-panel { padding-top: 40px !important; padding-left: 20px !important; padding-right: 20px !important; }
+      #geschichte-hero    { padding: 56px 20px 48px !important; min-height: auto !important; }
+
+      /* Scroll indicator */
+      .scroll-wrap { display: none !important; }
+
+      /* Column borders: right → bottom when stacked */
+      .col-bdr {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+        padding: 28px 0 !important;
+      }
+      .col-bdr:last-child { border-bottom: none !important; }
+
+      .stat-col {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(153,225,217,0.2) !important;
+        padding: 24px 0 !important;
+      }
+      .stat-col:last-child { border-bottom: none !important; }
+
+      .mwert-col {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+        padding: 28px 0 !important;
+      }
+      .mwert-col:last-child { border-bottom: none !important; }
+
+      /* Hide overflowing decorative corners */
+      .dec-corner { display: none !important; }
+
+      /* Absolute elements → static (flow below their image) */
+      .quote-box    { position: static !important; margin-top: 20px; }
+      .mission-badge { position: static !important; margin-top: 20px; max-width: 100%; }
+
+      /* Button rows */
+      .btn-row { flex-direction: column !important; align-items: flex-start !important; gap: 16px !important; }
+
+      /* Heading flex rows */
+      .flex-hd { flex-wrap: wrap !important; gap: 16px !important; }
+
+      /* Footer */
+      .g-footer    { padding: 36px 20px !important; gap: 32px !important; }
+      .legal-footer { padding: 20px 20px !important; flex-direction: column; align-items: flex-start; gap: 12px; }
+
+      /* Gap helpers */
+      .mob-gap { gap: 32px !important; }
+    }
+
+    /* ── SMALL MOBILE  ≤ 480px ────────────────────── */
+    @media (max-width: 480px) {
+      .g-5col          { grid-template-columns: 1fr; }
+      .photo-grid-item { height: 120px; }
+    }
   </style>
 </head>
 <body>
@@ -394,8 +567,23 @@
     <span class="nav-lang" style="opacity:0.4;">EN</span>
     <span class="btn-nav-cta" onclick="go('kontakt')">Anfrage</span>
   </div>
+  <button class="nav-burger" id="nav-burger" aria-label="Menü öffnen" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+
+<div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+  <span class="mob-nav-link" onclick="go('produkt');closeMobileNav()">Produkt</span>
+  <span class="mob-nav-link" onclick="go('geschichte');closeMobileNav()">Geschichte</span>
+  <span class="mob-nav-link" onclick="go('unternehmen');closeMobileNav()">Quellfrisch GmbH</span>
+  <span class="mob-nav-link" onclick="go('kontakt');closeMobileNav()">Kontakt</span>
+  <span class="mob-nav-cta" onclick="go('kontakt');closeMobileNav()">Anfrage senden</span>
+  <div class="mob-nav-lang">
+    <span class="mob-lang">DE</span>
+    <span class="mob-lang" style="opacity:0.4;">EN</span>
+  </div>
+</div>
 
 <!-- ════════════════════════════════════════
      HOME
@@ -403,7 +591,7 @@
 <div id="page-home" class="page active">
 
   <!-- HERO: Quellfrisch GmbH Corporate -->
-  <section style="min-height:calc(100vh - 64px);display:grid;grid-template-columns:1fr 1fr;overflow:hidden;position:relative;">
+  <section class="hero-split">
 
     <!-- Left: White, Quellfrisch Corporate -->
     <div id="hero-left-panel" style="background:#fff;display:flex;flex-direction:column;justify-content:center;padding:88px 72px;position:relative;isolation:isolate;overflow:hidden;">
@@ -414,18 +602,18 @@
       <p class="body-s sr sr-d2" style="max-width:380px;margin-bottom:44px;">
         Quellfrisch GmbH ist Getränke- und Wasserproduzent mit höchsten Qualitätsansprüchen — Hersteller von citronelli™.
       </p>
-      <div style="display:flex;gap:20px;align-items:center;" class="sr sr-d3">
+      <div style="display:flex;gap:20px;align-items:center;" class="sr sr-d3 btn-row">
         <span class="btn-aqua" onclick="go('kontakt')">Partner werden</span>
         <span onclick="go('unternehmen')" style="font-size:10.5px;letter-spacing:0.09em;text-transform:uppercase;color:var(--aqua-700);cursor:pointer;border-bottom:1px solid var(--aqua);padding-bottom:2px;transition:opacity 0.2s;" onmouseover="this.style.opacity=0.5" onmouseout="this.style.opacity=1">Über uns</span>
       </div>
-      <div style="position:absolute;bottom:40px;left:72px;display:flex;flex-direction:column;align-items:flex-start;gap:10px;">
+      <div class="scroll-wrap" style="position:absolute;bottom:40px;left:72px;display:flex;flex-direction:column;align-items:flex-start;gap:10px;">
         <p class="label scroll-ind" style="font-size:9px;letter-spacing:0.2em;opacity:0.35;">Scroll</p>
         <svg width="1" height="32" viewBox="0 0 1 32" class="scroll-ind"><line x1="0.5" y1="0" x2="0.5" y2="32" stroke="rgba(153,225,217,0.55)" stroke-width="1"/></svg>
       </div>
     </div>
 
     <!-- Right: Aqua-100, Brand & Product Visual -->
-    <div style="background:var(--aqua-100);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:80px 64px;position:relative;overflow:hidden;">
+    <div id="hero-right-panel" style="background:var(--aqua-100);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:80px 64px;position:relative;overflow:hidden;">
       <div style="position:absolute;top:-80px;right:-80px;width:360px;height:360px;border-radius:50%;background:var(--aqua-200);opacity:0.55;"></div>
       <div style="position:absolute;bottom:-50px;left:-50px;width:220px;height:220px;border-radius:50%;background:var(--aqua-200);opacity:0.4;"></div>
       <div style="position:relative;z-index:1;text-align:center;">
@@ -441,8 +629,8 @@
   </section>
 
   <!-- INTRO STRIP: Markenbrücke -->
-  <section style="padding:72px 64px;border-bottom:1px solid rgba(153,225,217,0.2);">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+  <section class="mob-sec" style="padding:72px 64px;border-bottom:1px solid rgba(153,225,217,0.2);">
+    <div class="g-2col mob-gap" style="gap:80px;align-items:center;">
       <div>
         <p class="label sr" style="margin-bottom:20px;">Premium-Erfrischung</p>
         <h2 class="h-qf-xl sr sr-d1">
@@ -463,14 +651,14 @@
 
   <!-- ZUTATEN: Aqua background, Quellfrisch-Struktur -->
   <section class="sec" style="background:var(--aqua-100);">
-    <div style="margin-bottom:56px;display:flex;justify-content:space-between;align-items:flex-end;">
+    <div class="flex-hd" style="margin-bottom:56px;display:flex;justify-content:space-between;align-items:flex-end;">
       <div>
         <p class="label sr" style="margin-bottom:16px;">Die Zutaten</p>
         <h2 class="h-qf-lg sr sr-d1">Vier Zutaten.<br>Eine Überzeugung.</h2>
       </div>
       <span class="ul sr sr-d2" onclick="go('produkt')">Mehr erfahren</span>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+    <div class="g-3col" style="gap:24px;">
       <div class="ingr-card sr">
         <div style="width:48px;height:2px;background:var(--aqua);margin-bottom:32px;"></div>
         <p class="label" style="margin-bottom:14px;">01</p>
@@ -494,7 +682,7 @@
   </section>
 
   <!-- CLAIM: Aqua Section, Quellfrisch corporate -->
-  <section style="background:var(--aqua);padding:104px 64px;text-align:center;position:relative;overflow:hidden;">
+  <section class="mob-sec" style="background:var(--aqua);padding:104px 64px;text-align:center;position:relative;overflow:hidden;">
     <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,255,255,0.12) 0%, transparent 70%);pointer-events:none;"></div>
     <div style="position:relative;z-index:1;max-width:760px;margin:0 auto;">
       <p class="label sr" style="color:rgba(58,44,87,0.5);margin-bottom:32px;">Quellfrisch GmbH — Getränke · Wasser</p>
@@ -511,7 +699,7 @@
 
   <!-- PREMIUM POSITIONING: citronelli™ Einsatzgebiete -->
   <section class="sec" style="background:#fff;">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+    <div class="g-2col mob-gap" style="gap:80px;align-items:center;">
       <div>
         <p class="label sr" style="margin-bottom:20px;">Premium-Einsatz</p>
         <h2 class="h-qf-lg sr sr-d1" style="margin-bottom:28px;">
@@ -536,15 +724,15 @@
             <img src="pictures/Citronelli Schriftzug lila.png" alt="citronelli" style="width:240px;margin-bottom:12px;filter:brightness(0) invert(1);opacity:0.75;">
           </div>
         </div>
-        <div style="position:absolute;top:-24px;right:-24px;width:80px;height:80px;border:1px solid rgba(153,225,217,0.35);"></div>
-        <div style="position:absolute;bottom:-24px;left:-24px;width:60px;height:60px;border:1px solid rgba(153,225,217,0.5);"></div>
+        <div class="dec-corner" style="position:absolute;top:-24px;right:-24px;width:80px;height:80px;border:1px solid rgba(153,225,217,0.35);"></div>
+        <div class="dec-corner" style="position:absolute;bottom:-24px;left:-24px;width:60px;height:60px;border:1px solid rgba(153,225,217,0.5);"></div>
       </div>
     </div>
   </section>
 
   <!-- QF VERTRAUEN: Corporate Values -->
   <section class="sec" style="background:var(--aqua-100);">
-    <div style="display:grid;grid-template-columns:300px 1fr;gap:80px;align-items:start;">
+    <div class="g-sidebar mob-gap" style="gap:80px;align-items:start;">
       <div>
         <img src="brand_assets/QF%20Logo.png" alt="Quellfrisch GmbH" style="width:80px;margin-bottom:28px;opacity:0.8;" class="sr">
         <p class="label sr" style="margin-bottom:16px;">Quellfrisch GmbH</p>
@@ -586,7 +774,7 @@
   </section>
 
   <!-- FOOTER CTA: Quellfrisch Aqua -->
-  <section style="background:var(--aqua-200);padding:104px 64px;text-align:center;position:relative;overflow:hidden;">
+  <section class="mob-sec" style="background:var(--aqua-200);padding:104px 64px;text-align:center;position:relative;overflow:hidden;">
     <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,255,255,0.2) 0%, transparent 70%);pointer-events:none;"></div>
     <div style="position:relative;z-index:1;">
       <p class="label sr" style="color:rgba(58,44,87,0.45);margin-bottom:28px;">Partner & Distribution</p>
@@ -616,8 +804,8 @@
 <div id="page-produkt" class="page">
 
   <!-- Produkt Hero -->
-  <section style="padding:80px 64px 0;background:#fff;">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end;min-height:440px;">
+  <section class="mob-sec-t" style="padding:80px 64px 0;background:#fff;">
+    <div class="g-2col mob-gap" style="gap:64px;align-items:end;min-height:440px;">
       <div id="produkt-left-panel" style="display:flex;flex-direction:column;justify-content:flex-start;padding-top:64px;align-self:stretch;position:relative;isolation:isolate;overflow:hidden;">
         <p class="label sr" style="color:var(--violet-60);margin-bottom:20px;">Das Produkt</p>
         <h1 class="h-ct-hero sr sr-d1" style="color:var(--violet);">citronelli™</h1>
@@ -639,7 +827,7 @@
 
   <!-- Produktstory -->
   <section class="sec" style="background:var(--white);">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+    <div class="g-2col mob-gap" style="gap:80px;align-items:center;">
       <div class="sr">
         <div style="aspect-ratio:1;overflow:hidden;position:relative;">
           <img src="pictures/blüte2_560x560.png" alt="" style="width:100%;height:100%;object-fit:cover;">
@@ -664,30 +852,30 @@
   </section>
 
   <!-- Zutaten Detail (Violet) -->
-  <section style="background:var(--violet);padding:96px 64px;">
+  <section class="mob-sec" style="background:var(--violet);padding:96px 64px;">
     <div style="position:relative;z-index:1;">
       <div style="margin-bottom:64px;">
         <p class="label-v sr" style="color:rgba(219,216,226,0.6);margin-bottom:16px;">Vier Zutaten. Eine Philosophie.</p>
         <h2 class="h-qf-xl sr sr-d1" style="color:#fff;">Was in jede Flasche kommt</h2>
       </div>
       <div class="div-dark sr"></div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:0;">
-        <div style="padding:48px 36px 48px 0;border-right:1px solid rgba(255,255,255,0.08);" class="sr">
+      <div class="g-4col" style="gap:0;margin-top:0;">
+        <div class="col-bdr sr" style="padding:48px 36px 48px 0;border-right:1px solid rgba(255,255,255,0.08);">
           <p style="font-size:32px;margin-bottom:20px;"> + </p>
           <h3 class="h-qf-md" style="color:#fff;margin-bottom:14px;font-weight:400;">Reines Quellwasser</h3>
           <p class="body-violet" style="font-size:13px;">Unser Wasser kommt aus einer frischen Quelle in Österreich. Es ist klar, mineralreich und bildet die ruhige Basis von citronelli™. Ohne Zusätze, ohne Ablenkung, einfach als Grundlage für alles, was folgt.</p>
         </div>
-        <div style="padding:48px 36px;border-right:1px solid rgba(255,255,255,0.08);" class="sr sr-d1">
+        <div class="col-bdr sr sr-d1" style="padding:48px 36px;border-right:1px solid rgba(255,255,255,0.08);">
           <p style="font-size:32px;margin-bottom:20px;"> + </p>
           <h3 class="h-qf-md" style="color:#fff;margin-bottom:14px;font-weight:400;">Frische Zitrone</h3>
           <p class="body-violet" style="font-size:13px;">Zitrone bringt die vertraute Frische in jede Flasche. Ihr natürlicher Zitrusgeschmack macht citronelli™ leicht, klar und angenehm zu trinken. Nicht aufdringlich, sondern sauber und direkt.</p>
         </div>
-        <div style="padding:48px 36px;border-right:1px solid rgba(255,255,255,0.08);" class="sr sr-d2">
+        <div class="col-bdr sr sr-d2" style="padding:48px 36px;border-right:1px solid rgba(255,255,255,0.08);">
           <p style="font-size:32px;margin-bottom:20px;"> + </p>
           <h3 class="h-qf-md" style="color:#fff;margin-bottom:14px;font-weight:400;">Fruchtige Kalamansi</h3>
           <p class="body-violet" style="font-size:13px;">Die südostasiatische Zitrusfrucht. Kalamansi ergänzt die Zitrone mit einer besonderen, feinfruchtigen Note. Sie gibt citronelli™ seinen eigenen Charakter und sorgt für eine Frische, die nicht alltäglich wirkt. Dezent, aber wiedererkennbar.</p>
         </div>
-        <div style="padding:48px 0 48px 36px;" class="sr sr-d3">
+        <div class="col-bdr sr sr-d3" style="padding:48px 0 48px 36px;">
           <p style="font-size:32px;margin-bottom:20px;"> + </p>
           <h3 class="h-qf-md" style="color:#fff;margin-bottom:14px;font-weight:400;">Salz</h3>
           <p class="body-violet" style="font-size:13px;">Eine kleine Prise Salz rundet den Geschmack ab. Es bleibt im Hintergrund, macht citronelli™ aber weicher und vollständiger. Genau so viel, dass man den Unterschied spürt, ohne dass es auffällt.</p>
@@ -702,7 +890,7 @@
       <p class="label sr" style="color:var(--violet-60);margin-bottom:16px;">Einsatzbereiche</p>
       <h2 class="h-ct-lg sr sr-d1" style="color:var(--violet);">Für wen ist citronelli™?</h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+    <div class="g-2col" style="gap:16px;">
       <div class="occ-card sr">
         <p class="label" style="color:var(--violet-60);margin-bottom:16px;">01 — Spa & Wellness</p>
         <h3 class="h-ct-md" style="color:var(--violet);margin-bottom:14px;">Natürliche Erfrischung<br>im Reinsten.</h3>
@@ -772,7 +960,7 @@
 
   <!-- Origin Story -->
   <section class="sec" style="background:#fff;">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+    <div class="g-2col mob-gap" style="gap:80px;align-items:center;">
       <div>
         <p class="label sr" style="color:var(--violet-60);margin-bottom:20px;">Der Ursprung</p>
         <h2 class="h-ct-lg sr sr-d1" style="color:var(--violet);margin-bottom:28px;">
@@ -794,7 +982,7 @@
           <img src="pictures/geschmack_480x640.png" alt="" style="width:100%;height:100%;object-fit:cover;">
           <div style="position:absolute;inset:0;background:linear-gradient(to bottom right, rgba(75,60,110,0.25), transparent);mix-blend-mode:multiply;"></div>
         </div>
-        <div style="position:absolute;bottom:-28px;right:-28px;padding:28px 32px;background:var(--aqua-100);border:1px solid rgba(153,225,217,0.3);">
+        <div class="quote-box" style="position:absolute;bottom:-28px;right:-28px;padding:28px 32px;background:var(--aqua-100);border:1px solid rgba(153,225,217,0.3);">
           <p style="font-family:'Besley',serif;font-size:22px;color:var(--violet);font-style:italic;line-height:1.3;">"Nicht für jeden.<br>Für die Richtigen."</p>
         </div>
       </div>
@@ -807,7 +995,7 @@
       <p class="label sr" style="margin-bottom:16px;">Die Philosophie</p>
       <h2 class="h-qf-lg sr sr-d1">Was citronelli™ ausmacht.</h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
+    <div class="g-3col" style="gap:2px;">
       <div style="padding:52px 44px;background:#fff;border:1px solid rgba(153,225,217,0.2);" class="sr">
         <div style="width:40px;height:40px;border:1px solid var(--aqua);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:28px;">
           <span style="font-size:11px;color:var(--aqua-600);letter-spacing:0.06em;">01</span>
@@ -834,8 +1022,8 @@
   </section>
 
   <!-- Positionierung -->
-  <section style="background:var(--aqua-900);padding:96px 64px;">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+  <section class="mob-sec" style="background:var(--aqua-900);padding:96px 64px;">
+    <div class="g-2col mob-gap" style="gap:80px;align-items:center;">
       <div>
         <p class="label-w sr" style="margin-bottom:20px;">Positionierung</p>
         <h2 class="h-ct-xl sr sr-d1" style="color:#fff;margin-bottom:28px;">
@@ -870,8 +1058,8 @@
 <div id="page-unternehmen" class="page">
 
   <!-- Header -->
-  <section style="padding:80px 64px;background:var(--aqua-100);border-bottom:1px solid rgba(153,225,217,0.3);">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;">
+  <section class="mob-sec" style="padding:80px 64px;background:var(--aqua-100);border-bottom:1px solid rgba(153,225,217,0.3);">
+    <div class="g-2col mob-gap" style="gap:60px;align-items:end;">
       <div>
         <img src="brand_assets/QF%20Logo.png" alt="Quellfrisch GmbH" style="width:64px;margin-bottom:32px;opacity:0.75;" class="sr">
         <p class="label sr" style="margin-bottom:18px;">Quellfrisch GmbH</p>
@@ -890,16 +1078,16 @@
 
   <!-- Corporate Zahlen -->
   <section class="sec-sm" style="border-bottom:1px solid rgba(153,225,217,0.2);">
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;">
-      <div style="padding-right:52px;border-right:1px solid rgba(153,225,217,0.2);" class="sr">
+    <div class="g-3stats" style="gap:0;">
+      <div class="stat-col sr" style="padding-right:52px;border-right:1px solid rgba(153,225,217,0.2);">
         <p style="font-family:'Besley',serif;font-size:clamp(36px,5vw,68px);font-weight:400;line-height:1;letter-spacing:-0.02em;color:var(--aqua-600);">100%</p>
         <p style="font-size:12px;color:var(--aqua-700);margin-top:10px;line-height:1.55;letter-spacing:0.03em;">Natürliche Zutaten</p>
       </div>
-      <div style="padding:0 52px;border-right:1px solid rgba(153,225,217,0.2);" class="sr sr-d1">
+      <div class="stat-col sr sr-d1" style="padding:0 52px;border-right:1px solid rgba(153,225,217,0.2);">
         <p style="font-family:'Besley',serif;font-size:clamp(36px,5vw,68px);font-weight:400;line-height:1;letter-spacing:-0.02em;color:var(--aqua-600);">0</p>
         <p style="font-size:12px;color:var(--aqua-700);margin-top:10px;line-height:1.55;letter-spacing:0.03em;">Künstliche Zusatzstoffe</p>
       </div>
-      <div style="padding-left:52px;" class="sr sr-d2">
+      <div class="stat-col sr sr-d2" style="padding-left:52px;">
         <p style="font-family:'Besley',serif;font-size:clamp(36px,5vw,68px);font-weight:400;line-height:1;letter-spacing:-0.02em;color:var(--aqua-600);">DE</p>
         <p style="font-size:12px;color:var(--aqua-700);margin-top:10px;line-height:1.55;letter-spacing:0.03em;">Hergestellt in Deutschland</p>
       </div>
@@ -908,13 +1096,13 @@
 
   <!-- Mission -->
   <section class="sec">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+    <div class="g-2col mob-gap" style="gap:80px;align-items:center;">
       <div class="sr" style="position:relative;">
         <div style="aspect-ratio:4/5;overflow:hidden;">
           <img src="pictures/berg_400x600.png" alt="" style="width:100%;height:100%;object-fit:cover;">
           <div style="position:absolute;inset:0;background:rgba(153,225,217,0.2);mix-blend-mode:multiply;"></div>
         </div>
-        <div style="position:absolute;top:32px;right:-28px;padding:32px 36px;background:var(--aqua-300);max-width:220px;">
+        <div class="mission-badge" style="position:absolute;top:32px;right:-28px;padding:32px 36px;background:var(--aqua-300);max-width:220px;">
           <p style="font-size:11px;color:rgba(255, 255, 255, 0.6);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Leitmotiv</p>
           <p style="font-family:'Besley',serif;font-size:20px;color:#fff;font-style:italic;line-height:1.4;">"Klarheit aus der Quelle."</p>
         </div>
@@ -939,24 +1127,24 @@
       <p class="label-w sr" style="margin-bottom:16px;">Markenwerte</p>
       <h2 class="h-qf-lg sr sr-d1" style="color:#fff;">Was uns antreibt.</h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid rgba(255,255,255,0.06);">
-      <div style="padding:40px 28px 40px 0;border-right:1px solid rgba(255,255,255,0.06);" class="sr">
+    <div class="g-5col" style="gap:0;border-top:1px solid rgba(255,255,255,0.06);">
+      <div class="mwert-col sr" style="padding:40px 28px 40px 0;border-right:1px solid rgba(255,255,255,0.06);">
         <p style="font-size:10.5px;color:rgba(153,225,217,0.5);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;">Qualität</p>
         <p style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.7;">Höchste Standards. In jedem Schritt, jeder Zutat, jeder Entscheidung.</p>
       </div>
-      <div style="padding:40px 28px;border-right:1px solid rgba(255,255,255,0.06);" class="sr sr-d1">
+      <div class="mwert-col sr sr-d1" style="padding:40px 28px;border-right:1px solid rgba(255,255,255,0.06);">
         <p style="font-size:10.5px;color:rgba(153,225,217,0.5);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;">Reinheit</p>
         <p style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.7;">Nur das Notwendige. Kein Füllstoff, kein Kompromiss.</p>
       </div>
-      <div style="padding:40px 28px;border-right:1px solid rgba(255,255,255,0.06);" class="sr sr-d2">
+      <div class="mwert-col sr sr-d2" style="padding:40px 28px;border-right:1px solid rgba(255,255,255,0.06);">
         <p style="font-size:10.5px;color:rgba(153,225,217,0.5);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;">Sicherheit</p>
         <p style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.7;">Vertrauen ist verdient — durch Transparenz und Verlässlichkeit.</p>
       </div>
-      <div style="padding:40px 28px;border-right:1px solid rgba(255,255,255,0.06);" class="sr sr-d3">
+      <div class="mwert-col sr sr-d3" style="padding:40px 28px;border-right:1px solid rgba(255,255,255,0.06);">
         <p style="font-size:10.5px;color:rgba(153,225,217,0.5);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;">Frische</p>
         <p style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.7;">Natürlich. Lebendig. Ohne Beschönigung.</p>
       </div>
-      <div style="padding:40px 0 40px 28px;" class="sr sr-d4">
+      <div class="mwert-col sr sr-d4" style="padding:40px 0 40px 28px;">
         <p style="font-size:10.5px;color:rgba(153,225,217,0.5);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;">Verantwortung</p>
         <p style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.7;">Für Produkt, Umwelt und Gesellschaft — nachhaltig gedacht.</p>
       </div>
@@ -979,8 +1167,8 @@
 <div id="page-kontakt" class="page">
 
   <!-- Header + Split -->
-  <section style="display:grid;grid-template-columns:1fr 1fr;min-height:520px;">
-    <div style="padding:80px 64px;display:flex;flex-direction:column;justify-content:flex-end;background:var(--aqua-100);border-right:1px solid rgba(153,225,217,0.2);">
+  <section class="g-kontakt">
+    <div class="mob-sec" style="padding:80px 64px;display:flex;flex-direction:column;justify-content:flex-end;background:var(--aqua-100);border-right:1px solid rgba(153,225,217,0.2);">
       <p class="label sr" style="margin-bottom:18px;">Kontakt</p>
       <h1 class="h-qf-xl sr sr-d1" style="margin-bottom:28px;">Sprechen wir<br>miteinander.</h1>
       <p class="body-s sr sr-d2" style="max-width:320px;margin-bottom:40px;">
@@ -1001,7 +1189,7 @@
         </div>
       </div>
     </div>
-    <div style="padding:80px 64px;display:flex;flex-direction:column;justify-content:center;background:#fff;">
+    <div class="mob-sec" style="padding:80px 64px;display:flex;flex-direction:column;justify-content:center;background:#fff;">
       <p class="label sr" style="color:var(--violet-60);margin-bottom:32px;">Anfrage senden</p>
       <form id="kontakt-form" action="https://api.web3forms.com/submit" method="POST" style="display:flex;flex-direction:column;gap:32px;" class="sr sr-d1">
         <div>
@@ -1054,7 +1242,7 @@
      SHARED FOOTER
 ════════════════════════════════════════ -->
 <footer>
-  <div style="background:#111111;padding:52px 64px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px;border-top:1px solid rgba(153,225,217,0.06);">
+  <div class="g-footer" style="background:#111111;padding:52px 64px;gap:48px;border-top:1px solid rgba(153,225,217,0.06);">
     <!-- Brand -->
     <div>
       <img src="brand_assets/QF%20Logo.png" alt="Quellfrisch GmbH" style="width:60px;margin-bottom:20px;filter:brightness(0) invert(1);opacity:0.6;">
@@ -1105,6 +1293,32 @@
 
 
 <script>
+  // ── BURGER MENU ──────────────────────────────────────────────
+  (function () {
+    var burger = document.getElementById('nav-burger');
+    var mobileNav = document.getElementById('mobile-nav');
+    if (!burger || !mobileNav) return;
+
+    burger.addEventListener('click', function () {
+      var isOpen = mobileNav.classList.toggle('open');
+      burger.classList.toggle('open', isOpen);
+      burger.setAttribute('aria-expanded', String(isOpen));
+      mobileNav.setAttribute('aria-hidden', String(!isOpen));
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+  })();
+
+  function closeMobileNav() {
+    var burger = document.getElementById('nav-burger');
+    var mobileNav = document.getElementById('mobile-nav');
+    if (!mobileNav) return;
+    mobileNav.classList.remove('open');
+    if (burger) { burger.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); }
+    mobileNav.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+  // ── END BURGER MENU ──────────────────────────────────────────
+
   const PAGES = ['home','produkt','geschichte','unternehmen','kontakt'];
 
   function go(name) {
