@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>citronelli™ — von Quellfrisch GmbH</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Besley:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --aqua:       #99E1D9;
+      --aqua-100:   #EAF8F6;
+      --aqua-200:   #C9F0EB;
+      --aqua-300:   #99E1D9;
+      --aqua-600:   #9388AA;
+      --aqua-700:   #6F6388;
+      --aqua-800:   #4B3C6E;
+      --aqua-900:   #3A2C57;
+      --violet:     #4B3C6E;
+      --violet-80:  #6F6388;
+      --violet-60:  #9388AA;
+      --violet-40:  #B7B1C5;
+      --violet-20:  #DBD8E2;
+      --lila:       #734B7B;
+      --yellow:     #f8ffc6;
+      --white:      #ffffff;
+      --eOut:       cubic-bezier(0.16,1,0.3,1);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    html {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      color: var(--aqua-900);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    body { background: #fff; line-height: 1; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ::-webkit-scrollbar { width: 0; }
+    ::selection { background: rgba(75,60,110,0.15); }
+
+    /* ── NAV ──────────────────────────────────────── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      height: 64px;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(14px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 52px;
+      border-bottom: 1px solid rgba(153,225,217,0.35);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+    .nav-logo img { height: 40px; width: auto; }
+    .nav-logo-text { display: flex; flex-direction: column; gap: 1px; padding-left: 12px; border-left: 1px solid rgba(153,225,217,0.3); }
+    .nav-logo-text span:first-child { font-size: 11px; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; color: var(--aqua-800); line-height: 1; }
+    .nav-logo-text span:last-child { font-size: 9px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--aqua-600); line-height: 1; }
+    .nav-links { display: flex; align-items: center; gap: 36px; }
+    .nav-link {
+      font-size: 11px; font-weight: 400; letter-spacing: 0.11em;
+      text-transform: uppercase; color: var(--aqua-800);
+      cursor: pointer; position: relative; padding-bottom: 3px;
+      transition: color 0.2s;
+    }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1px; background: var(--aqua);
+      transition: width 0.35s var(--eOut);
+    }
+    .nav-link:hover::after, .nav-link.nav-active::after { width: 100%; }
+    .nav-link:hover { color: var(--aqua-700); }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-lang {
+      font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--violet-60); cursor: pointer; transition: color 0.2s;
+    }
+    .nav-lang:hover { color: var(--violet); }
+    .btn-nav-cta {
+      font-size: 10.5px; letter-spacing: 0.09em; text-transform: uppercase;
+      color: var(--aqua-900);
+      border: 1px solid var(--aqua);
+      padding: 9px 22px; cursor: pointer;
+      transition: background 0.25s, color 0.25s;
+      background: transparent;
+    }
+    .btn-nav-cta:hover { background: var(--aqua); color: var(--aqua-900); }
+
+    /* ── PAGES ────────────────────────────────────── */
+    .page { display: none; padding-top: 64px; }
+    .page.active { display: block; }
+    .page-enter { animation: pageIn 0.55s var(--eOut) both; }
+    @keyframes pageIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+    /* ── SCROLL REVEAL ────────────────────────────── */
+    .sr { opacity: 0; transform: translateY(30px); transition: opacity 0.85s var(--eOut), transform 0.85s var(--eOut); }
+    .sr.in { opacity: 1; transform: none; }
+    .sr-d1 { transition-delay: 0.1s; }
+    .sr-d2 { transition-delay: 0.22s; }
+    .sr-d3 { transition-delay: 0.34s; }
+    .sr-d4 { transition-delay: 0.46s; }
+
+    /* ── TYPOGRAPHY ───────────────────────────────── */
+    .h-ct-hero {
+      font-family: 'Besley', Georgia, serif;
+      font-size: clamp(56px, 9vw, 128px);
+      font-weight: 400; font-style: italic;
+      line-height: 0.93; letter-spacing: -0.028em;
+    }
+    .h-ct-xl {
+      font-family: 'Besley', Georgia, serif;
+      font-size: clamp(40px, 5.5vw, 80px);
+      font-weight: 400; font-style: italic;
+      line-height: 1.0; letter-spacing: -0.02em;
+    }
+    .h-ct-lg {
+      font-family: 'Besley', Georgia, serif;
+      font-size: clamp(28px, 3.5vw, 52px);
+      font-weight: 400; font-style: italic;
+      line-height: 1.1; letter-spacing: -0.015em;
+    }
+    .h-ct-md {
+      font-family: 'Besley', Georgia, serif;
+      font-size: clamp(20px, 2.2vw, 32px);
+      font-weight: 400; line-height: 1.25; letter-spacing: -0.01em;
+    }
+    .h-qf-xl {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: clamp(34px, 4.5vw, 68px);
+      font-weight: 300; line-height: 1.06; letter-spacing: -0.025em;
+    }
+    .h-qf-lg {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: clamp(24px, 3vw, 46px);
+      font-weight: 300; line-height: 1.1; letter-spacing: -0.02em;
+    }
+    .h-qf-md {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: clamp(17px, 1.8vw, 26px);
+      font-weight: 300; line-height: 1.25; letter-spacing: -0.01em;
+    }
+    .label {
+      font-size: 10.5px; font-weight: 400;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--aqua-700);
+    }
+    .label-v {
+      font-size: 10.5px; font-weight: 400;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--violet-60);
+    }
+    .label-w {
+      font-size: 10.5px; font-weight: 400;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(153,225,217,0.7);
+    }
+    .body-s { font-size: 14px; line-height: 1.8; color: var(--aqua-800); }
+    .body-xs { font-size: 12.5px; line-height: 1.72; color: var(--aqua-700); }
+    .body-dark { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.65); }
+    .body-violet { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.6); }
+
+    /* ── SECTIONS ─────────────────────────────────── */
+    .sec  { padding: 96px 64px; }
+    .sec-sm { padding: 64px 64px; }
+    .sec-lg { padding: 120px 64px; }
+    .div-line   { height: 1px; background: rgba(153,225,217,0.3); }
+    .div-line-v { height: 1px; background: rgba(75,60,110,0.12); }
+    .div-dark   { height: 1px; background: rgba(255,255,255,0.08); }
+
+    /* ── INLINE LINKS ─────────────────────────────── */
+    .ul {
+      font-size: 12.5px; letter-spacing: 0.04em; color: var(--aqua-700);
+      border-bottom: 1px solid var(--aqua); padding-bottom: 2px;
+      cursor: pointer; display: inline-block; transition: opacity 0.2s;
+    }
+    .ul:hover { opacity: 0.5; }
+    .ul-w {
+      font-size: 12.5px; letter-spacing: 0.04em; color: rgba(255,255,255,0.8);
+      border-bottom: 1px solid rgba(255,255,255,0.35); padding-bottom: 2px;
+      cursor: pointer; display: inline-block; transition: opacity 0.2s;
+    }
+    .ul-w:hover { opacity: 0.5; }
+    .ul-v {
+      font-size: 12.5px; letter-spacing: 0.04em; color: var(--violet);
+      border-bottom: 1px solid rgba(75,60,110,0.3); padding-bottom: 2px;
+      cursor: pointer; display: inline-block; transition: opacity 0.2s;
+    }
+    .ul-v:hover { opacity: 0.5; }
+
+    /* ── BUTTONS ──────────────────────────────────── */
+    .btn-aqua {
+      display: inline-block; padding: 14px 34px;
+      background: var(--aqua); color: var(--aqua-900);
+      font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; cursor: pointer;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .btn-aqua:hover { background: var(--aqua-200); transform: translateY(-1px); }
+    .btn-violet {
+      display: inline-block; padding: 14px 34px;
+      background: var(--violet); color: #fff;
+      font-size: 11px; font-weight: 400; letter-spacing: 0.1em;
+      text-transform: uppercase; cursor: pointer;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .btn-violet:hover { background: var(--violet-80); transform: translateY(-1px); }
+    .btn-outline-w {
+      display: inline-block; padding: 13px 32px;
+      border: 1px solid rgba(255,255,255,0.4); color: rgba(255,255,255,0.9);
+      font-size: 11px; font-weight: 400; letter-spacing: 0.1em;
+      text-transform: uppercase; cursor: pointer;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .btn-outline-w:hover { border-color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.07); }
+
+    /* ── HERO ─────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 64px);
+      display: flex; align-items: center; justify-content: center;
+      background: var(--violet);
+      overflow: hidden;
+    }
+    .hero-gradient {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 80% 70% at 50% 35%, rgba(115,75,123,0.55) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 35% at 15% 85%, rgba(75,60,110,0.5) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 45% at 88% 15%, rgba(146,136,170,0.25) 0%, transparent 60%);
+    }
+    .hero-grain {
+      position: absolute; inset: 0; pointer-events: none; opacity: 0.04; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* ── INGREDIENT CARDS ─────────────────────────── */
+    .ingr-card {
+      padding: 44px 38px 52px;
+      border: 1px solid rgba(153,225,217,0.35);
+      background: #fff;
+      transition: transform 0.3s var(--eOut), box-shadow 0.3s var(--eOut), border-color 0.3s;
+    }
+    .ingr-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 48px rgba(153,225,217,0.2), 0 4px 16px rgba(0,0,0,0.04);
+      border-color: var(--aqua);
+    }
+
+    /* ── OCCASION CARDS ───────────────────────────── */
+    .occ-card {
+      padding: 40px 32px 48px;
+      border: 1px solid rgba(75,60,110,0.1);
+      position: relative; overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s var(--eOut);
+    }
+    .occ-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(75,60,110,0.02);
+      opacity: 0; transition: opacity 0.25s;
+    }
+    .occ-card:hover { border-color: rgba(75,60,110,0.25); transform: translateY(-3px); }
+    .occ-card:hover::before { opacity: 1; }
+
+    /* ── VALUE ITEMS (QF) ─────────────────────────── */
+    .val-item {
+      padding: 36px 0;
+      border-bottom: 1px solid rgba(153,225,217,0.2);
+      display: grid; grid-template-columns: 48px 1fr;
+      gap: 28px; align-items: start;
+    }
+    .val-num {
+      font-size: 11px; color: var(--aqua-600);
+      letter-spacing: 0.08em; padding-top: 4px;
+    }
+
+    /* ── PHOTO GRID ───────────────────────────────── */
+    .photo-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      height: 240px;
+    }
+    .photo-grid-item { overflow: hidden; }
+    .photo-grid-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: saturate(0.55) brightness(0.88);
+      transition: transform 0.65s var(--eOut), filter 0.4s;
+    }
+    .photo-grid-item:hover img { transform: scale(1.07); filter: saturate(0.85) brightness(1.0); }
+
+    /* ── SOCIAL ───────────────────────────────────── */
+    .soc-icon {
+      width: 34px; height: 34px;
+      border: 1px solid rgba(153,225,217,0.25);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: border-color 0.2s, background 0.2s;
+      color: rgba(255,255,255,0.5);
+    }
+    .soc-icon:hover { border-color: var(--aqua); background: rgba(153,225,217,0.1); color: var(--aqua); }
+    .soc-icon svg { width: 13px; height: 13px; fill: currentColor; }
+
+    /* ── HERO PIXEL TRAIL ────────────────────────── */
+    @keyframes heroPixelFade {
+      0%   { opacity: 0.52; transform: scale(1.08); }
+      22%  { opacity: 0.52; transform: scale(1.08); }
+      100% { opacity: 0;   transform: scale(0.88); }
+    }
+
+    /* ── SCROLL INDICATOR ─────────────────────────── */
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+    .scroll-ind { animation: scrollBounce 2.2s ease-in-out infinite; }
+
+    /* ── CONTACT FORM ─────────────────────────────── */
+    .form-input {
+      width: 100%; border: none; border-bottom: 1px solid rgba(153,225,217,0.4);
+      padding: 12px 0; background: transparent;
+      font-family: inherit; font-size: 14px; color: var(--aqua-900);
+      outline: none; transition: border-color 0.2s;
+    }
+    .form-input::placeholder { color: rgba(75,100,96,0.45); }
+    .form-input:focus { border-color: var(--aqua); }
+    .form-label {
+      font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--aqua-700); margin-bottom: 6px; display: block;
+    }
+
+    /* ── GESCHICHTE HERO ANIMATED BACKGROUND ────────── */
+    @keyframes gOrb1 {
+      0%,100% { transform: translate(0,0) scale(1); opacity:0.55; }
+      33%      { transform: translate(28px,-22px) scale(1.07); opacity:0.68; }
+      67%      { transform: translate(-14px,16px) scale(0.95); opacity:0.48; }
+    }
+    @keyframes gOrb2 {
+      0%,100% { transform: translate(0,0) scale(1); opacity:0.28; }
+      40%      { transform: translate(-32px,18px) scale(1.10); opacity:0.42; }
+      75%      { transform: translate(20px,-12px) scale(0.92); opacity:0.24; }
+    }
+    @keyframes gOrb3 {
+      0%,100% { transform: translate(0,0) scale(1); opacity:0.20; }
+      55%      { transform: translate(14px,26px) scale(1.05); opacity:0.32; }
+    }
+    .prox-letter {
+      display: inline-block;
+      will-change: transform, color;
+      transition: transform 0.08s cubic-bezier(0.16,1,0.3,1), color 0.12s ease;
+    }
+    .prox-space { display: inline-block; }
+    .prox-vh {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); border: 0;
+    }
+
+    /* ── FOOTER LEGAL ─────────────────────────────── */
+    .legal-footer {
+      background: #0D0D0D;
+      padding: 22px 52px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .legal-link {
+      font-size: 10.5px; color: rgba(255,255,255,0.38);
+      cursor: pointer; transition: color 0.2s; letter-spacing: 0.04em;
+    }
+    .legal-link:hover { color: var(--aqua); }
+    .legal-sep { color: rgba(255,255,255,0.15); margin: 0 10px; font-size: 10px; }
+    .legal-copy { font-size: 10.5px; color: rgba(255,255,255,0.28); letter-spacing: 0.02em; }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     NAV
+════════════════════════════════════════ -->
+<nav class="nav">
+  <div class="nav-logo" onclick="go('home')">
+    <img src="brand_assets/QF%20Logo.png" alt="Quellfrisch GmbH">
+    <div class="nav-logo-text">
+      <span>Quellfrisch</span>
+      <span>GmbH</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <span class="nav-link" id="nl-produkt" onclick="go('produkt')">Produkt</span>
+    <span class="nav-link" id="nl-geschichte" onclick="go('geschichte')">Geschichte</span>
+    <span class="nav-link" id="nl-unternehmen" onclick="go('unternehmen')">Quellfrisch GmbH</span>
+    <span class="nav-link" id="nl-kontakt" onclick="go('kontakt')">Kontakt</span>
+  </div>
+  <div class="nav-right">
+    <span class="nav-lang">DE</span>
+    <span class="nav-lang" style="opacity:0.4;">EN</span>
+    <span class="btn-nav-cta" onclick="go('kontakt')">Anfrage</span>
+  </div>
+</nav>
+
+
+<!-- ════════════════════════════════════════
+     HOME
+════════════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- HERO: Quellfrisch GmbH Corporate -->
+  <section style="min-height:calc(100vh - 64px);display:grid;grid-template-columns:1fr 1fr;overflow:hidden;position:relative;">
+
+    <!-- Left: White, Quellfrisch Corporate -->
+    <div id="hero-left-panel" style="background:#fff;display:flex;flex-direction:column;justify-content:center;padding:88px 72px;position:relative;isolation:isolate;overflow:hidden;">
+      <div style="position:absolute;right:0;top:12%;bottom:12%;width:1px;background:rgba(153,225,217,0.35);"></div>
+      <p class="label sr" style="margin-bottom:28px;">Getränke · Wasser · Made in Germany</p>
+      <h1 class="h-qf-xl sr sr-d1" style="margin-bottom:0;">Klarheit<br>aus der<br>Quelle.</h1>
+      <div style="width:52px;height:2px;background:var(--aqua);margin:28px 0;" class="sr sr-d2"></div>
+      <p class="body-s sr sr-d2" style="max-width:380px;margin-bottom:44px;">
+        Quellfrisch GmbH ist Getränke- und Wasserproduzent mit höchsten Qualitätsansprüchen — Hersteller von citronelli™.
+      </p>
+      <div style="display:flex;gap:20px;align-items:center;" class="sr sr-d3">
+        <span class="btn-aqua" onclick="go('kontakt')">Partner werden</span>
+        <span onclick="go('unternehmen')" style="font-size:10.5px;letter-spacing:0.09em;text-transform:uppercase;color:var(--aqua-700);cursor:pointer;border-bottom:1px solid var(--aqua);padding-bottom:2px;transition:opacity 0.2s;" onmouseover="this.style.opacity=0.5" onmouseout="this.style.opacity=1">Über uns</span>
+      </div>
+      <div style="position:absolute;bottom:40px;left:72px;display:flex;flex-direction:column;align-items:flex-start;gap:10px;">
+        <p class="label scroll-ind" style="font-size:9px;letter-spacing:0.2em;opacity:0.35;">Scroll</p>
+        <svg width="1" height="32" viewBox="0 0 1 32" class="scroll-ind"><line x1="0.5" y1="0" x2="0.5" y2="32" stroke="rgba(153,225,217,0.55)" stroke-width="1"/></svg>
+      </div>
+    </div>
+
+    <!-- Right: Aqua-100, Brand & Product Visual -->
+    <div style="background:var(--aqua-100);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:80px 64px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:-80px;right:-80px;width:360px;height:360px;border-radius:50%;background:var(--aqua-200);opacity:0.55;"></div>
+      <div style="position:absolute;bottom:-50px;left:-50px;width:220px;height:220px;border-radius:50%;background:var(--aqua-200);opacity:0.4;"></div>
+      <div style="position:relative;z-index:1;text-align:center;">
+        <img src="brand_assets/QF%20Logo.png" alt="Quellfrisch GmbH" style="width:88px;margin:0 auto 28px;opacity:0.85;" class="sr">
+        <div style="width:1px;height:56px;background:rgba(153,225,217,0.6);margin:0 auto 28px;"></div>
+        <p class="label sr sr-d1" style="margin-bottom:18px;">Unser Produkt</p>
+        <p class="h-ct-lg sr sr-d2" style="color:var(--aqua-800);">citronelli™</p>
+        <p class="body-xs sr sr-d3" style="margin-top:14px;max-width:200px;margin-left:auto;margin-right:auto;text-align:center;">Premium-Erfrischung<br>Wasser · Zitrone · Kalamansi · Salz</p>
+        <span class="ul sr sr-d4" onclick="go('produkt')" style="margin-top:24px;display:inline-block;">Produkt ansehen</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- INTRO STRIP: Markenbrücke -->
+  <section style="padding:72px 64px;border-bottom:1px solid rgba(153,225,217,0.2);">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+      <div>
+        <p class="label sr" style="margin-bottom:20px;">Premium-Erfrischung</p>
+        <h2 class="h-qf-xl sr sr-d1">
+          Klarheit aus<br>der Quelle.
+        </h2>
+      </div>
+      <div class="sr sr-d2">
+        <p class="body-s" style="margin-bottom:36px;">
+          citronelli™ vereint die Reinheit besten Quellfrisch-Wassers mit dem Genuss echter Zutaten. Konzipiert für Premium-Umgebungen, die mehr erwarten als das Gewöhnliche.
+        </p>
+        <p class="body-s" style="margin-bottom:32px;">
+          Reduziert. Ehrlich. Außergewöhnlich. Ein Getränk, das seinen Platz kennt: In Spas, Luxushotels, gehobener Gastronomie und bei Premium-Events.
+        </p>
+        <span class="ul" onclick="go('geschichte')">Unsere Geschichte</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ZUTATEN: Aqua background, Quellfrisch-Struktur -->
+  <section class="sec" style="background:var(--aqua-100);">
+    <div style="margin-bottom:56px;display:flex;justify-content:space-between;align-items:flex-end;">
+      <div>
+        <p class="label sr" style="margin-bottom:16px;">Die Zutaten</p>
+        <h2 class="h-qf-lg sr sr-d1">Vier Zutaten.<br>Eine Überzeugung.</h2>
+      </div>
+      <span class="ul sr sr-d2" onclick="go('produkt')">Mehr erfahren</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      <div class="ingr-card sr">
+        <div style="width:48px;height:2px;background:var(--aqua);margin-bottom:32px;"></div>
+        <p class="label" style="margin-bottom:14px;">01</p>
+        <h3 class="h-qf-md" style="margin-bottom:16px;">Quellfrisch Wasser</h3>
+        <p class="body-xs">Reines Wasser aus einer frischen Quelle in Österreich. Reich an Mineralien und von höchster Qualität. Die unveränderliche Basis jeder Flasche citronelli™. Klar, natürlich, ohne Kompromisse.
+          </p>
+      </div>
+      <div class="ingr-card sr sr-d1">
+        <div style="width:48px;height:2px;background:var(--aqua-200);margin-bottom:32px;"></div>
+        <p class="label" style="margin-bottom:14px;">02</p>
+        <h3 class="h-qf-md" style="margin-bottom:16px;">Zitrone & Kalamansi</h3>
+        <p class="body-xs">Echter Zitrusduo. Frische Zitrone für Tiefe, Kalamansi für den unverwechselbaren Charakter. Das macht citronelli™ zu etwas Besonderem.</p>
+      </div>
+      <div class="ingr-card sr sr-d2">
+        <div style="width:48px;height:2px;background:var(--aqua);margin-bottom:32px;"></div>
+        <p class="label" style="margin-bottom:14px;">03</p>
+        <h3 class="h-qf-md" style="margin-bottom:16px;">Salz</h3>
+        <p class="body-xs">Die stille Kraft im Hintergrund. Eine Prise Salz rundet den Geschmack ab, balanciert die Säure und verleiht citronelli™ seinen unerwarteten Abgang.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLAIM: Aqua Section, Quellfrisch corporate -->
+  <section style="background:var(--aqua);padding:104px 64px;text-align:center;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,255,255,0.12) 0%, transparent 70%);pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;max-width:760px;margin:0 auto;">
+      <p class="label sr" style="color:rgba(58,44,87,0.5);margin-bottom:32px;">Quellfrisch GmbH — Getränke · Wasser</p>
+      <h2 class="h-qf-xl sr sr-d1" style="color:var(--aqua-900);margin-bottom:28px;">
+        "Für die<br>Momente<br>danach."
+      </h2>
+      <div style="height:1px;width:80px;background:rgba(58,44,87,0.15);margin:36px auto;"></div>
+      <p class="body-s sr sr-d2" style="color:var(--aqua-800);max-width:520px;margin:0 auto 40px;">
+        Als Getränke- und Wasserproduzent hinter citronelli™ steht Quellfrisch GmbH für höchste Qualitätsansprüche, natürliche Frische und verantwortungsvollen Umgang mit Ressourcen.
+      </p>
+      <span class="ul sr sr-d3" style="color:var(--aqua-800);border-bottom-color:rgba(58,44,87,0.3);" onclick="go('unternehmen')">Über Quellfrisch GmbH</span>
+    </div>
+  </section>
+
+  <!-- PREMIUM POSITIONING: citronelli™ Einsatzgebiete -->
+  <section class="sec" style="background:#fff;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+      <div>
+        <p class="label sr" style="margin-bottom:20px;">Premium-Einsatz</p>
+        <h2 class="h-qf-lg sr sr-d1" style="margin-bottom:28px;">
+          Für außergewöhnliche<br>Momente konzipiert.
+        </h2>
+        <p class="body-s sr sr-d2" style="margin-bottom:36px;">
+          citronelli™ ist nicht für überall. Es ist für die Orte, an denen Qualität keine Frage ist und für Menschen, die den Unterschied spüren.
+        </p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:40px;" class="sr sr-d3">
+          <div style="padding:14px 18px;border:1px solid rgba(153,225,217,0.35);font-size:12px;color:var(--aqua-800);letter-spacing:0.04em;">Spa & Wellness</div>
+          <div style="padding:14px 18px;border:1px solid rgba(153,225,217,0.35);font-size:12px;color:var(--aqua-800);letter-spacing:0.04em;">Luxushotels</div>
+          <div style="padding:14px 18px;border:1px solid rgba(153,225,217,0.35);font-size:12px;color:var(--aqua-800);letter-spacing:0.04em;">Premium Gastronomie</div>
+          <div style="padding:14px 18px;border:1px solid rgba(153,225,217,0.35);font-size:12px;color:var(--aqua-800);letter-spacing:0.04em;">Private Events</div>
+        </div>
+        <span class="ul sr sr-d4" onclick="go('produkt')">Produkt ansehen</span>
+      </div>
+      <div class="sr sr-d2" style="position:relative;">
+        <div style="aspect-ratio:3/4;overflow:hidden;position:relative;">
+          <img src="pictures/beispiel1.png" alt="citronelli" style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(153,225,217,0.55) 0%, transparent 55%);"></div>
+          <div style="position:absolute;bottom:32px;left:32px;right:32px;">
+            <img src="pictures/Citronelli Schriftzug lila.png" alt="citronelli" style="width:240px;margin-bottom:12px;filter:brightness(0) invert(1);opacity:0.75;">
+          </div>
+        </div>
+        <div style="position:absolute;top:-24px;right:-24px;width:80px;height:80px;border:1px solid rgba(153,225,217,0.35);"></div>
+        <div style="position:absolute;bottom:-24px;left:-24px;width:60px;height:60px;border:1px solid rgba(153,225,217,0.5);"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QF VERTRAUEN: Corporate Values -->
+  <section class="sec" style="background:var(--aqua-100);">
+    <div style="display:grid;grid-template-columns:300px 1fr;gap:80px;align-items:start;">
+      <div>
+        <img src="brand_assets/QF%20Logo.png" alt="Quellfrisch GmbH" style="width:80px;margin-bottom:28px;opacity:0.8;" class="sr">
+        <p class="label sr" style="margin-bottom:16px;">Quellfrisch GmbH</p>
+        <h2 class="h-qf-lg sr sr-d1" style="margin-bottom:24px;">Der Hersteller<br>hinter citronelli™</h2>
+        <p class="body-s sr sr-d2" style="margin-bottom:32px;">Als neutrale Dachmarke steht Quellfrisch GmbH für Qualität, Reinheit und höchste Produktionsstandards — klar, professionell und hochwertig.</p>
+        <span class="ul sr sr-d3" onclick="go('unternehmen')">Unternehmen kennenlernen</span>
+      </div>
+      <div>
+        <div class="val-item sr">
+          <span class="val-num">01</span>
+          <div>
+            <h4 class="h-qf-md" style="margin-bottom:10px;">Qualität & Klarheit</h4>
+            <p class="body-xs">Jedes Produkt, jede Entscheidung, jede Zutat folgt dem gleichen Anspruch: höchste Qualität ohne Abstriche.</p>
+          </div>
+        </div>
+        <div class="val-item sr sr-d1">
+          <span class="val-num">02</span>
+          <div>
+            <h4 class="h-qf-md" style="margin-bottom:10px;">Reinheit</h4>
+            <p class="body-xs">Keine künstlichen Zusätze, keine Kompromisse bei den Zutaten. Was nicht nötig ist, kommt nicht rein.</p>
+          </div>
+        </div>
+        <div class="val-item sr sr-d2">
+          <span class="val-num">03</span>
+          <div>
+            <h4 class="h-qf-md" style="margin-bottom:10px;">Natürliche Frische</h4>
+            <p class="body-xs">Frische ist keine Marketingphrase — sie ist das Ergebnis echter Zutaten und sorgfältiger Produktion.</p>
+          </div>
+        </div>
+        <div class="val-item sr sr-d3" style="border-bottom:none;">
+          <span class="val-num">04</span>
+          <div>
+            <h4 class="h-qf-md" style="margin-bottom:10px;">Verantwortung & Nachhaltigkeit</h4>
+            <p class="body-xs">Als Hersteller tragen wir Verantwortung — für Produkt, Umwelt und die Menschen, die citronelli™ genießen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER CTA: Quellfrisch Aqua -->
+  <section style="background:var(--aqua-200);padding:104px 64px;text-align:center;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,255,255,0.2) 0%, transparent 70%);pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;">
+      <p class="label sr" style="color:rgba(58,44,87,0.45);margin-bottom:28px;">Partner & Distribution</p>
+      <h2 class="h-qf-xl sr sr-d1" style="color:var(--aqua-900);margin-bottom:20px;">
+        Gemeinsam<br>außergewöhnlich.
+      </h2>
+      <p class="body-s sr sr-d2" style="color:var(--aqua-800);max-width:460px;margin:0 auto 44px;">
+        Für Listing-Anfragen, Partnerangebote und alle Fragen rund um citronelli™ stehen wir bereit.
+      </p>
+      <span class="sr sr-d3" onclick="go('kontakt')" style="cursor:pointer;display:inline-block;font-size:10.5px;letter-spacing:0.09em;text-transform:uppercase;color:var(--aqua-900);border:1px solid rgba(153,225,217,0.7);padding:14px 40px;transition:background 0.25s,border-color 0.25s;" onmouseover="this.style.background='var(--aqua)';this.style.borderColor='var(--aqua)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(153,225,217,0.7)'">Kontakt aufnehmen</span>
+    </div>
+  </section>
+
+  <!-- PHOTO GRID -->
+  <div class="photo-grid">
+    <div class="photo-grid-item"><img src="pictures/wellen_400x240.png" alt=""></div>
+    <div class="photo-grid-item"><img src="pictures/blasen_400x240.png" alt=""></div>
+    <div class="photo-grid-item"><img src="pictures/labor_400x240.png" alt=""></div>
+    <div class="photo-grid-item"><img src="pictures/eiswürfel_400x240.png" alt=""></div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     PRODUKT
+════════════════════════════════════════ -->
+<div id="page-produkt" class="page">
+
+  <!-- Produkt Hero -->
+  <section style="padding:80px 64px 0;background:#fff;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end;min-height:440px;">
+      <div id="produkt-left-panel" style="display:flex;flex-direction:column;justify-content:flex-start;padding-top:64px;align-self:stretch;position:relative;isolation:isolate;overflow:hidden;">
+        <p class="label sr" style="color:var(--violet-60);margin-bottom:20px;">Das Produkt</p>
+        <h1 class="h-ct-hero sr sr-d1" style="color:var(--violet);">citronelli™</h1>
+        <div style="height:1px;width:100%;background:rgba(75,60,110,0.1);margin:36px 0;"></div>
+        <p class="body-s sr sr-d2" style="max-width:380px;">
+          Premium-Erfrischung aus der Natur. Reduziert auf das Wesentliche. Genau deshalb sind wir außergewöhnlich.
+        </p>
+      </div>
+      <div class="sr sr-d1" style="position:relative;overflow:hidden;aspect-ratio:4/5;">
+        <img src="pictures/frozen_680x850.png" alt="citronelli" style="width:100%;height:100%;object-fit:cover;">
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom, transparent 60%, rgba(164, 152, 84, 0.5));"></div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:40px;">
+          <p style="font-size:11px;color:rgba(255,255,255,0.6);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">Premium Erfrischung</p>
+          <p style="font-family:'Besley',serif;font-size:22px;color:#fff;font-style:italic;line-height:1.3;">Wasser. Zitrone.<br>Kalamansi. Salz.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Produktstory -->
+  <section class="sec" style="background:var(--white);">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+      <div class="sr">
+        <div style="aspect-ratio:1;overflow:hidden;position:relative;">
+          <img src="pictures/blüte2_560x560.png" alt="" style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(153,225,217,0.3),transparent);mix-blend-mode:multiply;"></div>
+        </div>
+      </div>
+      <div>
+        <p class="label sr" style="margin-bottom:18px;">Die Überzeugung</p>
+        <h2 class="h-ct-lg sr sr-d1" style="color:var(--violet);margin-bottom:28px;">
+          Weniger ist mehr.<br>Echtes bleibt.
+        </h2>
+        <p class="body-s sr sr-d2" style="margin-bottom:20px;">
+          citronelli™ entstand aus einer einfachen Überzeugung: Ein wirklich gutes Getränk braucht keine Tricks. Wir schaffen eine Alternative für Menschen, 
+          die natürliche Erfrischung suchen, ohne Zucker, ohne künstliche Aromen und ohne unnötige Zusätze. <br> Es braucht ausgewählte Zutaten und den Mut, alles Unnötige wegzulassen.
+        </p>
+        <p class="body-s sr sr-d3" style="margin-bottom:36px;">
+          Kein Zucker. Keine künstlichen Aromen. Keine Konservierungsstoffe. Nur Wasser, Zitrone, Kalamansi und eine Prise Salz. <br> Klar im Geschmack, natürlich im Charakter.
+        </p>
+        <span class="ul sr sr-d4" onclick="go('geschichte')">Die Geschichte dahinter</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Zutaten Detail (Violet) -->
+  <section style="background:var(--violet);padding:96px 64px;">
+    <div style="position:relative;z-index:1;">
+      <div style="margin-bottom:64px;">
+        <p class="label-v sr" style="color:rgba(219,216,226,0.6);margin-bottom:16px;">Vier Zutaten. Eine Philosophie.</p>
+        <h2 class="h-qf-xl sr sr-d1" style="color:#fff;">Was in jede Flasche kommt</h2>
+      </div>
+      <div class="div-dark sr"></div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:0;">
+        <div style="padding:48px 36px 48px 0;border-right:1px solid rgba(255,255,255,0.08);" class="sr">
+          <p style="font-size:32px;margin-bottom:20px;"> + </p>
+          <h3 class="h-qf-md" style="color:#fff;margin-bottom:14px;font-weight:400;">Reines Quellwasser</h3>
+          <p class="body-violet" style="font-size:13px;">Unser Wasser kommt aus einer frischen Quelle in Österreich. Es ist klar, mineralreich und bildet die ruhige Basis von citronelli™. Ohne Zusätze, ohne Ablenkung, einfach als Grundlage für alles, was folgt.</p>
+        </div>
+        <div style="padding:48px 36px;border-right:1px solid rgba(255,255,255,0.08);" class="sr sr-d1">
+          <p style="font-size:32px;margin-bottom:20px;"> + </p>
+          <h3 class="h-qf-md" style="color:#fff;margin-bottom:14px;font-weight:400;">Frische Zitrone</h3>
+          <p class="body-violet" style="font-size:13px;">Zitrone bringt die vertraute Frische in jede Flasche. Ihr natürlicher Zitrusgeschmack macht citronelli™ leicht, klar und angenehm zu trinken. Nicht aufdringlich, sondern sauber und direkt.</p>
+        </div>
+        <div style="padding:48px 36px;border-right:1px solid rgba(255,255,255,0.08);" class="sr sr-d2">
+          <p style="font-size:32px;margin-bottom:20px;"> + </p>
+          <h3 class="h-qf-md" style="color:#fff;margin-bottom:14px;font-weight:400;">Fruchtige Kalamansi</h3>
+          <p class="body-violet" style="font-size:13px;">Die südostasiatische Zitrusfrucht. Kalamansi ergänzt die Zitrone mit einer besonderen, feinfruchtigen Note. Sie gibt citronelli™ seinen eigenen Charakter und sorgt für eine Frische, die nicht alltäglich wirkt. Dezent, aber wiedererkennbar.</p>
+        </div>
+        <div style="padding:48px 0 48px 36px;" class="sr sr-d3">
+          <p style="font-size:32px;margin-bottom:20px;"> + </p>
+          <h3 class="h-qf-md" style="color:#fff;margin-bottom:14px;font-weight:400;">Salz</h3>
+          <p class="body-violet" style="font-size:13px;">Eine kleine Prise Salz rundet den Geschmack ab. Es bleibt im Hintergrund, macht citronelli™ aber weicher und vollständiger. Genau so viel, dass man den Unterschied spürt, ohne dass es auffällt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Einsatzbereiche -->
+  <section class="sec" style="background:#fff;">
+    <div style="margin-bottom:56px;">
+      <p class="label sr" style="color:var(--violet-60);margin-bottom:16px;">Einsatzbereiche</p>
+      <h2 class="h-ct-lg sr sr-d1" style="color:var(--violet);">Für wen ist citronelli™?</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+      <div class="occ-card sr">
+        <p class="label" style="color:var(--violet-60);margin-bottom:16px;">01 — Spa & Wellness</p>
+        <h3 class="h-ct-md" style="color:var(--violet);margin-bottom:14px;">Natürliche Erfrischung<br>im Reinsten.</h3>
+        <p class="body-xs">In Spa-Anlagen, Saunas und Wellnesszentren ist citronelli™ die bewusste Alternative — erfrischend, funktional und auf höchstem Niveau.</p>
+      </div>
+      <div class="occ-card sr sr-d1">
+        <p class="label" style="color:var(--violet-60);margin-bottom:16px;">02 — Luxushotels</p>
+        <h3 class="h-ct-md" style="color:var(--violet);margin-bottom:14px;">Der Unterschied,<br>den Gäste spüren.</h3>
+        <p class="body-xs">Auf dem Zimmer, im Restaurant, in der Minibar — citronelli™ ist das Getränk, das Gäste nicht vergessen.</p>
+      </div>
+      <div class="occ-card sr sr-d2">
+        <p class="label" style="color:var(--violet-60);margin-bottom:16px;">03 — Premium Gastronomie</p>
+        <h3 class="h-ct-md" style="color:var(--violet);margin-bottom:14px;">Das Handwerk<br>des guten Geschmacks.</h3>
+        <p class="body-xs">Bars, Restaurants und Lounges mit Anspruch wissen: Die Wahl des Getränks ist die Wahl einer Haltung.</p>
+      </div>
+      <div class="occ-card sr sr-d3">
+        <p class="label" style="color:var(--violet-60);margin-bottom:16px;">04 — Private Events</p>
+        <h3 class="h-ct-md" style="color:var(--violet);margin-bottom:14px;">Momente,<br>die bleiben.</h3>
+        <p class="body-xs">Corporate-Events, Hochzeiten, exklusive Feiern — citronelli™ ist das Detail, das den Unterschied macht.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer CTA -->
+  <section style="background:var(--aqua-100);padding:80px 64px;text-align:center;">
+    <p class="label sr" style="margin-bottom:20px;">Interesse am Produkt?</p>
+    <h2 class="h-qf-lg sr sr-d1" style="margin-bottom:24px;">citronelli™ für Ihren Betrieb.</h2>
+    <p class="body-s sr sr-d2" style="max-width:420px;margin:0 auto 40px;">Wir freuen uns auf Ihre Anfrage — ob Listing, Verkostung oder Partnerschaft.</p>
+    <span class="btn-violet sr sr-d3" onclick="go('kontakt')">Jetzt anfragen</span>
+  </section>
+
+  <!-- Photo Grid -->
+  <div class="photo-grid">
+    <div class="photo-grid-item"><img src="pictures/wasser_400x240.png" alt=""></div>
+    <div class="photo-grid-item"><img src="pictures/zitrone_400x240.png" alt=""></div>
+    <div class="photo-grid-item"><img src="pictures/kalamansi_400x240.png" alt=""></div>
+    <div class="photo-grid-item"><img src="pictures/salz_400x240.png" alt=""></div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     GESCHICHTE
+════════════════════════════════════════ -->
+<div id="page-geschichte" class="page">
+
+  <!-- Header -->
+  <section id="geschichte-hero" style="padding:80px 64px;background:var(--violet);min-height:400px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;">
+    <!-- Base radial gradient -->
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 30% 60%, rgba(115,75,123,0.45) 0%, transparent 70%);pointer-events:none;"></div>
+    <!-- Animated lila orb — top-right (screen blend for visibility on dark bg) -->
+    <div aria-hidden="true" style="position:absolute;width:700px;height:700px;top:-160px;right:-180px;background:radial-gradient(circle, rgba(180,130,210,0.55) 0%, transparent 62%);border-radius:50%;mix-blend-mode:screen;animation:gOrb1 14s cubic-bezier(0.45,0.05,0.55,0.95) infinite;pointer-events:none;"></div>
+    <!-- Animated aqua orb — bottom-centre (screen blend for teal glow) -->
+    <div aria-hidden="true" style="position:absolute;width:500px;height:500px;bottom:-100px;left:36%;background:radial-gradient(circle, rgba(153,225,217,0.22) 0%, transparent 60%);border-radius:50%;mix-blend-mode:screen;animation:gOrb2 19s cubic-bezier(0.45,0.05,0.55,0.95) infinite;pointer-events:none;"></div>
+    <!-- Animated warm-lila orb — left (screen blend for depth) -->
+    <div aria-hidden="true" style="position:absolute;width:400px;height:400px;top:20%;left:-100px;background:radial-gradient(circle, rgba(140,90,160,0.38) 0%, transparent 65%);border-radius:50%;mix-blend-mode:screen;animation:gOrb3 23s cubic-bezier(0.45,0.05,0.55,0.95) infinite;pointer-events:none;"></div>
+    <!-- Grain texture overlay -->
+    <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;opacity:0.05;mix-blend-mode:overlay;background-image:url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='gsch-n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23gsch-n)'/%3E%3C/svg%3E&quot;);"></div>
+    <!-- Content -->
+    <div style="position:relative;z-index:1;">
+      <p class="label-v sr" style="color:rgba(219,216,226,0.6);margin-bottom:20px;">Geschichte</p>
+      <h1 class="h-ct-hero sr sr-d1" style="color:#fff;max-width:700px;">
+        Eine Idee.<br>Vier Zutaten.<br>Eine Überzeugung.
+      </h1>
+    </div>
+  </section>
+
+  <!-- Origin Story -->
+  <section class="sec" style="background:#fff;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+      <div>
+        <p class="label sr" style="color:var(--violet-60);margin-bottom:20px;">Der Ursprung</p>
+        <h2 class="h-ct-lg sr sr-d1" style="color:var(--violet);margin-bottom:28px;">
+          Aus dem Wunsch nach<br>echtem Geschmack.
+        </h2>
+        <p class="body-s sr sr-d2" style="margin-bottom:20px;">
+          citronelli™ entstand aus dem Wunsch, Erfrischung wieder ehrlicher zu machen.
+          Wir haben gemerkt, dass viele Getränke heute entweder zu süß, zu künstlich oder zu austauschbar wirken. Oft fehlt das, wonach man eigentlich sucht: ein klarer Geschmack, gute Zutaten und ein Gefühl von Ruhe nach dem ersten Schluck.
+        </p>
+        <p class="body-s sr sr-d3" style="margin-bottom:36px;">
+          Also haben wir uns gefragt, wie ein Getränk schmecken müsste, wenn man alles Unnötige weglässt. Keine künstlichen Aromen. Keine Zusatzstoffe. Kein lautes Versprechen. Nur Wasser, Zitrone, Kalamansi und Salz.
+        </p>
+        <p class="body-s sr sr-d3" style="margin-bottom:36px;">
+          citronelli™ ist unsere Antwort darauf. Eine natürliche Alternative für Menschen, die genießen möchten, ohne sich zwischen Geschmack und einem guten Gefühl entscheiden zu müssen.
+        </p>
+      </div>
+      <div class="sr sr-d1" style="position:relative;">
+        <div style="aspect-ratio:3/4;overflow:hidden;">
+          <img src="pictures/geschmack_480x640.png" alt="" style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom right, rgba(75,60,110,0.25), transparent);mix-blend-mode:multiply;"></div>
+        </div>
+        <div style="position:absolute;bottom:-28px;right:-28px;padding:28px 32px;background:var(--aqua-100);border:1px solid rgba(153,225,217,0.3);">
+          <p style="font-family:'Besley',serif;font-size:22px;color:var(--violet);font-style:italic;line-height:1.3;">"Nicht für jeden.<br>Für die Richtigen."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Drei Prinzipien -->
+  <section class="sec" style="background:var(--aqua-100);">
+    <div style="margin-bottom:64px;">
+      <p class="label sr" style="margin-bottom:16px;">Die Philosophie</p>
+      <h2 class="h-qf-lg sr sr-d1">Was citronelli™ ausmacht.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
+      <div style="padding:52px 44px;background:#fff;border:1px solid rgba(153,225,217,0.2);" class="sr">
+        <div style="width:40px;height:40px;border:1px solid var(--aqua);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:28px;">
+          <span style="font-size:11px;color:var(--aqua-600);letter-spacing:0.06em;">01</span>
+        </div>
+        <h3 class="h-ct-md" style="color:var(--violet);margin-bottom:16px;">Reduziert</h3>
+        <p class="body-xs">Konsequentes Weglassen als Designprinzip. Nur was schmeckt, kommt rein. Was nicht nötig ist, bleibt draußen — ohne Ausnahme.</p>
+      </div>
+      <div style="padding:52px 44px;background:#fff;border:1px solid rgba(153,225,217,0.2);" class="sr sr-d1">
+        <div style="width:40px;height:40px;border:1px solid var(--aqua);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:28px;">
+          <span style="font-size:11px;color:var(--aqua-600);letter-spacing:0.06em;">02</span>
+        </div>
+        <h3 class="h-ct-md" style="color:var(--violet);margin-bottom:16px;">Ehrlich</h3>
+        <p class="body-xs">Keine Tricks. Keine Aromen. Keine Kompromisse. citronelli™ ist, was draufsteht — und mehr, als man erwartet.</p>
+      </div>
+      <div style="padding:52px 44px;background:#fff;border:1px solid rgba(153,225,217,0.2);" class="sr sr-d2">
+        <div style="width:40px;height:40px;border:1px solid var(--aqua);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:28px;">
+          <span style="font-size:11px;color:var(--aqua-600);letter-spacing:0.06em;">03</span>
+        </div>
+        <h3 class="h-ct-md" style="color:var(--violet);margin-bottom:16px;">Vitalisierend</h3>
+        <p class="body-xs">citronelli™ schenkt dem Körper natürliche Elektrolyte und unterstützt ein frisches, leichtes Gefühl. Eine Erfrischung, die nicht beschwert, sondern angenehm belebt.
+           </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Positionierung -->
+  <section style="background:var(--aqua-900);padding:96px 64px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+      <div>
+        <p class="label-w sr" style="margin-bottom:20px;">Positionierung</p>
+        <h2 class="h-ct-xl sr sr-d1" style="color:#fff;margin-bottom:28px;">
+          Nicht für überall.<br>Für die besten Orte.
+        </h2>
+      </div>
+      <div class="sr sr-d2">
+        <p class="body-dark" style="margin-bottom:20px;">
+          citronelli™ ist kein Massenprodukt. Es ist ein Produkt mit Haltung, entwickelt für Umgebungen, in denen Qualität nicht optional ist.
+        </p>
+        <p class="body-dark" style="margin-bottom:36px;">
+          Premium Spas, Luxushotels, gehobene Gastronomie und exklusive Lounges. Das sind die Orte, an denen citronelli™ zu Hause ist.
+        </p>
+        <span class="ul-w" onclick="go('kontakt')">Kontakt aufnehmen</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Grid -->
+  <div class="photo-grid">
+    <div class="photo-grid-item"><img src="pictures/auto_400x240.png" alt=""></div>
+    <div class="photo-grid-item"><img src="pictures/tennis_400x240.png" alt=""></div>
+    <div class="photo-grid-item"><img src="pictures/boot_400x240.png" alt=""></div>
+    <div class="photo-grid-item"><img src="pictures/golf_400x240.png" alt=""></div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     QUELLFRISCH GMBH (UNTERNEHMEN)
+════════════════════════════════════════ -->
+<div id="page-unternehmen" class="page">
+
+  <!-- Header -->
+  <section style="padding:80px 64px;background:var(--aqua-100);border-bottom:1px solid rgba(153,225,217,0.3);">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;">
+      <div>
+        <img src="brand_assets/QF%20Logo.png" alt="Quellfrisch GmbH" style="width:64px;margin-bottom:32px;opacity:0.75;" class="sr">
+        <p class="label sr" style="margin-bottom:18px;">Quellfrisch GmbH</p>
+        <h1 class="h-qf-xl sr sr-d1">Der Hersteller.<br>Die Dachmarke.<br>Das Fundament.</h1>
+      </div>
+      <div class="sr sr-d2" style="padding-bottom:8px;">
+        <p class="body-s" style="margin-bottom:24px;">
+          Quellfrisch GmbH ist Getränke- und Wasserproduzent mit höchsten Qualitätsansprüchen. Als Dachmarke steht Quellfrisch GmbH für Seriosität, Kompetenz und verantwortungsvolles Handeln.
+        </p>
+        <p class="body-s">
+          citronelli™ ist das erste Premium-Produkt unter dem Quellfrisch GmbH Dach — und der Beweis dafür, was passiert, wenn Expertise auf Mut trifft.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Corporate Zahlen -->
+  <section class="sec-sm" style="border-bottom:1px solid rgba(153,225,217,0.2);">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;">
+      <div style="padding-right:52px;border-right:1px solid rgba(153,225,217,0.2);" class="sr">
+        <p style="font-family:'Besley',serif;font-size:clamp(36px,5vw,68px);font-weight:400;line-height:1;letter-spacing:-0.02em;color:var(--aqua-600);">100%</p>
+        <p style="font-size:12px;color:var(--aqua-700);margin-top:10px;line-height:1.55;letter-spacing:0.03em;">Natürliche Zutaten</p>
+      </div>
+      <div style="padding:0 52px;border-right:1px solid rgba(153,225,217,0.2);" class="sr sr-d1">
+        <p style="font-family:'Besley',serif;font-size:clamp(36px,5vw,68px);font-weight:400;line-height:1;letter-spacing:-0.02em;color:var(--aqua-600);">0</p>
+        <p style="font-size:12px;color:var(--aqua-700);margin-top:10px;line-height:1.55;letter-spacing:0.03em;">Künstliche Zusatzstoffe</p>
+      </div>
+      <div style="padding-left:52px;" class="sr sr-d2">
+        <p style="font-family:'Besley',serif;font-size:clamp(36px,5vw,68px);font-weight:400;line-height:1;letter-spacing:-0.02em;color:var(--aqua-600);">DE</p>
+        <p style="font-size:12px;color:var(--aqua-700);margin-top:10px;line-height:1.55;letter-spacing:0.03em;">Hergestellt in Deutschland</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission -->
+  <section class="sec">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+      <div class="sr" style="position:relative;">
+        <div style="aspect-ratio:4/5;overflow:hidden;">
+          <img src="pictures/berg_400x600.png" alt="" style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;inset:0;background:rgba(153,225,217,0.2);mix-blend-mode:multiply;"></div>
+        </div>
+        <div style="position:absolute;top:32px;right:-28px;padding:32px 36px;background:var(--aqua-300);max-width:220px;">
+          <p style="font-size:11px;color:rgba(255, 255, 255, 0.6);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Leitmotiv</p>
+          <p style="font-family:'Besley',serif;font-size:20px;color:#fff;font-style:italic;line-height:1.4;">"Klarheit aus der Quelle."</p>
+        </div>
+      </div>
+      <div>
+        <p class="label sr" style="margin-bottom:18px;">Unsere Mission</p>
+        <h2 class="h-qf-lg sr sr-d1" style="margin-bottom:28px;">Getränke mit<br>Substanz.</h2>
+        <p class="body-s sr sr-d2" style="margin-bottom:20px;">
+          Quellfrisch GmbH steht für die Überzeugung, dass gute Getränke keine langen Zutatenlisten brauchen. Qualität entsteht durch Sorgfalt, nicht durch Quantität.
+        </p>
+        <p class="body-s sr sr-d3" style="margin-bottom:36px;">
+          Als neutrale Dachmarke schaffen wir den professionellen, vertrauenswürdigen Rahmen für Produktmarken wie citronelli™ — ohne deren Eigenständigkeit einzuschränken.
+        </p>
+        <span class="ul sr sr-d4" onclick="go('kontakt')">Kontakt aufnehmen</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Markenwerte -->
+  <section class="sec" style="background:var(--aqua-900);">
+    <div style="margin-bottom:60px;">
+      <p class="label-w sr" style="margin-bottom:16px;">Markenwerte</p>
+      <h2 class="h-qf-lg sr sr-d1" style="color:#fff;">Was uns antreibt.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid rgba(255,255,255,0.06);">
+      <div style="padding:40px 28px 40px 0;border-right:1px solid rgba(255,255,255,0.06);" class="sr">
+        <p style="font-size:10.5px;color:rgba(153,225,217,0.5);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;">Qualität</p>
+        <p style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.7;">Höchste Standards. In jedem Schritt, jeder Zutat, jeder Entscheidung.</p>
+      </div>
+      <div style="padding:40px 28px;border-right:1px solid rgba(255,255,255,0.06);" class="sr sr-d1">
+        <p style="font-size:10.5px;color:rgba(153,225,217,0.5);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;">Reinheit</p>
+        <p style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.7;">Nur das Notwendige. Kein Füllstoff, kein Kompromiss.</p>
+      </div>
+      <div style="padding:40px 28px;border-right:1px solid rgba(255,255,255,0.06);" class="sr sr-d2">
+        <p style="font-size:10.5px;color:rgba(153,225,217,0.5);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;">Sicherheit</p>
+        <p style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.7;">Vertrauen ist verdient — durch Transparenz und Verlässlichkeit.</p>
+      </div>
+      <div style="padding:40px 28px;border-right:1px solid rgba(255,255,255,0.06);" class="sr sr-d3">
+        <p style="font-size:10.5px;color:rgba(153,225,217,0.5);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;">Frische</p>
+        <p style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.7;">Natürlich. Lebendig. Ohne Beschönigung.</p>
+      </div>
+      <div style="padding:40px 0 40px 28px;" class="sr sr-d4">
+        <p style="font-size:10.5px;color:rgba(153,225,217,0.5);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;">Verantwortung</p>
+        <p style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.7;">Für Produkt, Umwelt und Gesellschaft — nachhaltig gedacht.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Grid -->
+  <div class="photo-grid">
+    <div class="photo-grid-item"><img src="pictures/pferde_400x240.png" alt=""></div>
+    <div class="photo-grid-item"><img src="pictures/frische_400x240px.png" alt=""></div>
+    <div class="photo-grid-item"><img src="pictures/bach_400x240.png" alt=""></div>
+    <div class="photo-grid-item"><img src="pictures/glasbruch_400x240.png" alt=""></div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     KONTAKT
+════════════════════════════════════════ -->
+<div id="page-kontakt" class="page">
+
+  <!-- Header + Split -->
+  <section style="display:grid;grid-template-columns:1fr 1fr;min-height:520px;">
+    <div style="padding:80px 64px;display:flex;flex-direction:column;justify-content:flex-end;background:var(--aqua-100);border-right:1px solid rgba(153,225,217,0.2);">
+      <p class="label sr" style="margin-bottom:18px;">Kontakt</p>
+      <h1 class="h-qf-xl sr sr-d1" style="margin-bottom:28px;">Sprechen wir<br>miteinander.</h1>
+      <p class="body-s sr sr-d2" style="max-width:320px;margin-bottom:40px;">
+        Ob Listing-Anfrage, Partnerschaft, Verkostung oder allgemeine Fragen — wir freuen uns von Ihnen zu hören.
+      </p>
+      <div class="sr sr-d3">
+        <div style="margin-bottom:20px;">
+          <p class="label" style="margin-bottom:6px;">Quellfrisch GmbH</p>
+          <p class="body-xs">Raimundstraße 123, 60320 Frankfurt am Main<br>Deutschland</p>
+        </div>
+        <div style="margin-bottom:20px;">
+          <p class="label" style="margin-bottom:6px;">Telefon</p>
+          <p class="body-xs">+49 89 000 000 00</p>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:6px;">E-Mail</p>
+          <p class="body-xs">citronelli@quell-frisch.de</p>
+        </div>
+      </div>
+    </div>
+    <div style="padding:80px 64px;display:flex;flex-direction:column;justify-content:center;background:#fff;">
+      <p class="label sr" style="color:var(--violet-60);margin-bottom:32px;">Anfrage senden</p>
+      <div style="display:flex;flex-direction:column;gap:32px;" class="sr sr-d1">
+        <div>
+          <label class="form-label">Ihr Name</label>
+          <input class="form-input" type="text" placeholder="Vorname Nachname">
+        </div>
+        <div>
+          <label class="form-label">Unternehmen</label>
+          <input class="form-input" type="text" placeholder="Firma GmbH">
+        </div>
+        <div>
+          <label class="form-label">E-Mail</label>
+          <input class="form-input" type="email" placeholder="name@firma.de">
+        </div>
+        <div>
+          <label class="form-label">Anfrage</label>
+          <input class="form-input" type="text" placeholder="Listing / Verkostung / Partnerschaft / Sonstiges">
+        </div>
+        <div>
+          <label class="form-label">Nachricht</label>
+          <textarea class="form-input" rows="3" placeholder="Ihre Nachricht an uns …" style="resize:none;"></textarea>
+        </div>
+        <div>
+          <span class="btn-violet" style="cursor:pointer;">Anfrage senden</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- B2B Hinweis -->
+  <section class="sec-sm" style="background:var(--violet);text-align:center;">
+    <p class="label-v sr" style="color:rgba(219,216,226,0.55);margin-bottom:16px;">B2B Partnerschaft</p>
+    <h2 class="h-ct-lg sr sr-d1" style="color:#fff;margin-bottom:16px;">citronelli™ für Ihren Betrieb.</h2>
+    <p class="body-violet sr sr-d2" style="max-width:460px;margin:0 auto;">Für Großbestellungen, Distribution und exklusive Partnerschaften stehen wir Ihnen gerne persönlich zur Verfügung.</p>
+  </section>
+
+  <!-- Photo Grid -->
+  <div class="photo-grid">
+    <div class="photo-grid-item"><img src="pictures/truck_400x240.png" alt=""></div>
+    <div class="photo-grid-item"><img src="pictures/flugzeug_400x240.png" alt=""></div>
+    <div class="photo-grid-item"><img src="pictures/transport_400x240.png" alt=""></div>
+    <div class="photo-grid-item"><img src="pictures/einladen_400x240.png" alt=""></div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     SHARED FOOTER
+════════════════════════════════════════ -->
+<footer>
+  <div style="background:#111111;padding:52px 64px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px;border-top:1px solid rgba(153,225,217,0.06);">
+    <!-- Brand -->
+    <div>
+      <img src="brand_assets/QF%20Logo.png" alt="Quellfrisch GmbH" style="width:60px;margin-bottom:20px;filter:brightness(0) invert(1);opacity:0.6;">
+      <p style="font-size:12px;color:rgba(255,255,255,0.4);line-height:1.75;max-width:220px;">
+        Quellfrisch GmbH — Getränke · Wasser<br>
+        Hersteller von citronelli™
+      </p>
+    </div>
+    <!-- Nav -->
+    <div>
+      <p style="font-size:10px;color:rgba(153,225,217,0.45);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:20px;">Navigation</p>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <span onclick="go('produkt')" style="font-size:12.5px;color:rgba(255,255,255,0.45);cursor:pointer;transition:color 0.2s;" onmouseenter="this.style.color='var(--aqua)'" onmouseleave="this.style.color='rgba(255,255,255,0.45)'">Produkt</span>
+        <span onclick="go('geschichte')" style="font-size:12.5px;color:rgba(255,255,255,0.45);cursor:pointer;transition:color 0.2s;" onmouseenter="this.style.color='var(--aqua)'" onmouseleave="this.style.color='rgba(255,255,255,0.45)'">Geschichte</span>
+        <span onclick="go('unternehmen')" style="font-size:12.5px;color:rgba(255,255,255,0.45);cursor:pointer;transition:color 0.2s;" onmouseenter="this.style.color='var(--aqua)'" onmouseleave="this.style.color='rgba(255,255,255,0.45)'">Quellfrisch GmbH</span>
+        <span onclick="go('kontakt')" style="font-size:12.5px;color:rgba(255,255,255,0.45);cursor:pointer;transition:color 0.2s;" onmouseenter="this.style.color='var(--aqua)'" onmouseleave="this.style.color='rgba(255,255,255,0.45)'">Kontakt</span>
+      </div>
+    </div>
+    <!-- Citronelli + Social -->
+    <div>
+      <img src="brand_assets/Citronelli%20logo.png" alt="citronelli" style="width:64px;margin-bottom:20px;filter:brightness(0) invert(1);opacity:0.55;">
+      <p style="font-size:12px;color:rgba(255,255,255,0.35);line-height:1.75;margin-bottom:28px;">
+        citronelli™<br>
+        Premium-Erfrischung<br>
+        Wasser · Zitrone · Kalamansi · Salz
+      </p>
+      <div style="display:flex;gap:10px;">
+        <a class="soc-icon" href="#" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a class="soc-icon" href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- Legal -->
+  <div class="legal-footer">
+    <div style="display:flex;align-items:center;flex-wrap:wrap;">
+      <span class="legal-link">Impressum</span><span class="legal-sep">|</span>
+      <span class="legal-link">Datenschutz</span><span class="legal-sep">|</span>
+      <span class="legal-link">Cookie-Richtlinie</span><span class="legal-sep">|</span>
+      <span class="legal-link">AGB</span>
+    </div>
+    <p class="legal-copy">&copy; 2025 Quellfrisch GmbH — citronelli™ ist eine eingetragene Marke der Quellfrisch GmbH</p>
+  </div>
+</footer>
+
+
+<script>
+  const PAGES = ['home','produkt','geschichte','unternehmen','kontakt'];
+
+  function go(name) {
+    const cur = document.querySelector('.page.active');
+    if (cur && cur.id === 'page-' + name) return;
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    PAGES.forEach(p => {
+      const el = document.getElementById('nl-' + p);
+      if (el) el.classList.remove('nav-active');
+    });
+    const target = document.getElementById('page-' + name);
+    if (target) {
+      target.classList.add('active', 'page-enter');
+      target.addEventListener('animationend', () => target.classList.remove('page-enter'), { once: true });
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+    const navEl = document.getElementById('nl-' + name);
+    if (navEl) navEl.classList.add('nav-active');
+    history.pushState({ page: name }, '', '#' + name);
+    setTimeout(reveal, 80);
+  }
+
+  window.addEventListener('popstate', e => go((e.state && e.state.page) || 'home'));
+
+  let io;
+  function reveal() {
+    if (io) io.disconnect();
+    const active = document.querySelector('.page.active');
+    if (!active) return;
+    const els = active.querySelectorAll('.sr:not(.in)');
+    io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.07, rootMargin: '0px 0px -36px 0px' });
+    els.forEach(el => io.observe(el));
+  }
+
+  window.addEventListener('scroll', () => requestAnimationFrame(reveal), { passive: true });
+
+  // ── HERO PIXEL TRAIL ──────────────────────────────────────
+  (function () {
+    var PIXEL_SIZE    = 56;   // grid cell size in px
+    var FADE_DURATION = 1200; // ms
+    var activePixels  = {};
+
+    function initTrail() {
+      var panel = document.getElementById('hero-left-panel');
+      if (!panel) return;
+
+      // Pixel canvas: sits above the white background (z-index:-1 inside isolation:isolate context)
+      // but below all in-flow text content (painted in normal flow order above it)
+      var canvas = document.createElement('div');
+      canvas.setAttribute('aria-hidden', 'true');
+      canvas.style.cssText = 'position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:-1;';
+      panel.insertBefore(canvas, panel.firstChild);
+
+      panel.addEventListener('mousemove', function (e) {
+        var rect = panel.getBoundingClientRect();
+        var col  = Math.floor((e.clientX - rect.left) / PIXEL_SIZE);
+        var row  = Math.floor((e.clientY - rect.top)  / PIXEL_SIZE);
+        var key  = col + '|' + row;
+
+        if (activePixels[key]) {
+          // Re-trigger animation on same cell
+          var px = activePixels[key];
+          clearTimeout(px.tid);
+          px.el.style.animation = 'none';
+          void px.el.offsetWidth; // force reflow
+          px.el.style.animation = 'heroPixelFade ' + FADE_DURATION + 'ms ease-out forwards';
+          px.tid = setTimeout(function () {
+            if (px.el.parentNode) px.el.parentNode.removeChild(px.el);
+            delete activePixels[key];
+          }, FADE_DURATION);
+          return;
+        }
+
+        var el = document.createElement('div');
+        el.style.cssText =
+          'position:absolute;' +
+          'left:' + (col * PIXEL_SIZE) + 'px;' +
+          'top:'  + (row * PIXEL_SIZE) + 'px;' +
+          'width:' + PIXEL_SIZE + 'px;' +
+          'height:' + PIXEL_SIZE + 'px;' +
+          'background:#99E1D9;' +
+          'border-radius:50%;' +
+          'opacity:0;' +
+          'pointer-events:none;' +
+          'animation:heroPixelFade ' + FADE_DURATION + 'ms ease-out forwards;';
+        canvas.appendChild(el);
+
+        var entry = { el: el };
+        entry.tid = setTimeout(function () {
+          if (el.parentNode) el.parentNode.removeChild(el);
+          delete activePixels[key];
+        }, FADE_DURATION);
+        activePixels[key] = entry;
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initTrail);
+    } else {
+      initTrail();
+    }
+  })();
+  // ── END HERO PIXEL TRAIL ──────────────────────────────────
+
+  // ── PRODUKT LEFT PANEL PIXEL TRAIL (yellow) ───────────────
+  (function () {
+    var PIXEL_SIZE    = 56;
+    var FADE_DURATION = 1200;
+    var activePixels  = {};
+    var initialized   = false;
+
+    function initProduktTrail() {
+      if (initialized) return;
+      var panel = document.getElementById('produkt-left-panel');
+      if (!panel) return;
+      initialized = true;
+
+      var canvas = document.createElement('div');
+      canvas.setAttribute('aria-hidden', 'true');
+      canvas.style.cssText = 'position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:-1;';
+      panel.insertBefore(canvas, panel.firstChild);
+
+      panel.addEventListener('mousemove', function (e) {
+        var rect = panel.getBoundingClientRect();
+        var col  = Math.floor((e.clientX - rect.left) / PIXEL_SIZE);
+        var row  = Math.floor((e.clientY - rect.top)  / PIXEL_SIZE);
+        var key  = col + '|' + row;
+
+        if (activePixels[key]) {
+          var px = activePixels[key];
+          clearTimeout(px.tid);
+          px.el.style.animation = 'none';
+          void px.el.offsetWidth;
+          px.el.style.animation = 'heroPixelFade ' + FADE_DURATION + 'ms ease-out forwards';
+          px.tid = setTimeout(function () {
+            if (px.el.parentNode) px.el.parentNode.removeChild(px.el);
+            delete activePixels[key];
+          }, FADE_DURATION);
+          return;
+        }
+
+        var el = document.createElement('div');
+        el.style.cssText =
+          'position:absolute;' +
+          'left:' + (col * PIXEL_SIZE) + 'px;' +
+          'top:'  + (row * PIXEL_SIZE) + 'px;' +
+          'width:' + PIXEL_SIZE + 'px;' +
+          'height:' + PIXEL_SIZE + 'px;' +
+          'background:#f8ffc6;' +
+          'border-radius:50%;' +
+          'opacity:0;' +
+          'pointer-events:none;' +
+          'animation:heroPixelFade ' + FADE_DURATION + 'ms ease-out forwards;';
+        canvas.appendChild(el);
+
+        var entry = { el: el };
+        entry.tid = setTimeout(function () {
+          if (el.parentNode) el.parentNode.removeChild(el);
+          delete activePixels[key];
+        }, FADE_DURATION);
+        activePixels[key] = entry;
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var page = document.getElementById('page-produkt');
+      if (!page) return;
+      new MutationObserver(function () {
+        if (page.classList.contains('active')) initProduktTrail();
+      }).observe(page, { attributes: true, attributeFilter: ['class'] });
+      if (page.classList.contains('active')) initProduktTrail();
+    });
+  })();
+  // ── END PRODUKT LEFT PANEL PIXEL TRAIL ───────────────────
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const hash = location.hash.replace('#', '');
+    if (hash && PAGES.includes(hash)) go(hash);
+    else {
+      const el = document.getElementById('nl-home');
+      if (el) el.classList.add('nav-active');
+    }
+    setTimeout(reveal, 120);
+  });
+
+  // ── GESCHICHTE HERO CURSOR PROXIMITY ────────────────────────────────────
+  (function () {
+    var initialized = false;
+
+    function escCh(ch) {
+      if (ch === '&') return '&amp;';
+      if (ch === '<') return '&lt;';
+      if (ch === '>') return '&gt;';
+      return ch;
+    }
+
+    function initProximity() {
+      if (initialized) return;
+      var section = document.getElementById('geschichte-hero');
+      if (!section) return;
+      var h1 = section.querySelector('h1');
+      if (!h1) return;
+      initialized = true;
+
+      // Rebuild h1 with per-letter spans; words are wrapped so they never break mid-word
+      var lines = ['Eine Idee.', 'Vier Zutaten.', 'Eine Überzeugung.'];
+      var inner = lines.map(function (line) {
+        return line.split(' ').map(function (word, wi, arr) {
+          var letters = word.split('').map(function (ch) {
+            return '<span class="prox-letter">' + escCh(ch) + '</span>';
+          }).join('');
+          var space = (wi < arr.length - 1) ? '<span class="prox-space">&nbsp;</span>' : '';
+          return '<span style="display:inline-block;white-space:nowrap">' + letters + space + '</span>';
+        }).join('');
+      }).join('<br>');
+      // Screen-reader-only full text
+      inner += '<span class="prox-vh">Eine Idee. Vier Zutaten. Eine Überzeugung.</span>';
+      h1.setAttribute('aria-hidden', 'true');
+      h1.innerHTML = inner;
+
+      var letters = Array.from(h1.querySelectorAll('.prox-letter'));
+      var RADIUS = 110;
+      var mx = -9999, my = -9999, rafPending = false;
+
+      function applyProximity() {
+        rafPending = false;
+        var sr = section.getBoundingClientRect();
+        letters.forEach(function (el) {
+          var r  = el.getBoundingClientRect();
+          var lx = r.left + r.width  / 2 - sr.left;
+          var ly = r.top  + r.height / 2 - sr.top;
+          var dx = mx - lx, dy = my - ly;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          // Gaussian falloff (matches the React component's gaussian mode)
+          var p = Math.exp(-Math.pow(dist / (RADIUS / 2), 2) / 2);
+          p = Math.min(1, Math.max(0, p));
+          if (p > 0.008) {
+            el.style.transform = 'scale(' + (1 + p * 0.22) + ')';
+            // Interpolate white → aqua (#99E1D9)
+            var rc = Math.round(255 - (255 - 153) * p);
+            var gc = Math.round(255 - (255 - 225) * p);
+            var bc = Math.round(255 - (255 - 217) * p);
+            el.style.color = 'rgb(' + rc + ',' + gc + ',' + bc + ')';
+          } else {
+            el.style.transform = '';
+            el.style.color = '';
+          }
+        });
+      }
+
+      section.addEventListener('mousemove', function (e) {
+        var r = section.getBoundingClientRect();
+        mx = e.clientX - r.left;
+        my = e.clientY - r.top;
+        if (!rafPending) { rafPending = true; requestAnimationFrame(applyProximity); }
+      }, { passive: true });
+
+      section.addEventListener('mouseleave', function () {
+        mx = -9999; my = -9999;
+        if (!rafPending) { rafPending = true; requestAnimationFrame(applyProximity); }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var page = document.getElementById('page-geschichte');
+      if (!page) return;
+      new MutationObserver(function () {
+        if (page.classList.contains('active')) initProximity();
+      }).observe(page, { attributes: true, attributeFilter: ['class'] });
+      if (page.classList.contains('active')) initProximity();
+    });
+  })();
+  // ── END GESCHICHTE HERO CURSOR PROXIMITY ────────────────────────────────
+</script>
+</body>
+</html>
