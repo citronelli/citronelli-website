@@ -4,3 +4,4 @@ temporary screenshots/
 *.DS_Store
 screenshot homepage.png
 screenshot product page.png
+.claude/settings.local.json

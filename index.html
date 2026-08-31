@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>citronelli™ — von Quellfrisch GmbH</title>
+  <title>citronelli — von Quellfrisch GmbH</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -557,15 +557,14 @@
     </div>
   </div>
   <div class="nav-links">
-    <span class="nav-link" id="nl-produkt" onclick="go('produkt')">Produkt</span>
-    <span class="nav-link" id="nl-geschichte" onclick="go('geschichte')">Geschichte</span>
+    <span class="nav-link" id="nl-produkt" onclick="go('produkt')" data-en='Product'>Produkt</span>
+    <span class="nav-link" id="nl-geschichte" onclick="go('geschichte')" data-en='Story'>Geschichte</span>
     <span class="nav-link" id="nl-unternehmen" onclick="go('unternehmen')">Quellfrisch GmbH</span>
-    <span class="nav-link" id="nl-kontakt" onclick="go('kontakt')">Kontakt</span>
+    <span class="nav-link" id="nl-kontakt" onclick="go('kontakt')" data-en='Contact'>Kontakt</span>
   </div>
   <div class="nav-right">
-    <span class="nav-lang">DE</span>
-    <span class="nav-lang" style="opacity:0.4;">EN</span>
-    <span class="btn-nav-cta" onclick="go('kontakt')">Anfrage</span>
+    <span class="nav-lang" data-lang="de" onclick="setLang('de')">DE</span>
+    <span class="btn-nav-cta" onclick="go('kontakt')" data-en='Inquire'>Anfrage</span>
   </div>
   <button class="nav-burger" id="nav-burger" aria-label="Menü öffnen" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -574,14 +573,13 @@
 
 
 <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
-  <span class="mob-nav-link" onclick="go('produkt');closeMobileNav()">Produkt</span>
-  <span class="mob-nav-link" onclick="go('geschichte');closeMobileNav()">Geschichte</span>
+  <span class="mob-nav-link" onclick="go('produkt');closeMobileNav()" data-en='Product'>Produkt</span>
+  <span class="mob-nav-link" onclick="go('geschichte');closeMobileNav()" data-en='Story'>Geschichte</span>
   <span class="mob-nav-link" onclick="go('unternehmen');closeMobileNav()">Quellfrisch GmbH</span>
-  <span class="mob-nav-link" onclick="go('kontakt');closeMobileNav()">Kontakt</span>
-  <span class="mob-nav-cta" onclick="go('kontakt');closeMobileNav()">Anfrage senden</span>
+  <span class="mob-nav-link" onclick="go('kontakt');closeMobileNav()" data-en='Contact'>Kontakt</span>
+  <span class="mob-nav-cta" onclick="go('kontakt');closeMobileNav()" data-en='Send Inquiry'>Anfrage senden</span>
   <div class="mob-nav-lang">
-    <span class="mob-lang">DE</span>
-    <span class="mob-lang" style="opacity:0.4;">EN</span>
+    <span class="mob-lang" data-lang="de" onclick="setLang('de')">DE</span>
   </div>
 </div>
 
@@ -600,7 +598,8 @@
       <h1 class="h-qf-xl sr sr-d1" style="margin-bottom:0;">Klarheit<br>aus der<br>Quelle.</h1>
       <div style="width:52px;height:2px;background:var(--aqua);margin:28px 0;" class="sr sr-d2"></div>
       <p class="body-s sr sr-d2" style="max-width:380px;margin-bottom:44px;">
-        Quellfrisch GmbH ist Getränke- und Wasserproduzent mit höchsten Qualitätsansprüchen — Hersteller von citronelli™.
+        Qualität beginnt an der Quelle.
+        Wir entwickeln Getränke mit Substanz. Mit ausgewählten Rohstoffen, frischem Quellwasser und Partnern, die unseren Qualitätsanspruch teilen. Hersteller von citronelli.
       </p>
       <div style="display:flex;gap:20px;align-items:center;" class="sr sr-d3 btn-row">
         <span class="btn-aqua" onclick="go('kontakt')">Partner werden</span>
@@ -620,7 +619,7 @@
         <img src="brand_assets/QF%20Logo.png" alt="Quellfrisch GmbH" style="width:88px;margin:0 auto 28px;opacity:0.85;" class="sr">
         <div style="width:1px;height:56px;background:rgba(153,225,217,0.6);margin:0 auto 28px;"></div>
         <p class="label sr sr-d1" style="margin-bottom:18px;">Unser Produkt</p>
-        <p class="h-ct-lg sr sr-d2" style="color:var(--aqua-800);">citronelli™</p>
+        <p class="h-ct-lg sr sr-d2" style="color:var(--aqua-800);">citronelli</p>
         <p class="body-xs sr sr-d3" style="margin-top:14px;max-width:200px;margin-left:auto;margin-right:auto;text-align:center;">Premium-Erfrischung<br>Wasser · Zitrone · Kalamansi · Salz</p>
         <span class="ul sr sr-d4" onclick="go('produkt')" style="margin-top:24px;display:inline-block;">Produkt ansehen</span>
       </div>
@@ -639,7 +638,7 @@
       </div>
       <div class="sr sr-d2">
         <p class="body-s" style="margin-bottom:36px;">
-          citronelli™ vereint die Reinheit besten Quellfrisch-Wassers mit dem Genuss echter Zutaten. Konzipiert für Premium-Umgebungen, die mehr erwarten als das Gewöhnliche.
+          citronelli vereint die Reinheit besten Quellfrisch-Wassers mit dem Genuss echter Zutaten. Konzipiert für Premium-Umgebungen, die mehr erwarten als das Gewöhnliche.
         </p>
         <p class="body-s" style="margin-bottom:32px;">
           Reduziert. Ehrlich. Außergewöhnlich. Ein Getränk, das seinen Platz kennt: In Spas, Luxushotels, gehobener Gastronomie und bei Premium-Events.
@@ -663,20 +662,20 @@
         <div style="width:48px;height:2px;background:var(--aqua);margin-bottom:32px;"></div>
         <p class="label" style="margin-bottom:14px;">01</p>
         <h3 class="h-qf-md" style="margin-bottom:16px;">Quellfrisch Wasser</h3>
-        <p class="body-xs">Reines Wasser aus einer frischen Quelle in Österreich. Reich an Mineralien und von höchster Qualität. Die unveränderliche Basis jeder Flasche citronelli™. Klar, natürlich, ohne Kompromisse.
+        <p class="body-xs">Reines Wasser aus einer frischen Quelle in Österreich. Reich an Mineralien und von höchster Qualität. Die unveränderliche Basis jeder Flasche citronelli. Klar, natürlich, ohne Kompromisse.
           </p>
       </div>
       <div class="ingr-card sr sr-d1">
         <div style="width:48px;height:2px;background:var(--aqua-200);margin-bottom:32px;"></div>
         <p class="label" style="margin-bottom:14px;">02</p>
         <h3 class="h-qf-md" style="margin-bottom:16px;">Zitrone & Kalamansi</h3>
-        <p class="body-xs">Echter Zitrusduo. Frische Zitrone für Tiefe, Kalamansi für den unverwechselbaren Charakter. Das macht citronelli™ zu etwas Besonderem.</p>
+        <p class="body-xs">Echter Zitrusduo. Frische Zitrone für Tiefe, Kalamansi für den unverwechselbaren Charakter. Das macht citronelli zu etwas Besonderem.</p>
       </div>
       <div class="ingr-card sr sr-d2">
         <div style="width:48px;height:2px;background:var(--aqua);margin-bottom:32px;"></div>
         <p class="label" style="margin-bottom:14px;">03</p>
         <h3 class="h-qf-md" style="margin-bottom:16px;">Salz</h3>
-        <p class="body-xs">Die stille Kraft im Hintergrund. Eine Prise Salz rundet den Geschmack ab, balanciert die Säure und verleiht citronelli™ seinen unerwarteten Abgang.</p>
+        <p class="body-xs">Die stille Kraft im Hintergrund. Eine Prise Salz rundet den Geschmack ab, balanciert die Säure und verleiht citronelli seinen unerwarteten Abgang.</p>
       </div>
     </div>
   </section>
@@ -691,13 +690,13 @@
       </h2>
       <div style="height:1px;width:80px;background:rgba(58,44,87,0.15);margin:36px auto;"></div>
       <p class="body-s sr sr-d2" style="color:var(--aqua-800);max-width:520px;margin:0 auto 40px;">
-        Als Getränke- und Wasserproduzent hinter citronelli™ steht Quellfrisch GmbH für höchste Qualitätsansprüche, natürliche Frische und verantwortungsvollen Umgang mit Ressourcen.
+        Als Getränke- und Wasserproduzent hinter citronelli steht Quellfrisch GmbH für höchste Qualitätsansprüche, natürliche Frische und verantwortungsvollen Umgang mit Ressourcen.
       </p>
       <span class="ul sr sr-d3" style="color:var(--aqua-800);border-bottom-color:rgba(58,44,87,0.3);" onclick="go('unternehmen')">Über Quellfrisch GmbH</span>
     </div>
   </section>
 
-  <!-- PREMIUM POSITIONING: citronelli™ Einsatzgebiete -->
+  <!-- PREMIUM POSITIONING: citronelli Einsatzgebiete -->
   <section class="sec" style="background:#fff;">
     <div class="g-2col mob-gap" style="gap:80px;align-items:center;">
       <div>
@@ -706,7 +705,7 @@
           Für außergewöhnliche<br>Momente konzipiert.
         </h2>
         <p class="body-s sr sr-d2" style="margin-bottom:36px;">
-          citronelli™ ist nicht für überall. Es ist für die Orte, an denen Qualität keine Frage ist und für Menschen, die den Unterschied spüren.
+          citronelli ist nicht für überall. Es ist für die Orte, an denen Qualität keine Frage ist und für Menschen, die den Unterschied spüren.
         </p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:40px;" class="sr sr-d3">
           <div style="padding:14px 18px;border:1px solid rgba(153,225,217,0.35);font-size:12px;color:var(--aqua-800);letter-spacing:0.04em;">Spa & Wellness</div>
@@ -736,7 +735,7 @@
       <div>
         <img src="brand_assets/QF%20Logo.png" alt="Quellfrisch GmbH" style="width:80px;margin-bottom:28px;opacity:0.8;" class="sr">
         <p class="label sr" style="margin-bottom:16px;">Quellfrisch GmbH</p>
-        <h2 class="h-qf-lg sr sr-d1" style="margin-bottom:24px;">Der Hersteller<br>hinter citronelli™</h2>
+        <h2 class="h-qf-lg sr sr-d1" style="margin-bottom:24px;">Der Hersteller<br>hinter citronelli</h2>
         <p class="body-s sr sr-d2" style="margin-bottom:32px;">Als neutrale Dachmarke steht Quellfrisch GmbH für Qualität, Reinheit und höchste Produktionsstandards — klar, professionell und hochwertig.</p>
         <span class="ul sr sr-d3" onclick="go('unternehmen')">Unternehmen kennenlernen</span>
       </div>
@@ -766,7 +765,7 @@
           <span class="val-num">04</span>
           <div>
             <h4 class="h-qf-md" style="margin-bottom:10px;">Verantwortung & Nachhaltigkeit</h4>
-            <p class="body-xs">Als Hersteller tragen wir Verantwortung — für Produkt, Umwelt und die Menschen, die citronelli™ genießen.</p>
+            <p class="body-xs">Als Hersteller tragen wir Verantwortung — für Produkt, Umwelt und die Menschen, die citronelli genießen.</p>
           </div>
         </div>
       </div>
@@ -782,7 +781,7 @@
         Gemeinsam<br>außergewöhnlich.
       </h2>
       <p class="body-s sr sr-d2" style="color:var(--aqua-800);max-width:460px;margin:0 auto 44px;">
-        Für Listing-Anfragen, Partnerangebote und alle Fragen rund um citronelli™ stehen wir bereit.
+        Für Listing-Anfragen, Partnerangebote und alle Fragen rund um citronelli stehen wir bereit.
       </p>
       <span class="sr sr-d3" onclick="go('kontakt')" style="cursor:pointer;display:inline-block;font-size:10.5px;letter-spacing:0.09em;text-transform:uppercase;color:var(--aqua-900);border:1px solid rgba(153,225,217,0.7);padding:14px 40px;transition:background 0.25s,border-color 0.25s;" onmouseover="this.style.background='var(--aqua)';this.style.borderColor='var(--aqua)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(153,225,217,0.7)'">Kontakt aufnehmen</span>
     </div>
@@ -808,10 +807,19 @@
     <div class="g-2col mob-gap" style="gap:64px;align-items:end;min-height:440px;">
       <div id="produkt-left-panel" style="display:flex;flex-direction:column;justify-content:flex-start;padding-top:64px;align-self:stretch;position:relative;isolation:isolate;overflow:hidden;">
         <p class="label sr" style="color:var(--violet-60);margin-bottom:20px;">Das Produkt</p>
-        <h1 class="h-ct-hero sr sr-d1" style="color:var(--violet);">citronelli™</h1>
+        <h1 class="h-ct-hero sr sr-d1" style="color:var(--violet);">citronelli</h1>
         <div style="height:1px;width:100%;background:rgba(75,60,110,0.1);margin:36px 0;"></div>
-        <p class="body-s sr sr-d2" style="max-width:380px;">
-          Premium-Erfrischung aus der Natur. Reduziert auf das Wesentliche. Genau deshalb sind wir außergewöhnlich.
+        <p class="body-s sr sr-d2" style="max-width:380px;margin-bottom:24px;" data-en='From the source to the bottle. High up in the mountains, the journey of citronelli begins. Fresh spring water finds its way through the rock, until it reaches the point where our recipe takes its start.'>
+          Vom Ursprung bis in die Flasche. Hoch oben in den Bergen beginnt der Weg von citronelli. Frisches Quellwasser bahnt sich seinen Weg durch das Gestein, bis es dort ankommt, wo unsere Rezeptur ihren Anfang nimmt.
+        </p>
+        <p class="body-s sr sr-d2" style="max-width:380px;margin-bottom:24px;" data-en='Sun-ripened lemons come from Italy, carefully selected and gently processed. Their clear freshness forms the heart of our flavour.'>
+          Aus Italien kommen sonnenreife Zitronen, sorgfältig ausgewählt und schonend verarbeitet. Ihre klare Frische bildet das Herz unseres Geschmacks.
+        </p>
+        <p class="body-s sr sr-d2" style="max-width:380px;margin-bottom:24px;" data-en='The calamansi travels from much further away to reach us. This small citrus fruit from Southeast Asia brings exactly the touch we were looking for: delicate, vibrant, with a subtle mandarin note that gives citronelli its distinctive depth.'>
+          Von deutlich weiter her reist die Calamansi zu uns. Die kleine Zitrusfrucht aus Südostasien bringt genau den Hauch mit, den wir gesucht haben: fein, lebendig und mit einer leicht mandarinigen Note, die citronelli seine besondere Tiefe verleiht.
+        </p>
+        <p class="body-s sr sr-d2" style="max-width:380px;" data-en='And finally, the sea salt. Drawn from the sea, mineral and pure. A small pinch is enough to give the recipe structure and strength. Four origins, four journeys, one shared destination: citronelli.'>
+          Und schließlich das Meersalz. Mineralisch und pur. Eine kleine Prise genügt, um der Rezeptur Struktur und Kraft zu geben. Vier Ursprünge, vier Wege, ein gemeinsames Ziel: citronelli.
         </p>
       </div>
       <div class="sr sr-d1" style="position:relative;overflow:hidden;aspect-ratio:4/5;">
@@ -830,7 +838,7 @@
     <div class="g-2col mob-gap" style="gap:80px;align-items:center;">
       <div class="sr">
         <div style="aspect-ratio:1;overflow:hidden;position:relative;">
-          <img src="pictures/blüte2_560x560.png" alt="" style="width:100%;height:100%;object-fit:cover;">
+          <img src="pictures/flying_citronelli.jpeg" alt="" style="width:100%;height:100%;object-fit:cover;">
           <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(153,225,217,0.3),transparent);mix-blend-mode:multiply;"></div>
         </div>
       </div>
@@ -840,7 +848,7 @@
           Weniger ist mehr.<br>Echtes bleibt.
         </h2>
         <p class="body-s sr sr-d2" style="margin-bottom:20px;">
-          citronelli™ entstand aus einer einfachen Überzeugung: Ein wirklich gutes Getränk braucht keine Tricks. Wir schaffen eine Alternative für Menschen, 
+          citronelli entstand aus einer einfachen Überzeugung: Ein wirklich gutes Getränk braucht keine Tricks. Wir schaffen eine Alternative für Menschen, 
           die natürliche Erfrischung suchen, ohne Zucker, ohne künstliche Aromen und ohne unnötige Zusätze. <br> Es braucht ausgewählte Zutaten und den Mut, alles Unnötige wegzulassen.
         </p>
         <p class="body-s sr sr-d3" style="margin-bottom:36px;">
@@ -863,22 +871,22 @@
         <div class="col-bdr sr" style="padding:48px 36px 48px 0;border-right:1px solid rgba(255,255,255,0.08);">
           <p style="font-size:32px;margin-bottom:20px;"> + </p>
           <h3 class="h-qf-md" style="color:#fff;margin-bottom:14px;font-weight:400;">Reines Quellwasser</h3>
-          <p class="body-violet" style="font-size:13px;">Unser Wasser kommt aus einer frischen Quelle in Österreich. Es ist klar, mineralreich und bildet die ruhige Basis von citronelli™. Ohne Zusätze, ohne Ablenkung, einfach als Grundlage für alles, was folgt.</p>
+          <p class="body-violet" style="font-size:13px;">Unser Wasser kommt aus einer frischen Quelle in Österreich. Es ist klar, mineralreich und bildet die ruhige Basis von citronelli. Ohne Zusätze, ohne Ablenkung, einfach als Grundlage für alles, was folgt.</p>
         </div>
         <div class="col-bdr sr sr-d1" style="padding:48px 36px;border-right:1px solid rgba(255,255,255,0.08);">
           <p style="font-size:32px;margin-bottom:20px;"> + </p>
           <h3 class="h-qf-md" style="color:#fff;margin-bottom:14px;font-weight:400;">Frische Zitrone</h3>
-          <p class="body-violet" style="font-size:13px;">Zitrone bringt die vertraute Frische in jede Flasche. Ihr natürlicher Zitrusgeschmack macht citronelli™ leicht, klar und angenehm zu trinken. Nicht aufdringlich, sondern sauber und direkt.</p>
+          <p class="body-violet" style="font-size:13px;">Zitrone bringt die vertraute Frische in jede Flasche. Ihr natürlicher Zitrusgeschmack macht citronelli leicht, klar und angenehm zu trinken. Nicht aufdringlich, sondern sauber und direkt.</p>
         </div>
         <div class="col-bdr sr sr-d2" style="padding:48px 36px;border-right:1px solid rgba(255,255,255,0.08);">
           <p style="font-size:32px;margin-bottom:20px;"> + </p>
           <h3 class="h-qf-md" style="color:#fff;margin-bottom:14px;font-weight:400;">Fruchtige Kalamansi</h3>
-          <p class="body-violet" style="font-size:13px;">Die südostasiatische Zitrusfrucht. Kalamansi ergänzt die Zitrone mit einer besonderen, feinfruchtigen Note. Sie gibt citronelli™ seinen eigenen Charakter und sorgt für eine Frische, die nicht alltäglich wirkt. Dezent, aber wiedererkennbar.</p>
+          <p class="body-violet" style="font-size:13px;">Die südostasiatische Zitrusfrucht. Kalamansi ergänzt die Zitrone mit einer besonderen, feinfruchtigen Note. Sie gibt citronelli seinen eigenen Charakter und sorgt für eine Frische, die nicht alltäglich wirkt. Dezent, aber wiedererkennbar.</p>
         </div>
         <div class="col-bdr sr sr-d3" style="padding:48px 0 48px 36px;">
           <p style="font-size:32px;margin-bottom:20px;"> + </p>
           <h3 class="h-qf-md" style="color:#fff;margin-bottom:14px;font-weight:400;">Salz</h3>
-          <p class="body-violet" style="font-size:13px;">Eine kleine Prise Salz rundet den Geschmack ab. Es bleibt im Hintergrund, macht citronelli™ aber weicher und vollständiger. Genau so viel, dass man den Unterschied spürt, ohne dass es auffällt.</p>
+          <p class="body-violet" style="font-size:13px;">Eine kleine Prise Salz rundet den Geschmack ab. Es bleibt im Hintergrund, macht citronelli aber weicher und vollständiger. Genau so viel, dass man den Unterschied spürt, ohne dass es auffällt.</p>
         </div>
       </div>
     </div>
@@ -888,18 +896,18 @@
   <section class="sec" style="background:#fff;">
     <div style="margin-bottom:56px;">
       <p class="label sr" style="color:var(--violet-60);margin-bottom:16px;">Einsatzbereiche</p>
-      <h2 class="h-ct-lg sr sr-d1" style="color:var(--violet);">Für wen ist citronelli™?</h2>
+      <h2 class="h-ct-lg sr sr-d1" style="color:var(--violet);">Für wen ist citronelli?</h2>
     </div>
     <div class="g-2col" style="gap:16px;">
       <div class="occ-card sr">
         <p class="label" style="color:var(--violet-60);margin-bottom:16px;">01 — Spa & Wellness</p>
         <h3 class="h-ct-md" style="color:var(--violet);margin-bottom:14px;">Natürliche Erfrischung<br>im Reinsten.</h3>
-        <p class="body-xs">In Spa-Anlagen, Saunas und Wellnesszentren ist citronelli™ die bewusste Alternative — erfrischend, funktional und auf höchstem Niveau.</p>
+        <p class="body-xs">In Spa-Anlagen, Saunas und Wellnesszentren ist citronelli die bewusste Alternative — erfrischend, funktional und auf höchstem Niveau.</p>
       </div>
       <div class="occ-card sr sr-d1">
         <p class="label" style="color:var(--violet-60);margin-bottom:16px;">02 — Luxushotels</p>
         <h3 class="h-ct-md" style="color:var(--violet);margin-bottom:14px;">Der Unterschied,<br>den Gäste spüren.</h3>
-        <p class="body-xs">Auf dem Zimmer, im Restaurant, in der Minibar — citronelli™ ist das Getränk, das Gäste nicht vergessen.</p>
+        <p class="body-xs">Auf dem Zimmer, im Restaurant, in der Minibar — citronelli ist das Getränk, das Gäste nicht vergessen.</p>
       </div>
       <div class="occ-card sr sr-d2">
         <p class="label" style="color:var(--violet-60);margin-bottom:16px;">03 — Premium Gastronomie</p>
@@ -909,7 +917,7 @@
       <div class="occ-card sr sr-d3">
         <p class="label" style="color:var(--violet-60);margin-bottom:16px;">04 — Private Events</p>
         <h3 class="h-ct-md" style="color:var(--violet);margin-bottom:14px;">Momente,<br>die bleiben.</h3>
-        <p class="body-xs">Corporate-Events, Hochzeiten, exklusive Feiern — citronelli™ ist das Detail, das den Unterschied macht.</p>
+        <p class="body-xs">Corporate-Events, Hochzeiten, exklusive Feiern — citronelli ist das Detail, das den Unterschied macht.</p>
       </div>
     </div>
   </section>
@@ -917,7 +925,7 @@
   <!-- Footer CTA -->
   <section style="background:var(--aqua-100);padding:80px 64px;text-align:center;">
     <p class="label sr" style="margin-bottom:20px;">Interesse am Produkt?</p>
-    <h2 class="h-qf-lg sr sr-d1" style="margin-bottom:24px;">citronelli™ für Ihren Betrieb.</h2>
+    <h2 class="h-qf-lg sr sr-d1" style="margin-bottom:24px;">citronelli für Ihren Betrieb.</h2>
     <p class="body-s sr sr-d2" style="max-width:420px;margin:0 auto 40px;">Wir freuen uns auf Ihre Anfrage — ob Listing, Verkostung oder Partnerschaft.</p>
     <span class="btn-violet sr sr-d3" onclick="go('kontakt')">Jetzt anfragen</span>
   </section>
@@ -967,19 +975,19 @@
           Aus dem Wunsch nach<br>echtem Geschmack.
         </h2>
         <p class="body-s sr sr-d2" style="margin-bottom:20px;">
-          citronelli™ entstand aus dem Wunsch, Erfrischung wieder ehrlicher zu machen.
+          citronelli entstand aus dem Wunsch, Erfrischung wieder ehrlicher zu machen.
           Wir haben gemerkt, dass viele Getränke heute entweder zu süß, zu künstlich oder zu austauschbar wirken. Oft fehlt das, wonach man eigentlich sucht: ein klarer Geschmack, gute Zutaten und ein Gefühl von Ruhe nach dem ersten Schluck.
         </p>
         <p class="body-s sr sr-d3" style="margin-bottom:36px;">
           Also haben wir uns gefragt, wie ein Getränk schmecken müsste, wenn man alles Unnötige weglässt. Keine künstlichen Aromen. Keine Zusatzstoffe. Kein lautes Versprechen. Nur Wasser, Zitrone, Kalamansi und Salz.
         </p>
         <p class="body-s sr sr-d3" style="margin-bottom:36px;">
-          citronelli™ ist unsere Antwort darauf. Eine natürliche Alternative für Menschen, die genießen möchten, ohne sich zwischen Geschmack und einem guten Gefühl entscheiden zu müssen.
+          citronelli ist unsere Antwort darauf. Eine natürliche Alternative für Menschen, die genießen möchten, ohne sich zwischen Geschmack und einem guten Gefühl entscheiden zu müssen.
         </p>
       </div>
       <div class="sr sr-d1" style="position:relative;">
         <div style="aspect-ratio:3/4;overflow:hidden;">
-          <img src="pictures/geschmack_480x640.png" alt="" style="width:100%;height:100%;object-fit:cover;">
+          <img src="pictures/Citronelli_on_ice.png" alt="" style="width:100%;height:100%;object-fit:cover;">
           <div style="position:absolute;inset:0;background:linear-gradient(to bottom right, rgba(75,60,110,0.25), transparent);mix-blend-mode:multiply;"></div>
         </div>
         <div class="quote-box" style="position:absolute;bottom:-28px;right:-28px;padding:28px 32px;background:var(--aqua-100);border:1px solid rgba(153,225,217,0.3);">
@@ -993,7 +1001,7 @@
   <section class="sec" style="background:var(--aqua-100);">
     <div style="margin-bottom:64px;">
       <p class="label sr" style="margin-bottom:16px;">Die Philosophie</p>
-      <h2 class="h-qf-lg sr sr-d1">Was citronelli™ ausmacht.</h2>
+      <h2 class="h-qf-lg sr sr-d1">Was citronelli ausmacht.</h2>
     </div>
     <div class="g-3col" style="gap:2px;">
       <div style="padding:52px 44px;background:#fff;border:1px solid rgba(153,225,217,0.2);" class="sr">
@@ -1008,14 +1016,14 @@
           <span style="font-size:11px;color:var(--aqua-600);letter-spacing:0.06em;">02</span>
         </div>
         <h3 class="h-ct-md" style="color:var(--violet);margin-bottom:16px;">Ehrlich</h3>
-        <p class="body-xs">Keine Tricks. Keine Aromen. Keine Kompromisse. citronelli™ ist, was draufsteht — und mehr, als man erwartet.</p>
+        <p class="body-xs">Keine Tricks. Keine Aromen. Keine Kompromisse. citronelli ist, was draufsteht — und mehr, als man erwartet.</p>
       </div>
       <div style="padding:52px 44px;background:#fff;border:1px solid rgba(153,225,217,0.2);" class="sr sr-d2">
         <div style="width:40px;height:40px;border:1px solid var(--aqua);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:28px;">
           <span style="font-size:11px;color:var(--aqua-600);letter-spacing:0.06em;">03</span>
         </div>
         <h3 class="h-ct-md" style="color:var(--violet);margin-bottom:16px;">Vitalisierend</h3>
-        <p class="body-xs">citronelli™ schenkt dem Körper natürliche Elektrolyte und unterstützt ein frisches, leichtes Gefühl. Eine Erfrischung, die nicht beschwert, sondern angenehm belebt.
+        <p class="body-xs">citronelli schenkt dem Körper natürliche Elektrolyte und unterstützt ein frisches, leichtes Gefühl. Eine Erfrischung, die nicht beschwert, sondern angenehm belebt.
            </p>
       </div>
     </div>
@@ -1032,10 +1040,10 @@
       </div>
       <div class="sr sr-d2">
         <p class="body-dark" style="margin-bottom:20px;">
-          citronelli™ ist kein Massenprodukt. Es ist ein Produkt mit Haltung, entwickelt für Umgebungen, in denen Qualität nicht optional ist.
+          citronelli ist kein Massenprodukt. Es ist ein Produkt mit Haltung, entwickelt für Umgebungen, in denen Qualität nicht optional ist.
         </p>
         <p class="body-dark" style="margin-bottom:36px;">
-          Premium Spas, Luxushotels, gehobene Gastronomie und exklusive Lounges. Das sind die Orte, an denen citronelli™ zu Hause ist.
+          Premium Spas, Luxushotels, gehobene Gastronomie und exklusive Lounges. Das sind die Orte, an denen citronelli zu Hause ist.
         </p>
         <span class="ul-w" onclick="go('kontakt')">Kontakt aufnehmen</span>
       </div>
@@ -1044,10 +1052,10 @@
 
   <!-- Photo Grid -->
   <div class="photo-grid">
-    <div class="photo-grid-item"><img src="pictures/auto_400x240.png" alt=""></div>
-    <div class="photo-grid-item"><img src="pictures/tennis_400x240.png" alt=""></div>
-    <div class="photo-grid-item"><img src="pictures/boot_400x240.png" alt=""></div>
-    <div class="photo-grid-item"><img src="pictures/golf_400x240.png" alt=""></div>
+    <div class="photo-grid-item"><img src="pictures/sterne_restaurant_400x240.png" alt=""></div>
+    <div class="photo-grid-item"><img src="pictures/spa_berge400x240.png" alt=""></div>
+    <div class="photo-grid-item"><img src="pictures/bar_dunkel_400x240.png" alt=""></div>
+    <div class="photo-grid-item"><img src="pictures/spa_wasser400x240.png" alt=""></div>
   </div>
 </div>
 
@@ -1070,7 +1078,7 @@
           Quellfrisch GmbH ist Getränke- und Wasserproduzent mit höchsten Qualitätsansprüchen. Als Dachmarke steht Quellfrisch GmbH für Seriosität, Kompetenz und verantwortungsvolles Handeln.
         </p>
         <p class="body-s">
-          citronelli™ ist das erste Premium-Produkt unter dem Quellfrisch GmbH Dach — und der Beweis dafür, was passiert, wenn Expertise auf Mut trifft.
+          citronelli ist das erste Premium-Produkt unter dem Quellfrisch GmbH Dach — und der Beweis dafür, was passiert, wenn Expertise auf Mut trifft.
         </p>
       </div>
     </div>
@@ -1111,10 +1119,21 @@
         <p class="label sr" style="margin-bottom:18px;">Unsere Mission</p>
         <h2 class="h-qf-lg sr sr-d1" style="margin-bottom:28px;">Getränke mit<br>Substanz.</h2>
         <p class="body-s sr sr-d2" style="margin-bottom:20px;">
-          Quellfrisch GmbH steht für die Überzeugung, dass gute Getränke keine langen Zutatenlisten brauchen. Qualität entsteht durch Sorgfalt, nicht durch Quantität.
+          Die Quellfrisch GmbH entwickelt Getränke mit einem klaren Anspruch an Qualität, Herkunft und Herstellung. Wir sind überzeugt, dass ein gutes Produkt nicht durch möglichst viele Zutaten entsteht, sondern durch die sorgfältige Auswahl weniger, hochwertiger Bestandteile – und durch die konsequente Kontrolle jedes einzelnen Schrittes.
         </p>
         <p class="body-s sr sr-d3" style="margin-bottom:36px;">
-          Als neutrale Dachmarke schaffen wir den professionellen, vertrauenswürdigen Rahmen für Produktmarken wie citronelli™ — ohne deren Eigenständigkeit einzuschränken.
+          Qualität beginnt für uns lange vor der Abfüllung. Von der Auswahl unserer Rohstoffe und Lieferanten über die Entwicklung und Abstimmung unserer Rezepturen bis hin zu Produktion, Verpackung und Logistik betrachten wir das Produkt als Ganzes. Jeder Bestandteil und jeder Partner muss zu unserem Qualitätsverständnis passen.
+          Deshalb lassen wir unsere Getränke in Österreich mit frischem Quellwasser abfüllen. Die Herkunft des Wassers, die Produktionsbedingungen und die Erfahrung unserer Abfüllpartner sind für uns keine Nebensache, sondern ein wesentlicher Bestandteil des Produkts.
+        </p>
+         <p class="body-s sr sr-d3" style="margin-bottom:28px;">
+          Auch bei unseren weiteren Rohstoffen und Materialien arbeiten wir mit sorgfältig ausgewählten Lieferanten und spezialisierten Partnern zusammen. Dabei achten wir auf nachvollziehbare Qualitätsstandards, hohe Anforderungen an Lebensmittelsicherheit und eine konstant reproduzierbare Produktqualität.
+          Für uns bedeutet Qualität auch Konsequenz: Eine Rezeptur muss nicht nur auf dem Papier funktionieren. Geschmack, Rohstoffqualität, Abfüllung, Verpackung und Präsentation müssen am Ende ein stimmiges Gesamtprodukt ergeben.
+
+        </p>
+         <p class="body-s sr sr-d3" style="margin-bottom:28px;">
+          Als Dachmarke schafft die Quellfrisch GmbH den professionellen und verlässlichen Rahmen für eigenständige Produktmarken wie citronelli – von der ersten Produktidee bis zum fertigen Getränk.
+          Unser Anspruch ist einfach:
+          Produkte zu entwickeln, bei denen man die Sorgfalt nicht erklären muss – sondern schmeckt.
         </p>
         <span class="ul sr sr-d4" onclick="go('kontakt')">Kontakt aufnehmen</span>
       </div>
@@ -1179,10 +1198,6 @@
           <p class="label" style="margin-bottom:6px;">Quellfrisch GmbH</p>
           <p class="body-xs">Raimundstraße 123, 60320 Frankfurt am Main<br>Deutschland</p>
         </div>
-        <div style="margin-bottom:20px;">
-          <p class="label" style="margin-bottom:6px;">Telefon</p>
-          <p class="body-xs">+49 176 833 9469 2</p>
-        </div>
         <div>
           <p class="label" style="margin-bottom:6px;">E-Mail</p>
           <p class="body-xs">citronelli@quell-frisch.de</p>
@@ -1190,33 +1205,33 @@
       </div>
     </div>
     <div class="mob-sec" style="padding:80px 64px;display:flex;flex-direction:column;justify-content:center;background:#fff;">
-      <p class="label sr" style="color:var(--violet-60);margin-bottom:32px;">Anfrage senden</p>
+      <p class="label sr" style="color:var(--violet-60);margin-bottom:32px;" data-en='Send an Inquiry'>Anfrage senden</p>
       <form id="kontakt-form" action="https://api.web3forms.com/submit" method="POST" style="display:flex;flex-direction:column;gap:32px;" class="sr sr-d1">
         <div>
-          <label class="form-label">Ihr Name</label>
-          <input class="form-input" type="text" name="name" placeholder="Vorname Nachname" required>
+          <label class="form-label" data-en='Your Name'>Ihr Name</label>
+          <input class="form-input" type="text" name="name" placeholder="Vorname Nachname" data-en-placeholder='First name Last name' required>
         </div>
         <div>
-          <label class="form-label">Unternehmen</label>
-          <input class="form-input" type="text" name="unternehmen" placeholder="Firma GmbH">
+          <label class="form-label" data-en='Company'>Unternehmen</label>
+          <input class="form-input" type="text" name="unternehmen" placeholder="Firma GmbH" data-en-placeholder='Company Ltd.'>
         </div>
         <div>
-          <label class="form-label">E-Mail</label>
-          <input class="form-input" type="email" name="email" placeholder="name@firma.de" required>
+          <label class="form-label" data-en='Email'>E-Mail</label>
+          <input class="form-input" type="email" name="email" placeholder="name@firma.de" data-en-placeholder='name@company.com' required>
         </div>
         <div>
-          <label class="form-label">Anfrage</label>
-          <input class="form-input" type="text" name="anfrage" placeholder="Listing / Verkostung / Partnerschaft / Sonstiges">
+          <label class="form-label" data-en='Inquiry'>Anfrage</label>
+          <input class="form-input" type="text" name="anfrage" placeholder="Listing / Verkostung / Partnerschaft / Sonstiges" data-en-placeholder='Listing / Tasting / Partnership / Other'>
         </div>
         <div>
-          <label class="form-label">Nachricht</label>
-          <textarea class="form-input" rows="3" name="nachricht" placeholder="Ihre Nachricht an uns …" style="resize:none;" required></textarea>
+          <label class="form-label" data-en='Message'>Nachricht</label>
+          <textarea class="form-input" rows="3" name="nachricht" placeholder="Ihre Nachricht an uns …" data-en-placeholder='Your message to us …' style="resize:none;" required></textarea>
         </div>
         <div>
-          <button type="submit" class="btn-violet" style="cursor:pointer;border:none;font-family:inherit;">Anfrage senden</button>
+          <button type="submit" class="btn-violet" style="cursor:pointer;border:none;font-family:inherit;" data-en='Send Inquiry'>Anfrage senden</button>
         </div>
-        <p id="form-success" style="display:none;font-size:11px;letter-spacing:0.08em;color:#4b3c6e;padding:14px 18px;background:rgba(75,60,110,0.07);border-left:3px solid var(--violet);">Vielen Dank! Wir melden uns in Kürze bei Ihnen.</p>
-        <p id="form-error" style="display:none;font-size:11px;letter-spacing:0.08em;color:#c0392b;padding:14px 18px;background:rgba(192,57,43,0.06);border-left:3px solid #c0392b;">Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.</p>
+        <p id="form-success" style="display:none;font-size:11px;letter-spacing:0.08em;color:#4b3c6e;padding:14px 18px;background:rgba(75,60,110,0.07);border-left:3px solid var(--violet);" data-en='Thank you! We will get back to you shortly.'>Vielen Dank! Wir melden uns in Kürze bei Ihnen.</p>
+        <p id="form-error" style="display:none;font-size:11px;letter-spacing:0.08em;color:#c0392b;padding:14px 18px;background:rgba(192,57,43,0.06);border-left:3px solid #c0392b;" data-en='Something went wrong. Please try again.'>Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.</p>
       </form>
     </div>
   </section>
@@ -1224,7 +1239,7 @@
   <!-- B2B Hinweis -->
   <section class="sec-sm" style="background:var(--violet);text-align:center;">
     <p class="label-v sr" style="color:rgba(219,216,226,0.55);margin-bottom:16px;">B2B Partnerschaft</p>
-    <h2 class="h-ct-lg sr sr-d1" style="color:#fff;margin-bottom:16px;">citronelli™ für Ihren Betrieb.</h2>
+    <h2 class="h-ct-lg sr sr-d1" style="color:#fff;margin-bottom:16px;">citronelli für Ihren Betrieb.</h2>
     <p class="body-violet sr sr-d2" style="max-width:460px;margin:0 auto;">Für Großbestellungen, Distribution und exklusive Partnerschaften stehen wir Ihnen gerne persönlich zur Verfügung.</p>
   </section>
 
@@ -1239,6 +1254,266 @@
 
 
 <!-- ════════════════════════════════════════
+     IMPRESSUM
+════════════════════════════════════════ -->
+<div id="page-impressum" class="page">
+  <section class="sec" style="background:#fff;">
+    <div style="max-width:760px;">
+      <p class="label sr" style="margin-bottom:18px;">Rechtliches</p>
+      <h1 class="h-ct-lg sr sr-d1" style="color:var(--violet);margin-bottom:40px;">Impressum</h1>
+      <div class="body-s sr sr-d2" id="impressum-content">
+        <p style="margin-bottom:36px;">Quellfrisch GmbH<br>Raimundstr. 123<br>60320 Frankfurt am Main<br>Deutschland</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">Vertreten durch die Geschäftsführer</h2>
+        <p style="margin-bottom:36px;">Berkay Aydiner<br>Deniz Aydiner<br>Kevin Sauerstein<br>Koray Aydiner</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">Kontakt</h2>
+        <p style="margin-bottom:36px;">E-Mail: citronelli@quell-frisch.de</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">Handelsregister</h2>
+        <p style="margin-bottom:36px;">Amtsgericht Frankfurt am Main<br>HRB 139413</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">Umsatzsteuer-ID</h2>
+        <p style="margin-bottom:36px;">Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG:<br>DE795280782</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">Verantwortlich für den Inhalt</h2>
+        <p>Quellfrisch GmbH<br>Raimundstr. 123<br>60320 Frankfurt am Main</p>
+        <p style="margin-top:8px;">Geschäftsführer:<br>Berkay Aydiner<br>Deniz Aydiner<br>Kevin Sauerstein<br>Koray Aydiner</p>
+      </div>
+      <div class="sr sr-d3" style="margin-top:56px;">
+        <span class="ul" onclick="go('home')">Zurück zur Startseite</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     DATENSCHUTZ
+════════════════════════════════════════ -->
+<div id="page-datenschutz" class="page">
+  <section class="sec" style="background:#fff;">
+    <div style="max-width:760px;">
+      <p class="label sr" style="margin-bottom:18px;">Rechtliches</p>
+      <h1 class="h-ct-lg sr sr-d1" style="color:var(--violet);margin-bottom:40px;">Datenschutzerklärung</h1>
+      <div class="body-s sr sr-d2" id="datenschutz-content">
+        <p class="body-xs" style="margin-bottom:40px;">Stand: 01.09.2026</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">1. Verantwortlicher</h2>
+        <p style="margin-bottom:12px;">Verantwortlich für die Verarbeitung personenbezogener Daten auf dieser Website ist:</p>
+        <p style="margin-bottom:8px;">Quellfrisch GmbH<br>Raimundstr. 123<br>60320 Frankfurt am Main<br>Deutschland</p>
+        <p style="margin-bottom:8px;">Geschäftsführer:<br>Berkay Aydiner<br>Deniz Aydiner<br>Kevin Sauerstein<br>Koray Aydiner</p>
+        <p style="margin-bottom:36px;">E-Mail: citronelli@quell-frisch.de</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">2. Allgemeine Hinweise</h2>
+        <p style="margin-bottom:12px;">Der Schutz Ihrer personenbezogenen Daten ist uns wichtig. Wir verarbeiten personenbezogene Daten ausschließlich im Rahmen der geltenden datenschutzrechtlichen Vorschriften, insbesondere der Datenschutz-Grundverordnung (DSGVO).</p>
+        <p style="margin-bottom:36px;">Personenbezogene Daten sind Informationen, die sich auf eine identifizierte oder identifizierbare natürliche Person beziehen.</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">3. Hosting der Website</h2>
+        <p style="margin-bottom:12px;">Unsere Website wird bei IONOS SE, Elgendorfer Straße 57, 56410 Montabaur, Deutschland, gehostet.</p>
+        <p style="margin-bottom:8px;">Beim Besuch unserer Website können technisch erforderliche Daten verarbeitet werden. Hierzu können insbesondere gehören:</p>
+        <ul style="margin:0 0 12px;padding-left:18px;">
+          <li style="margin-bottom:6px;">IP-Adresse bzw. anonymisierte IP-Adresse</li>
+          <li style="margin-bottom:6px;">Datum und Uhrzeit des Zugriffs</li>
+          <li style="margin-bottom:6px;">aufgerufene Website bzw. Datei</li>
+          <li style="margin-bottom:6px;">Referrer-URL</li>
+          <li style="margin-bottom:6px;">Browsertyp und Browserversion</li>
+          <li style="margin-bottom:6px;">Betriebssystem</li>
+          <li style="margin-bottom:6px;">verwendeter Gerätetyp</li>
+          <li style="margin-bottom:6px;">übertragene Datenmenge</li>
+        </ul>
+        <p style="margin-bottom:12px;">Die Verarbeitung erfolgt zur technischen Bereitstellung, Sicherheit und Stabilität unserer Website sowie zur Erkennung und Abwehr von Missbrauch.</p>
+        <p style="margin-bottom:12px;">Rechtsgrundlage für die Verarbeitung ist Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse besteht in einem sicheren, stabilen und technisch zuverlässigen Betrieb unserer Website.</p>
+        <p style="margin-bottom:36px;">IONOS verarbeitet die entsprechenden Daten im Rahmen des Webhosting-Verhältnisses. Soweit personenbezogene Daten in unserem Auftrag verarbeitet werden, erfolgt dies auf Grundlage der datenschutzrechtlichen Vereinbarungen zwischen Quellfrisch GmbH und IONOS.</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">4. Kontaktformular</h2>
+        <p style="margin-bottom:8px;">Auf unserer Website besteht die Möglichkeit, über ein Kontaktformular mit uns Kontakt aufzunehmen.</p>
+        <p style="margin-bottom:8px;">Bei der Nutzung des Kontaktformulars können insbesondere folgende personenbezogene Daten verarbeitet werden:</p>
+        <ul style="margin:0 0 12px;padding-left:18px;">
+          <li style="margin-bottom:6px;">Name</li>
+          <li style="margin-bottom:6px;">E-Mail-Adresse</li>
+          <li style="margin-bottom:6px;">Telefonnummer, sofern angegeben</li>
+          <li style="margin-bottom:6px;">Unternehmen, sofern angegeben</li>
+          <li style="margin-bottom:6px;">Inhalt der Nachricht</li>
+          <li style="margin-bottom:6px;">sonstige freiwillig übermittelte Angaben</li>
+          <li style="margin-bottom:6px;">Datum und Uhrzeit der Übermittlung</li>
+        </ul>
+        <p style="margin-bottom:12px;">Die Verarbeitung dieser Daten erfolgt ausschließlich zur Bearbeitung Ihrer Anfrage und zur Kontaktaufnahme mit Ihnen.</p>
+        <p style="margin-bottom:12px;">Sofern Ihre Anfrage auf den Abschluss eines Vertrages oder auf vorvertragliche Maßnahmen gerichtet ist, erfolgt die Verarbeitung auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO.</p>
+        <p style="margin-bottom:12px;">In allen anderen Fällen erfolgt die Verarbeitung auf Grundlage unseres berechtigten Interesses an der Bearbeitung und Beantwortung von Anfragen gemäß Art. 6 Abs. 1 lit. f DSGVO.</p>
+        <p style="margin-bottom:36px;">Die über das Kontaktformular übermittelten Daten werden nur so lange gespeichert, wie dies für die Bearbeitung Ihrer Anfrage erforderlich ist. Soweit sich aus der Anfrage eine Geschäftsbeziehung ergibt oder gesetzliche Aufbewahrungspflichten bestehen, gelten die entsprechenden gesetzlichen Aufbewahrungsfristen.</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">5. Kommunikation per E-Mail</h2>
+        <p style="margin-bottom:12px;">Wenn Sie uns per E-Mail kontaktieren, verarbeiten wir die von Ihnen übermittelten personenbezogenen Daten ausschließlich zur Bearbeitung Ihrer Anfrage und zur Kommunikation mit Ihnen.</p>
+        <p style="margin-bottom:12px;">Die Verarbeitung erfolgt je nach Inhalt der Anfrage auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO oder Art. 6 Abs. 1 lit. f DSGVO.</p>
+        <p style="margin-bottom:36px;">Die Daten werden gelöscht, sobald die Anfrage abschließend bearbeitet wurde und keine gesetzlichen Aufbewahrungspflichten oder sonstigen berechtigten Gründe für eine weitere Speicherung bestehen.</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">6. Cookies und ähnliche Technologien</h2>
+        <p style="margin-bottom:12px;">Unsere Website verwendet keine Cookies zu Analyse-, Marketing- oder Trackingzwecken.</p>
+        <p style="margin-bottom:12px;">Soweit technisch erforderliche Cookies oder vergleichbare Technologien für den Betrieb, die Sicherheit oder die grundlegende Funktionalität der Website eingesetzt werden, erfolgt deren Einsatz im Rahmen der gesetzlichen Voraussetzungen.</p>
+        <p style="margin-bottom:36px;">Für technisch nicht erforderliche Cookies oder vergleichbare Technologien wird grundsätzlich vor deren Einsatz eine entsprechende Einwilligung eingeholt.</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">7. SSL-/TLS-Verschlüsselung</h2>
+        <p style="margin-bottom:12px;">Unsere Website nutzt aus Sicherheitsgründen eine SSL-/TLS-Verschlüsselung.</p>
+        <p style="margin-bottom:12px;">Eine verschlüsselte Verbindung erkennen Sie unter anderem an „https://“ in der Adresszeile Ihres Browsers sowie am Schloss-Symbol.</p>
+        <p style="margin-bottom:36px;">Die Verschlüsselung dient dazu, übermittelte Daten vor dem Zugriff Dritter zu schützen.</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">8. Empfänger personenbezogener Daten</h2>
+        <p style="margin-bottom:8px;">Eine Weitergabe personenbezogener Daten an Dritte erfolgt grundsätzlich nur, wenn dies</p>
+        <ul style="margin:0 0 12px;padding-left:18px;">
+          <li style="margin-bottom:6px;">zur Bearbeitung Ihrer Anfrage,</li>
+          <li style="margin-bottom:6px;">zur Durchführung eines Vertrages,</li>
+          <li style="margin-bottom:6px;">zur Erfüllung einer gesetzlichen Verpflichtung,</li>
+          <li style="margin-bottom:6px;">zur Wahrung berechtigter Interessen oder</li>
+          <li style="margin-bottom:6px;">aufgrund Ihrer Einwilligung</li>
+        </ul>
+        <p style="margin-bottom:12px;">erforderlich ist.</p>
+        <p style="margin-bottom:12px;">Zu den möglichen Empfängern gehören insbesondere technische Dienstleister und Hosting-Anbieter, die für den Betrieb unserer Website eingesetzt werden.</p>
+        <p style="margin-bottom:36px;">Soweit externe Dienstleister personenbezogene Daten in unserem Auftrag verarbeiten, erfolgt dies auf Grundlage der gesetzlichen Anforderungen, insbesondere des Art. 28 DSGVO.</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">9. Übermittlung in Drittländer</h2>
+        <p style="margin-bottom:12px;">Eine Übermittlung personenbezogener Daten in Staaten außerhalb der Europäischen Union bzw. des Europäischen Wirtschaftsraums erfolgt über diese Website grundsätzlich nicht.</p>
+        <p style="margin-bottom:36px;">Sollte sich dies zukünftig ändern, wird diese Datenschutzerklärung entsprechend angepasst und über die jeweils geltenden Garantien und Rechtsgrundlagen informiert.</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">10. Ihre Rechte</h2>
+        <p style="margin-bottom:8px;">Sie haben nach Maßgabe der gesetzlichen Voraussetzungen folgende Rechte:</p>
+        <ul style="margin:0 0 12px;padding-left:18px;">
+          <li style="margin-bottom:8px;"><strong style="font-weight:600;">Recht auf Auskunft:</strong> Sie können Auskunft darüber verlangen, ob und welche personenbezogenen Daten wir über Sie verarbeiten.</li>
+          <li style="margin-bottom:8px;"><strong style="font-weight:600;">Recht auf Berichtigung:</strong> Sie können die Berichtigung unrichtiger oder die Vervollständigung unvollständiger personenbezogener Daten verlangen.</li>
+          <li style="margin-bottom:8px;"><strong style="font-weight:600;">Recht auf Löschung:</strong> Sie können unter den gesetzlichen Voraussetzungen die Löschung Ihrer personenbezogenen Daten verlangen.</li>
+          <li style="margin-bottom:8px;"><strong style="font-weight:600;">Recht auf Einschränkung der Verarbeitung:</strong> Sie können unter bestimmten Voraussetzungen die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten verlangen.</li>
+          <li style="margin-bottom:8px;"><strong style="font-weight:600;">Recht auf Datenübertragbarkeit:</strong> Sie können unter den gesetzlichen Voraussetzungen verlangen, dass Ihnen bestimmte personenbezogene Daten in einem strukturierten, gängigen und maschinenlesbaren Format zur Verfügung gestellt werden.</li>
+          <li style="margin-bottom:8px;"><strong style="font-weight:600;">Recht auf Widerspruch:</strong> Sie können aus Gründen, die sich aus Ihrer besonderen Situation ergeben, gegen eine Verarbeitung personenbezogener Daten, die auf Art. 6 Abs. 1 lit. e oder f DSGVO beruht, Widerspruch einlegen.</li>
+          <li style="margin-bottom:8px;"><strong style="font-weight:600;">Recht auf Widerruf einer Einwilligung:</strong> Sofern eine Verarbeitung auf Ihrer Einwilligung beruht, können Sie diese jederzeit mit Wirkung für die Zukunft widerrufen.</li>
+        </ul>
+        <p style="margin-bottom:36px;">Durch den Widerruf wird die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung nicht berührt.</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">11. Beschwerderecht bei einer Aufsichtsbehörde</h2>
+        <p style="margin-bottom:12px;">Sie haben das Recht, sich bei einer Datenschutzaufsichtsbehörde über die Verarbeitung Ihrer personenbezogenen Daten zu beschweren.</p>
+        <p style="margin-bottom:8px;">Für die Quellfrisch GmbH ist grundsätzlich folgende Aufsichtsbehörde zuständig:</p>
+        <p style="margin-bottom:36px;">Der Hessische Beauftragte für Datenschutz und Informationsfreiheit (HBDI)<br>Postfach 3163<br>65021 Wiesbaden<br>Deutschland</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">12. Datensicherheit</h2>
+        <p style="margin-bottom:12px;">Wir treffen angemessene technische und organisatorische Maßnahmen, um personenbezogene Daten vor Verlust, Zerstörung, Manipulation, unberechtigtem Zugriff und sonstiger unrechtmäßiger Verarbeitung zu schützen.</p>
+        <p style="margin-bottom:36px;">Unsere Sicherheitsmaßnahmen werden entsprechend der technischen Entwicklung regelmäßig überprüft und angepasst.</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">13. Aktualisierung dieser Datenschutzerklärung</h2>
+        <p style="margin-bottom:12px;">Wir behalten uns vor, diese Datenschutzerklärung anzupassen, wenn dies aufgrund rechtlicher, technischer oder organisatorischer Änderungen erforderlich wird.</p>
+        <p style="margin-bottom:12px;">Es gilt die jeweils auf unserer Website veröffentlichte aktuelle Fassung.</p>
+        <p style="margin-bottom:48px;">Stand: 01.09.2026</p>
+
+        <div class="div-line-v" style="margin-bottom:28px;"></div>
+        <p class="body-xs">Quellfrisch GmbH<br>Raimundstr. 123<br>60320 Frankfurt am Main<br>Deutschland</p>
+      </div>
+      <div class="sr sr-d3" style="margin-top:56px;">
+        <span class="ul" onclick="go('home')">Zurück zur Startseite</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     COOKIE-RICHTLINIE
+════════════════════════════════════════ -->
+<div id="page-cookies" class="page">
+  <section class="sec" style="background:#fff;">
+    <div style="max-width:760px;">
+      <p class="label sr" style="margin-bottom:18px;">Rechtliches</p>
+      <h1 class="h-ct-lg sr sr-d1" style="color:var(--violet);margin-bottom:40px;">Cookie-Richtlinie</h1>
+      <div class="body-s sr sr-d2" id="cookies-content">
+        <p style="color:var(--aqua-700);font-style:italic;">Inhalt folgt in Kürze.</p>
+      </div>
+      <div class="sr sr-d3" style="margin-top:56px;">
+        <span class="ul" onclick="go('home')">Zurück zur Startseite</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     AGB
+════════════════════════════════════════ -->
+<div id="page-agb" class="page">
+  <section class="sec" style="background:#fff;">
+    <div style="max-width:760px;">
+      <p class="label sr" style="margin-bottom:18px;">Rechtliches</p>
+      <h1 class="h-ct-lg sr sr-d1" style="color:var(--violet);margin-bottom:40px;">Allgemeine Geschäftsbedingungen</h1>
+      <div class="body-s sr sr-d2" id="agb-content">
+        <p class="body-xs" style="margin-bottom:4px;">der Quellfrisch GmbH</p>
+        <p class="body-xs" style="margin-bottom:40px;">Stand: 01.09.2026</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">§ 1 Geltungsbereich</h2>
+        <p style="margin-bottom:12px;">Diese AGB gelten für alle Verträge zwischen der Quellfrisch GmbH, Raimundstr. 123, 60320 Frankfurt am Main, und ihren Kunden über den Verkauf und die Lieferung von Getränken, insbesondere „citronelli“.</p>
+        <p style="margin-bottom:12px;">Die AGB gelten ausschließlich gegenüber Unternehmern im Sinne des § 14 BGB. Kunden sind insbesondere Gastronomiebetriebe, Hotels, Spa-Betriebe, Getränkelieferanten und sonstige gewerbliche Abnehmer.</p>
+        <p style="margin-bottom:36px;">Abweichende AGB des Kunden gelten nur, wenn Quellfrisch ihrer Geltung ausdrücklich zustimmt.</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">§ 2 Vertragsschluss und Bestellung</h2>
+        <p style="margin-bottom:12px;">Bestellungen erfolgen in Textform, insbesondere per E-Mail, oder über die von Quellfrisch vorgesehenen Bestellwege.</p>
+        <p style="margin-bottom:12px;">Die Bestellung des Kunden ist mit ihrem Zugang bei Quellfrisch verbindlich. Eine gesonderte Auftragsbestätigung ist nicht erforderlich.</p>
+        <p style="margin-bottom:12px;">Quellfrisch behält sich vor, Bestellungen bei fehlender Verfügbarkeit, Lieferengpässen oder berechtigten Zweifeln an der Zahlungsfähigkeit des Kunden ganz oder teilweise abzulehnen.</p>
+        <p style="margin-bottom:36px;">Die Mindestbestellmenge beträgt 10 Kisten.</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">§ 3 Preise und Zahlung</h2>
+        <p style="margin-bottom:12px;">Es gelten die bei Vertragsschluss vereinbarten Preise zuzüglich der gesetzlichen Umsatzsteuer.</p>
+        <p style="margin-bottom:12px;">Liefer-, Transport-, Paletten- und sonstige Nebenkosten werden entsprechend der jeweiligen Vereinbarung berechnet. Eine kostenlose Lieferung wird nur individuell vereinbart.</p>
+        <p style="margin-bottom:12px;">Rechnungen sind innerhalb von 14 Tagen nach Rechnungsstellung ohne Abzug zu bezahlen.</p>
+        <p style="margin-bottom:12px;">Bei Zahlung innerhalb von 5 Tagen kann das vereinbarte Skonto abgezogen werden.</p>
+        <p style="margin-bottom:12px;">Bei Neukunden ist Quellfrisch berechtigt, die Lieferung nur gegen Vorkasse durchzuführen.</p>
+        <p style="margin-bottom:12px;">Bei begründeten Zweifeln an der Zahlungsfähigkeit des Kunden kann Quellfrisch auch bei bestehenden Kunden weitere Lieferungen von Vorkasse oder einer angemessenen Sicherheitsleistung abhängig machen.</p>
+        <p style="margin-bottom:36px;">Bei Zahlungsverzug gelten die gesetzlichen Vorschriften.</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">§ 4 Lieferung</h2>
+        <p style="margin-bottom:12px;">Die Lieferung erfolgt durch Quellfrisch selbst oder durch beauftragte Speditionen bzw. Transportunternehmen.</p>
+        <p style="margin-bottom:12px;">Liefertermine werden grundsätzlich voraussichtlich angegeben und sind nur verbindlich, wenn dies ausdrücklich vereinbart wurde.</p>
+        <p style="margin-bottom:12px;">Quellfrisch ist bei Lieferengpässen oder begrenzter Verfügbarkeit berechtigt, die Liefermenge angemessen anzupassen. Der Kunde wird hierüber informiert.</p>
+        <p style="margin-bottom:36px;">Lieferverzögerungen aufgrund höherer Gewalt, Betriebsstörungen, Verkehrsbehinderungen, Lieferengpässen oder sonstiger von Quellfrisch nicht zu vertretender Umstände berechtigen zu einer angemessenen Verlängerung der Lieferfrist.</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">§ 5 Mehrweg, Pfand und Paletten</h2>
+        <p style="margin-bottom:12px;">Die Lieferung erfolgt in Mehrwegflaschen und Mehrwegkisten. Das hierfür anfallende Pfand wird zusätzlich berechnet.</p>
+        <p style="margin-bottom:12px;">Nicht zurückgegebenes, fehlendes oder vom Kunden beschädigtes Leergut wird dem Kunden zum jeweils gültigen Ersatz- bzw. Pfandpreis berechnet.</p>
+        <p style="margin-bottom:12px;">Der Kunde hat das Leergut pfleglich zu behandeln und für die Rückführung bereitzuhalten.</p>
+        <p style="margin-bottom:36px;">Paletten werden entsprechend der jeweils gültigen Vereinbarung berechnet. Zurückgegebene und wiederverwendbare Paletten werden entsprechend gutgeschrieben.</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">§ 6 Prüfung und Mängel</h2>
+        <p style="margin-bottom:12px;">Der Kunde hat die Ware unmittelbar nach Erhalt auf Vollständigkeit und erkennbare Schäden zu prüfen.</p>
+        <p style="margin-bottom:12px;">Transportschäden, Fehlmengen und erkennbare Beschädigungen sind unmittelbar bei Lieferung auf dem Lieferschein zu vermerken und Quellfrisch unverzüglich mitzuteilen.</p>
+        <p style="margin-bottom:12px;">Sonstige erkennbare Mängel sind ebenfalls unverzüglich nach Erhalt der Ware, nicht erkennbare Mängel unverzüglich nach ihrer Entdeckung mitzuteilen.</p>
+        <p style="margin-bottom:12px;">Bei berechtigten Mängeln erfolgt grundsätzlich eine Nachlieferung. Die gesetzlichen Mängelrechte bleiben im Übrigen unberührt.</p>
+        <p style="margin-bottom:36px;">Soweit die gesetzlichen Voraussetzungen des § 377 HGB vorliegen, gelten die dort geregelten Untersuchungs- und Rügepflichten.</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">§ 7 Eigentumsvorbehalt</h2>
+        <p style="margin-bottom:12px;">Die gelieferte Ware bleibt bis zur vollständigen Bezahlung sämtlicher Forderungen aus dem jeweiligen Kaufvertrag Eigentum der Quellfrisch GmbH.</p>
+        <p style="margin-bottom:12px;">Bei laufenden Geschäftsbeziehungen behält sich Quellfrisch das Eigentum an der gelieferten Ware bis zur vollständigen Bezahlung sämtlicher Forderungen aus der Geschäftsbeziehung vor, soweit gesetzlich zulässig.</p>
+        <p style="margin-bottom:36px;">Der Kunde darf die Ware im ordnungsgemäßen Geschäftsbetrieb weiterverkaufen, sofern er nicht mit Zahlungen in Verzug ist.</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">§ 8 Haftung</h2>
+        <p style="margin-bottom:12px;">Quellfrisch haftet nach den gesetzlichen Vorschriften.</p>
+        <p style="margin-bottom:12px;">Bei einfacher Fahrlässigkeit haftet Quellfrisch nur bei Verletzung wesentlicher Vertragspflichten und nur für den vorhersehbaren, typischerweise eintretenden Schaden.</p>
+        <p style="margin-bottom:36px;">Die Haftungsbeschränkungen gelten nicht bei Vorsatz, grober Fahrlässigkeit, Verletzung von Leben, Körper oder Gesundheit sowie bei zwingender gesetzlicher Haftung, insbesondere nach dem Produkthaftungsgesetz.</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">§ 9 Gerichtsstand und anwendbares Recht</h2>
+        <p style="margin-bottom:12px;">Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts.</p>
+        <p style="margin-bottom:36px;">Gegenüber Unternehmern wird, soweit gesetzlich zulässig, als Gerichtsstand der Sitz der Quellfrisch GmbH in Frankfurt am Main vereinbart.</p>
+
+        <h2 style="font-size:15px;font-weight:600;letter-spacing:-0.005em;color:var(--violet);margin:0 0 12px;">§ 10 Schlussbestimmungen</h2>
+        <p style="margin-bottom:48px;">Sollten einzelne Bestimmungen dieser AGB unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt. An die Stelle der unwirksamen Bestimmung treten die gesetzlichen Vorschriften.</p>
+
+        <div class="div-line-v" style="margin-bottom:28px;"></div>
+        <p class="body-xs" style="margin-bottom:4px;">Quellfrisch GmbH<br>Raimundstr. 123<br>60320 Frankfurt am Main</p>
+        <p class="body-xs" style="margin:16px 0 4px;">Geschäftsführer:<br>Berkay Aydiner<br>Deniz Aydiner<br>Kevin Sauerstein<br>Koray Aydiner</p>
+        <p class="body-xs" style="margin-top:16px;">Handelsregister: HRB 139413<br>Amtsgericht: Frankfurt am Main</p>
+      </div>
+      <div class="sr sr-d3" style="margin-top:56px;">
+        <span class="ul" onclick="go('home')">Zurück zur Startseite</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ════════════════════════════════════════
      SHARED FOOTER
 ════════════════════════════════════════ -->
 <footer>
@@ -1248,7 +1523,7 @@
       <img src="brand_assets/QF%20Logo.png" alt="Quellfrisch GmbH" style="width:60px;margin-bottom:20px;filter:brightness(0) invert(1);opacity:0.6;">
       <p style="font-size:12px;color:rgba(255,255,255,0.4);line-height:1.75;max-width:220px;">
         Quellfrisch GmbH — Getränke · Wasser<br>
-        Hersteller von citronelli™
+        Hersteller von citronelli
       </p>
     </div>
     <!-- Nav -->
@@ -1263,17 +1538,14 @@
     </div>
     <!-- Citronelli + Social -->
     <div>
-      <img src="brand_assets/Citronelli%20logo.png" alt="citronelli" style="width:64px;margin-bottom:20px;filter:brightness(0) invert(1);opacity:0.55;">
+      <img src="brand_assets/Citronelli_symbol.png" alt="citronelli" style="width:64px;margin-bottom:20px;filter:brightness(0) invert(1);opacity:0.55;">
       <p style="font-size:12px;color:rgba(255,255,255,0.35);line-height:1.75;margin-bottom:28px;">
-        citronelli™<br>
+        citronelli<br>
         Premium-Erfrischung<br>
         Wasser · Zitrone · Kalamansi · Salz
       </p>
       <div style="display:flex;gap:10px;">
-        <a class="soc-icon" href="#" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-        <a class="soc-icon" href="#" aria-label="Instagram">
+        <a class="soc-icon" href="https://www.instagram.com/citronelli_de/" target="_blank" rel="noopener" aria-label="Instagram">
           <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         </a>
       </div>
@@ -1282,17 +1554,56 @@
   <!-- Legal -->
   <div class="legal-footer">
     <div style="display:flex;align-items:center;flex-wrap:wrap;">
-      <span class="legal-link">Impressum</span><span class="legal-sep">|</span>
-      <span class="legal-link">Datenschutz</span><span class="legal-sep">|</span>
-      <span class="legal-link">Cookie-Richtlinie</span><span class="legal-sep">|</span>
-      <span class="legal-link">AGB</span>
+      <span class="legal-link" onclick="go('impressum')">Impressum</span><span class="legal-sep">|</span>
+      <span class="legal-link" onclick="go('datenschutz')">Datenschutz</span><span class="legal-sep">|</span>
+      <span class="legal-link" onclick="go('cookies')">Cookie-Richtlinie</span><span class="legal-sep">|</span>
+      <span class="legal-link" onclick="go('agb')">AGB</span>
     </div>
-    <p class="legal-copy">&copy; 2025 Quellfrisch GmbH — citronelli™ ist eine eingetragene Marke der Quellfrisch GmbH</p>
+    <p class="legal-copy">&copy; 2025 Quellfrisch GmbH — citronelli ist eine eingetragene Marke der Quellfrisch GmbH</p>
   </div>
 </footer>
 
 
 <script>
+  // ── LANGUAGE TOGGLE (DE / EN) ─────────────────────────────────
+  let currentLang = 'de';
+  let rebuildGeschichteHero = null;
+
+  function applyLang(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-en]').forEach(function (el) {
+      el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.de;
+    });
+    document.querySelectorAll('[data-en-placeholder]').forEach(function (el) {
+      el.setAttribute('placeholder', lang === 'en' ? el.dataset.enPlaceholder : el.dataset.dePlaceholder);
+    });
+    document.querySelectorAll('.nav-lang, .mob-lang').forEach(function (el) {
+      var isEN = el.dataset.lang === 'en';
+      el.style.opacity = (isEN === (lang === 'en')) ? '1' : '0.4';
+    });
+    if (typeof rebuildGeschichteHero === 'function') rebuildGeschichteHero();
+    try { localStorage.setItem('citronelli-lang', lang); } catch (e) {}
+  }
+
+  function setLang(lang) {
+    if (lang === currentLang) return;
+    applyLang(lang);
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('[data-en]').forEach(function (el) {
+      if (!el.dataset.de) el.dataset.de = el.innerHTML;
+    });
+    document.querySelectorAll('[data-en-placeholder]').forEach(function (el) {
+      if (!el.dataset.dePlaceholder) el.dataset.dePlaceholder = el.getAttribute('placeholder') || '';
+    });
+    var saved = null;
+    try { saved = localStorage.getItem('citronelli-lang'); } catch (e) {}
+    if (saved === 'en') applyLang('en');
+  });
+  // ── END LANGUAGE TOGGLE ────────────────────────────────────────
+
   // ── BURGER MENU ──────────────────────────────────────────────
   (function () {
     var burger = document.getElementById('nav-burger');
@@ -1319,7 +1630,7 @@
   }
   // ── END BURGER MENU ──────────────────────────────────────────
 
-  const PAGES = ['home','produkt','geschichte','unternehmen','kontakt'];
+  const PAGES = ['home','produkt','geschichte','unternehmen','kontakt','impressum','datenschutz','cookies','agb'];
 
   function go(name) {
     const cur = document.querySelector('.page.active');
@@ -1519,6 +1830,33 @@
       return ch;
     }
 
+    var LINES = {
+      de: ['Eine Idee.', 'Vier Zutaten.', 'Eine Überzeugung.'],
+      en: ['One Idea.', 'Four Ingredients.', 'One Conviction.']
+    };
+    var h1ref = null;
+    var letters = [];
+
+    function buildH1() {
+      if (!h1ref) return;
+      var lines = LINES[currentLang === 'en' ? 'en' : 'de'];
+      // Rebuild h1 with per-letter spans; words are wrapped so they never break mid-word
+      var inner = lines.map(function (line) {
+        return line.split(' ').map(function (word, wi, arr) {
+          var chars = word.split('').map(function (ch) {
+            return '<span class="prox-letter">' + escCh(ch) + '</span>';
+          }).join('');
+          var space = (wi < arr.length - 1) ? '<span class="prox-space">&nbsp;</span>' : '';
+          return '<span style="display:inline-block;white-space:nowrap">' + chars + space + '</span>';
+        }).join('');
+      }).join('<br>');
+      // Screen-reader-only full text
+      inner += '<span class="prox-vh">' + lines.join(' ') + '</span>';
+      h1ref.setAttribute('aria-hidden', 'true');
+      h1ref.innerHTML = inner;
+      letters = Array.from(h1ref.querySelectorAll('.prox-letter'));
+    }
+
     function initProximity() {
       if (initialized) return;
       var section = document.getElementById('geschichte-hero');
@@ -1526,24 +1864,10 @@
       var h1 = section.querySelector('h1');
       if (!h1) return;
       initialized = true;
+      h1ref = h1;
+      buildH1();
+      rebuildGeschichteHero = buildH1;
 
-      // Rebuild h1 with per-letter spans; words are wrapped so they never break mid-word
-      var lines = ['Eine Idee.', 'Vier Zutaten.', 'Eine Überzeugung.'];
-      var inner = lines.map(function (line) {
-        return line.split(' ').map(function (word, wi, arr) {
-          var letters = word.split('').map(function (ch) {
-            return '<span class="prox-letter">' + escCh(ch) + '</span>';
-          }).join('');
-          var space = (wi < arr.length - 1) ? '<span class="prox-space">&nbsp;</span>' : '';
-          return '<span style="display:inline-block;white-space:nowrap">' + letters + space + '</span>';
-        }).join('');
-      }).join('<br>');
-      // Screen-reader-only full text
-      inner += '<span class="prox-vh">Eine Idee. Vier Zutaten. Eine Überzeugung.</span>';
-      h1.setAttribute('aria-hidden', 'true');
-      h1.innerHTML = inner;
-
-      var letters = Array.from(h1.querySelectorAll('.prox-letter'));
       var RADIUS = 110;
       var mx = -9999, my = -9999, rafPending = false;
 
@@ -1604,7 +1928,7 @@
     const successEl = document.getElementById('form-success');
     const errorEl = document.getElementById('form-error');
     btn.disabled = true;
-    btn.textContent = 'Wird gesendet …';
+    btn.textContent = currentLang === 'en' ? 'Sending …' : 'Wird gesendet …';
     successEl.style.display = 'none';
     errorEl.style.display = 'none';
     try {
@@ -1631,7 +1955,7 @@
       errorEl.style.display = 'block';
     }
     btn.disabled = false;
-    btn.textContent = 'Anfrage senden';
+    btn.textContent = currentLang === 'en' ? btn.dataset.en : btn.dataset.de;
   });
   // ── END KONTAKT FORM ─────────────────────────────────────────────────────
 </script>
