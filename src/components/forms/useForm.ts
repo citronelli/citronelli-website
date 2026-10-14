@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
 import { SubmissionNotConfiguredError, submitForm } from './submitAdapter';
 import type { FormKind } from './submitAdapter';
@@ -18,6 +18,11 @@ export function useForm<T extends Record<string, string>>(kind: FormKind, initia
   const [submitted, setSubmitted] = useState(false);
   const [status, setStatus] = useState<FormStatus>('idle');
   const formRef = useRef<HTMLFormElement>(null);
+  // Zeitpunkt der Anzeige; der Server verwirft Einsendungen, die zu schnell abgeschickt werden
+  const shownAt = useRef(0);
+  useEffect(() => {
+    shownAt.current = Date.now();
+  }, []);
 
   const setValue = useCallback(
     (name: keyof T, value: string) => {
@@ -41,13 +46,11 @@ export function useForm<T extends Record<string, string>>(kind: FormKind, initia
       formRef.current?.querySelector<HTMLElement>(`[name="${firstInvalid}"]`)?.focus();
       return;
     }
-    // Honeypot gefüllt: kein Versand
-    const honeypot = formRef.current?.querySelector<HTMLInputElement>('input[name="website"]')?.value;
-    if (honeypot) return;
+    const honeypot = formRef.current?.querySelector<HTMLInputElement>('input[name="website"]')?.value ?? '';
 
     setStatus('submitting');
     try {
-      await submitForm(kind, values);
+      await submitForm(kind, values, { website: honeypot, elapsedMs: Date.now() - shownAt.current });
       setStatus('success');
       setValues(initial);
       setSubmitted(false);

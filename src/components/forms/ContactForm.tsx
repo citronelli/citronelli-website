@@ -68,7 +68,7 @@ export function ContactForm() {
           submitting: 'Ihre Anfrage wird übermittelt.',
           success: 'Vielen Dank! Ihre Anfrage ist bei uns eingegangen.',
           error: 'Die Übermittlung ist fehlgeschlagen. Bitte versuchen Sie es später erneut.',
-          notConfigured: 'Der Versand ist noch nicht eingerichtet. Es wurde nichts gesendet.',
+          notConfigured: 'Der Versand ist derzeit nicht möglich. Es wurde nichts gesendet. Bitte versuchen Sie es später erneut.',
         }}
       />
     </form>

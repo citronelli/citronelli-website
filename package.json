@@ -10,9 +10,10 @@
     "preview": "vite preview",
     "screenshots": "node scripts/screenshots.mjs",
     "check:ui": "node scripts/check-ui.mjs",
-    "check:forms": "VITE_FORM_ENDPOINT_CONTACT=https://forms.invalid/contact VITE_FORM_ENDPOINT_APPLICATION=https://forms.invalid/application vite build --outDir dist-formtest && (vite preview --outDir dist-formtest --port 4174 --strictPort & PID=$!; sleep 2; node scripts/check-forms-endpoint.mjs; STATUS=$?; kill $PID; exit $STATUS)",
+    "check:forms": "vite build --outDir dist-formtest && (vite preview --outDir dist-formtest --port 4174 --strictPort & PID=$!; sleep 2; node scripts/check-forms-endpoint.mjs; STATUS=$?; kill $PID; rm -rf dist-formtest; exit $STATUS)",
     "images": "node scripts/optimize-images.mjs",
-    "compare": "node scripts/compare.mjs"
+    "compare": "node scripts/compare.mjs",
+    "check:api": "node scripts/check-api.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -27,5 +28,8 @@
     "sharp": "^0.33.5",
     "typescript": "~5.6.3",
     "vite": "^5.4.11"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }

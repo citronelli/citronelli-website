@@ -8,5 +8,6 @@ Projekt: Quellfrisch-Website (React + TypeScript + Vite). Details in `README.md`
 - Nicht automatisch committen, pushen oder deployen. Nur auf ausdrückliche Anweisung
   („committe“, „push to GitHub“, „deploy to Vercel“ o. Ä.).
 - Keine Zugangsdaten, `.env`-Dateien, `node_modules` oder Build-Ausgaben committen.
-- Formulare nicht mit einem Versanddienst verbinden, solange dieser nicht ausdrücklich bestätigt ist.
+- Formulare senden über `api/` per Resend. Bei Tests keine echten Mails versenden (`npm run check:api`,
+  `npm run check:forms` simulieren den Versand).
 - Keine Produktinformationen oder Texte erfinden.

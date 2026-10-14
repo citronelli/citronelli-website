@@ -4,7 +4,7 @@ Website der Quellfrisch GmbH (Frankfurt am Main) mit der Marke Citronelli.
 React + TypeScript + Vite, Single-Page-Anwendung, Hosting auf Vercel.
 
 Diese Anwendung ersetzt seit Version 2.0 die frühere statische Citronelli-Website vollständig
-(frühere Dateien und die Resend-Funktion `api/contact.js` sind in der Git-Historie erhalten).
+(frühere Dateien sind in der Git-Historie erhalten).
 
 ## Lokal starten
 
@@ -28,31 +28,52 @@ npm run check:ui               # Menü, alle Seiten/Links, Titel/Beschreibungen,
                                # Direktaufruf, Weiterleitungen, prefers-reduced-motion
 npm run screenshots            # Überlaufprüfung + Ganzseiten-Aufnahmen aller Seiten → screenshots/
                                # Optionen: -- --only /work,/about  -- --widths 390,810,1200
-npm run check:forms            # eigener Build mit Test-Endpunkten: laufend / Fehler / Erfolg
-                               # (Anfragen werden im Browser abgefangen; nichts wird versendet)
+npm run check:forms            # Browser: laufend / Fehler / Erfolg mit simulierten Serverantworten
+npm run check:api              # Endpunkte mit simuliertem Resend (ohne Server, ohne echten Versand)
 ```
 
 ## Deployment (Vercel)
 
-`vercel.json`: Framework Vite, `npm ci`, `npm run build`, Ausgabe `dist/`. Alle Pfade werden auf
-`index.html` umgeschrieben (SPA-Fallback), damit Direktaufrufe und Neuladen von Unterseiten wie
+`vercel.json`: Framework Vite, `npm ci`, `npm run build`, Ausgabe `dist/`. Alle Pfade außer `/api/…`
+werden auf `index.html` umgeschrieben (SPA-Fallback), damit Direktaufrufe und Neuladen von Unterseiten wie
 `/blog/zutatenwissen` funktionieren. Statische Dateien (`/images/…`, `/fonts/…`, `/assets/…`) werden vorher
 direkt ausgeliefert.
 
 ## Formulare
 
-Kontakt- und Bewerbungsformular prüfen Eingaben (leer, ungültige E-Mail, fehlende Auswahl) und zeigen
-Feldfehler, laufende Übermittlung, Serverfehler und Erfolg. Einzige Versandstelle ist
-`src/components/forms/submitAdapter.ts`. **Derzeit ist kein Versanddienst angebunden** – die Formulare senden
-nichts und melden das deutlich. Zum Anbinden in Vercel (bzw. lokal in `.env.local`) setzen:
+Kontakt- und Bewerbungsformular senden an serverseitige Vercel-Funktionen, die per
+[Resend](https://resend.com) an **citronelli@quell-frisch.de** zustellen:
 
-```
-VITE_FORM_ENDPOINT_CONTACT=https://…
-VITE_FORM_ENDPOINT_APPLICATION=https://…
-```
+| Formular | Endpunkt | Betreff | Felder |
+| --- | --- | --- | --- |
+| Kontakt (`/contact`) | `POST /api/contact` | Quellfrisch – Kontaktanfrage | Name, E-Mail, Anfrage |
+| Karriere (`/career`) | `POST /api/application` | Quellfrisch – Bewerbung | Name, E-Mail, Bewerbung |
 
-Der Endpunkt erhält JSON per POST; nur eine 2xx-Antwort gilt als Erfolg. Zugangsdaten gehören nicht ins
-Repository.
+- Die vom Besucher eingegebene E-Mail-Adresse wird als **Reply-To** gesetzt („Antworten“ schreibt direkt
+  an den Absender).
+- Der API-Schlüssel bleibt ausschließlich auf dem Server (`process.env.RESEND_API_KEY`); er erscheint
+  nie im Browsercode und ist keine `VITE_`-Variable.
+- Serverseitige Prüfung: Pflichtfelder, E-Mail-Format, Längen, erlaubte Auswahlwerte, keine
+  Zeilenumbrüche in Kopfzeilen. Schutz gegen automatisierte Einsendungen: verstecktes Honeypot-Feld und
+  Mindest-Ausfüllzeit (1,5 s).
+- Erfolg zeigt die Website erst, wenn der Endpunkt nach Annahme durch Resend mit `{ ok: true }` antwortet.
+  Bei Fehlern bleiben die Eingaben erhalten.
+- Code: `api/contact.js`, `api/application.js`, gemeinsame Logik in `api/_lib/` (wird nicht als eigener
+  Endpunkt ausgeliefert); Frontend-Anbindung in `src/components/forms/submitAdapter.ts`.
+
+Umgebungsvariablen (Vercel → Settings → Environment Variables):
+
+| Name | Pflicht | Bedeutung |
+| --- | --- | --- |
+| `RESEND_API_KEY` | ja | Resend-API-Schlüssel (geheim) |
+| `FORM_FROM_EMAIL` | nein | bei Resend verifizierter Absender; Standard `Quellfrisch Website <noreply@contact.quell-frisch.de>` |
+| `FORM_TO_EMAIL` | nein | Empfänger; Standard `citronelli@quell-frisch.de` |
+
+Fehlt `RESEND_API_KEY`, antwortet der Endpunkt mit 503 und die Website meldet, dass der Versand derzeit
+nicht möglich ist. `npm run dev` startet nur das Frontend; die Endpunkte laufen lokal mit `vercel dev`.
+
+Tests ohne echten Versand: `npm run check:api` (Endpunkte mit simuliertem Resend) und
+`npm run check:forms` (Browserablauf mit simulierten Serverantworten).
 
 ## Bilder
 
@@ -124,7 +145,7 @@ Breakpoints: Mobil `< 810px`, Tablet `810–1199.98px`, Desktop `≥ 1200px`.
 | Kontaktfeld-Bezeichnungen | „Name 🞵“, „Email 🞵“ (Pflichtzeichen, im Screenshot nicht sichtbar) | „Name“, „Email“; Pflicht per `required`/`aria-required` |
 | Pflichtfelder | Kontakt: „Anfrage“ `required`, Name/Email mit Pflichtzeichen; Karriere: nur Auswahl `required` | alle Felder Pflicht (ohne Name/E-Mail ist eine Anfrage nicht beantwortbar) |
 | „Datenschutzerklärung“ mobil | 42px, läuft über | Silbentrennung |
-| Formulare | Framer-Versand | eigener Adapter, ohne Endpunkt kein Versand |
+| Formulare | Framer-Versand | eigene Vercel-Funktionen mit Resend |
 | Dunkle Bildvarianten, Framer-Badge, Analytics | vorhanden | nicht übernommen |
 
 ### Weiterhin offen (nicht beauftragt)
@@ -139,4 +160,4 @@ Breakpoints: Mobil `< 810px`, Tablet `810–1199.98px`, Desktop `≥ 1200px`.
 
 - Animationen sind Annäherungen; Werte aus dem Hauptskript, nicht live vermessen.
 - Bilder sind komprimiert, aber nicht in mehreren Breiten (srcset) hinterlegt; größte Datei ~500 KB.
-- Versanddienst/Empfänger und CMS sind offen.
+- Ein CMS ist nicht angebunden.

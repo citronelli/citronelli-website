@@ -1,11 +1,10 @@
 /**
- * Versandadapter für Formulare. Der Versanddienst ist noch nicht festgelegt (siehe README).
+ * Versandadapter für Formulare. Sendet an die eigenen serverseitigen Endpunkte (api/contact.js,
+ * api/application.js), die per Resend an citronelli@quell-frisch.de zustellen. Der API-Schlüssel liegt
+ * ausschließlich auf dem Server (Vercel-Umgebungsvariable RESEND_API_KEY).
  *
- * Einrichtung später: Endpunkt per Umgebungsvariable setzen, z. B. in .env.local (nicht versioniert)
- *   VITE_FORM_ENDPOINT_CONTACT=https://…
- *   VITE_FORM_ENDPOINT_APPLICATION=https://…
- * Der Endpunkt erhält JSON per POST. Nur eine 2xx-Antwort gilt als Erfolg.
- * Ohne Endpunkt wird nichts gesendet und ein Fehler gemeldet – es gibt keinen simulierten Erfolg.
+ * Erfolg gilt nur, wenn der Endpunkt mit 2xx und { ok: true } antwortet – also nachdem der Versanddienst
+ * die Nachricht angenommen hat.
  */
 export type FormKind = 'contact' | 'application';
 
@@ -16,19 +15,23 @@ export class SubmissionNotConfiguredError extends Error {
   }
 }
 
-const endpoints: Record<FormKind, string | undefined> = {
-  contact: import.meta.env.VITE_FORM_ENDPOINT_CONTACT,
-  application: import.meta.env.VITE_FORM_ENDPOINT_APPLICATION,
+const endpoints: Record<FormKind, string> = {
+  contact: '/api/contact',
+  application: '/api/application',
 };
 
-export async function submitForm(kind: FormKind, data: Record<string, string>): Promise<void> {
-  const endpoint = endpoints[kind];
-  if (!endpoint) throw new SubmissionNotConfiguredError();
-
-  const response = await fetch(endpoint, {
+export async function submitForm(
+  kind: FormKind,
+  data: Record<string, string>,
+  meta: { website: string; elapsedMs: number },
+): Promise<void> {
+  const response = await fetch(endpoints[kind], {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-    body: JSON.stringify({ form: kind, ...data }),
+    body: JSON.stringify({ ...data, ...meta }),
   });
-  if (!response.ok) throw new Error(`Serverantwort ${response.status}`);
+  const result = (await response.json().catch(() => null)) as { ok?: boolean; error?: string } | null;
+  if (response.ok && result?.ok === true) return;
+  if (result?.error === 'not-configured') throw new SubmissionNotConfiguredError();
+  throw new Error(`Serverantwort ${response.status}`);
 }

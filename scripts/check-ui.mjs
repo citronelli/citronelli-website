@@ -122,10 +122,11 @@ check(page.url().endsWith('/blog/zutatenwissen'), 'Alter Link /zutatenwissen →
 await page.goto(base + '/gibt-es-nicht');
 check((await page.locator('#not-found-heading').count()) === 1, 'Unbekannter Pfad zeigt Fehlerseite');
 
-// Formulare ohne Versanddienst: Validierung, kein Versand, kein Erfolg
+// Formulare: Validierung im Browser; Server-Antwort simuliert (nicht konfiguriert) – nichts wird versendet
+await page.route('**/api/**', (route) => route.fulfill({ status: 503, contentType: 'application/json', body: '{"ok":false,"error":"not-configured"}' }));
 for (const [route, submit, emailName] of [['/contact', 'Anfragen', 'Email'], ['/career', 'Jetzt Bewerben', 'Email']]) {
   const requests = [];
-  page.on('request', (r) => { if (r.method() === 'POST') requests.push(r.url()); });
+  page.on('request', (r) => { if (r.method() === 'POST' && !r.url().includes('/api/')) requests.push(r.url()); });
   await page.goto(base + route);
   await page.getByRole('button', { name: submit }).click();
   const errors = await page.locator('.form-field__error').count();
@@ -140,9 +141,11 @@ for (const [route, submit, emailName] of [['/contact', 'Anfragen', 'Email'], ['/
   else await page.selectOption('[name="Bewerbung"]', 'Praktikum');
   check((await page.locator('.form-field__error').count()) === 0, `${route}: gültige Eingaben ohne Fehler`);
   await page.getByRole('button', { name: submit }).click();
+  await page.waitForSelector('.form-status--error', { timeout: 5000 }).catch(() => {});
   const statusText = await page.locator('.form-status').textContent();
-  check(/nicht eingerichtet/.test(statusText ?? ''), `${route}: ohne Versanddienst Hinweis statt Erfolg („${statusText}“)`);
-  check(requests.length === 0, `${route}: keine Anfrage gesendet`);
+  check(/derzeit nicht möglich/.test(statusText ?? ''), `${route}: Versand nicht möglich → Hinweis statt Erfolg („${statusText}“)`);
+  check(requests.length === 0, `${route}: keine Anfrage außer an /api`);
+  check((await page.inputValue('[name="Name"]')) === 'Test', `${route}: Eingaben bleiben erhalten`);
   page.removeAllListeners('request');
 }
 
