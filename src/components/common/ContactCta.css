@@ -1,0 +1,41 @@
+/* CTA – .framer-1jqxqsl / Komponente .framer-aqVus (Text mit opacity 0.7) */
+
+.contact-cta {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 445px;
+  padding: 0 var(--gutter);
+  background: #fff;
+}
+
+.contact-cta__container {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  max-width: var(--content-max);
+}
+
+.contact-cta__link {
+  display: block;
+  width: 100%;
+  text-align: center;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.contact-cta__link:hover,
+.contact-cta__link:focus-visible {
+  opacity: 1;
+}
+
+@media (max-width: 809.98px) {
+  .contact-cta {
+    height: 280px;
+  }
+}

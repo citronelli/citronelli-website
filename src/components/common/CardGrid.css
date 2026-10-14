@@ -1,0 +1,35 @@
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(50px, 1fr));
+  justify-content: center;
+  width: 100%;
+  max-width: var(--content-max);
+}
+
+.card-grid > li {
+  min-width: 0;
+}
+
+.card-grid--cards {
+  gap: 0 10px;
+}
+
+.card-grid--blog {
+  gap: 40px 10px;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .card-grid--blog {
+    gap: 60px 10px;
+  }
+}
+
+@media (max-width: 809.98px) {
+  .card-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .card-grid--blog {
+    gap: 50px;
+  }
+}

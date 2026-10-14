@@ -1,0 +1,180 @@
+/* Header – Werte aus .framer-9GL0a (Varianten Desktop / Tablet / Tablet Open). */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 var(--gutter);
+  background-color: rgba(255, 255, 255, 0);
+  transition: background-color 0.4s var(--ease-out);
+}
+
+.site-header.is-open {
+  min-height: 100vh;
+  min-height: 100dvh;
+  gap: 102px;
+  align-items: flex-start;
+  background-color: #fff;
+  overflow-y: auto;
+}
+
+.site-header__bar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+
+.site-header__logo {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  padding-top: 5px;
+}
+
+.site-header__logo a {
+  display: block;
+  width: 357px;
+  max-width: 100%;
+  height: 69px;
+}
+
+.site-header__logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left bottom;
+}
+
+.site-header__items {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 15px;
+}
+
+.site-header__list {
+  display: flex;
+  align-items: center;
+  gap: 57px;
+}
+
+.site-header__end {
+  flex: 1 0 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.site-header__link,
+.site-header__toggle {
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+}
+
+.site-header__link:hover,
+.site-header__toggle:hover {
+  opacity: 0.6;
+}
+
+/* Tablet & Mobil: Logo-Fläche 301px, Menü-Schalter rechts */
+@media (max-width: 1199.98px) {
+  .site-header__logo {
+    padding-top: 8px;
+  }
+
+  .site-header__logo a {
+    width: 301px;
+  }
+
+  .site-header__items {
+    padding-top: 10px;
+    align-self: stretch;
+    align-items: flex-start;
+  }
+
+  .site-header__toggle {
+    display: block;
+    padding: 0 0 8px 8px;
+  }
+}
+
+/* Mobil: Logofläche behält wie im Original 301px Breite (flex: none), der Menü-Schalter teilt sich den Rest */
+@media (max-width: 809.98px) {
+  .site-header__logo {
+    flex: 1 1 auto;
+  }
+
+  .site-header__logo a {
+    flex: none;
+    max-width: calc(100vw - 2 * var(--gutter) - 80px);
+  }
+
+  .site-header__items {
+    flex: 0 0 auto;
+  }
+}
+
+/* Geöffnetes Menü */
+.mobile-menu {
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding-bottom: 32px;
+}
+
+.mobile-menu[hidden] {
+  display: none;
+}
+
+.mobile-menu__list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.mobile-menu__item {
+  animation: mobile-menu-in 1s var(--ease-out) both;
+}
+
+.mobile-menu__link {
+  display: inline-block;
+}
+
+.mobile-menu__link:hover {
+  opacity: 0.6;
+}
+
+@keyframes mobile-menu-in {
+  from {
+    opacity: 0.001;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header,
+  .site-header__link,
+  .site-header__toggle {
+    transition: none;
+  }
+
+  .mobile-menu__item {
+    animation: none;
+  }
+}

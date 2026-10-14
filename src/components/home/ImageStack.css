@@ -1,0 +1,128 @@
+/* Bildbereiche – .framer-roa8d7 / .framer-189rupd / Komponente .framer-erZbg */
+
+.image-stack {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 100%;
+  background: #fff;
+}
+
+.image-stack__list {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 65px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: #fff;
+}
+
+.image-stack__card {
+  position: sticky;
+  top: var(--stack-top, 0px);
+  z-index: 1;
+  height: 100vh;
+}
+
+.image-stack__card--brand {
+  --stack-top: 0px;
+}
+.image-stack__card--company {
+  --stack-top: 50px;
+}
+.image-stack__card--collab {
+  --stack-top: 100px;
+}
+.image-stack__card--career {
+  --stack-top: 150px;
+}
+
+@media (max-width: 809.98px) {
+  .image-stack__card--company {
+    --stack-top: 30px;
+  }
+  .image-stack__card--collab {
+    --stack-top: 60px;
+  }
+  .image-stack__card--career {
+    --stack-top: 90px;
+  }
+}
+
+.image-stack__link {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.image-stack__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Bildausschnitte Karriere laut Quelle */
+.image-stack__card--career .image-stack__image {
+  object-position: 46.7% 75%;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .image-stack__card--career .image-stack__image {
+    object-position: 26.9% 65.3%;
+  }
+}
+
+@media (max-width: 809.98px) {
+  .image-stack__card--career .image-stack__image {
+    object-position: 31.5% 62.1%;
+  }
+}
+
+.image-stack__label {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 16px;
+  color: #000;
+}
+
+.image-stack__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.image-stack__line {
+  display: block;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.image-stack__link:hover .image-stack__line,
+.image-stack__link:focus-visible .image-stack__line {
+  transform: scaleX(1);
+}
+
+.image-stack__link:focus-visible {
+  outline-offset: -4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image-stack__line {
+    transition: none;
+  }
+}

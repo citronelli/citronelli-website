@@ -1,0 +1,78 @@
+/* Kontakt – Werte aus reference/html/contact.html (.framer-1ayekyv ff.) */
+
+.contact-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 180px;
+  width: 100%;
+  padding: 200px var(--gutter) 180px;
+}
+
+.contact-page__intro {
+  width: 100%;
+  max-width: var(--content-max);
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.contact-page__content {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  max-width: var(--content-max);
+}
+
+/* Desktop preset-15pg806 (42px), Tablet/Mobil preset-rto6er (32/26px) */
+.contact-page__quote {
+  flex: 1 0 0;
+  min-width: 0;
+  font-size: 42px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.contact-page__form {
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+@media (max-width: 1199.98px) {
+  .contact-page__content {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .contact-page__quote,
+  .contact-page__form {
+    flex: none;
+    width: 100%;
+  }
+
+  .contact-page__quote {
+    font-size: 32px;
+    line-height: 1.05;
+  }
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .contact-page {
+    padding: 200px var(--gutter);
+  }
+}
+
+@media (max-width: 809.98px) {
+  .contact-page {
+    gap: 62px;
+    padding: 100px var(--gutter) 200px;
+  }
+
+  .contact-page__content {
+    gap: 50px;
+  }
+
+  .contact-page__quote {
+    font-size: 26px;
+  }
+}

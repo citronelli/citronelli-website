@@ -1,0 +1,46 @@
+/* Unternehmensvorstellung – .framer-4sl06a / .framer-1byb132 / .framer-1ge6d06 */
+
+.about-intro {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  padding: 57px var(--gutter) 299px;
+  background: #fff;
+}
+
+.about-intro__inner {
+  display: flex;
+  width: 100%;
+  max-width: var(--content-max);
+}
+
+.about-intro__content {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 48px;
+}
+
+.about-intro__text {
+  width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .about-intro {
+    padding: 50px var(--gutter) 98px;
+  }
+}
+
+@media (max-width: 809.98px) {
+  .about-intro {
+    padding: 20px var(--gutter) 96px;
+  }
+
+  .about-intro__content {
+    gap: 30px;
+  }
+}

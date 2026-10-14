@@ -1,0 +1,40 @@
+/* Inhalt .framer-ycfa4e: h3 preset-1lkw9un (42px), Absätze preset-1wf087d (16px), Absatzabstand 32px */
+.einsatz-detail__body {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.einsatz-detail__heading {
+  font-size: 42px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.einsatz-detail__text {
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+/* .framer-1yjfhcs */
+.einsatz-detail__tasting {
+  display: flex;
+  width: 100%;
+  max-width: var(--content-max);
+  padding-bottom: 100px;
+}
+
+/* Quelle: einzeilig, mobil abgeschnitten – hier umbrechend, damit nichts abgeschnitten wird */
+.einsatz-detail__tasting .text-link {
+  white-space: normal;
+}
+
+@media (max-width: 809.98px) {
+  .einsatz-detail__tasting {
+    padding-bottom: 40px;
+  }
+}

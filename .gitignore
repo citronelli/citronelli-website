@@ -1,7 +1,18 @@
+# Abhängigkeiten und Build-Ausgaben
 node_modules/
-temporary screenshots/
+dist/
+dist-formtest/
+*.tsbuildinfo
+
+# Lokale Prüf-Aufnahmen
+screenshots/
+
+# Umgebungsdateien / Zugangsdaten
+.env
+.env.*
+!.env.example
+.vercel/
+
+# System / Editor
 .DS_Store
-*.DS_Store
-screenshot homepage.png
-screenshot product page.png
 .claude/settings.local.json

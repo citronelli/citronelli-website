@@ -1,0 +1,60 @@
+.detail-banner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--content-max);
+  overflow: hidden;
+}
+
+.detail-banner__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Citronelli: .framer-96qqj2 – randlos, sticky, 750/500px, mobil 1.3:1 */
+.detail-banner--brand {
+  position: sticky;
+  top: 0;
+  max-width: none;
+  height: 750px;
+}
+
+/* Einsatzbereiche: .framer-tev172 */
+.detail-banner--einsatz {
+  height: 700px;
+  border-radius: 3px;
+}
+
+/* Blog: .framer-1a254nk */
+.detail-banner--blog {
+  height: 700px;
+  border-radius: 3px;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .detail-banner--brand {
+    height: 500px;
+  }
+  .detail-banner--einsatz {
+    height: 510px;
+  }
+  .detail-banner--blog {
+    height: auto;
+    aspect-ratio: 1.52549;
+  }
+}
+
+@media (max-width: 809.98px) {
+  .detail-banner--brand {
+    height: auto;
+    aspect-ratio: 1.3;
+  }
+  .detail-banner--einsatz {
+    height: 300px;
+  }
+  .detail-banner--blog {
+    height: auto;
+    aspect-ratio: 1.19333;
+  }
+}

@@ -1,0 +1,37 @@
+/* Übersichten (Marken, Einsatzbereiche, Blog): .framer-m0wicn / .framer-6fbhpj */
+
+.listing-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  padding: 150px var(--gutter) 0;
+}
+
+.listing-page--blog {
+  padding-bottom: 100px;
+}
+
+.listing-page__heading,
+.listing-page__grid {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.listing-page__heading > * {
+  width: 100%;
+  max-width: var(--content-max);
+}
+
+@media (max-width: 809.98px) {
+  .listing-page {
+    gap: 25px;
+    padding-top: 100px;
+  }
+
+  .listing-page--blog {
+    padding-bottom: 100px;
+  }
+}

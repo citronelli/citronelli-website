@@ -1,0 +1,16 @@
+.page-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: var(--content-max);
+}
+
+@media (max-width: 809.98px) {
+  .page-heading--stack {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+}

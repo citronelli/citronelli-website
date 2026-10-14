@@ -1,0 +1,134 @@
+/* Karriere – Werte aus reference/html/career.html (.framer-kotrd7 ff.) */
+
+.career-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 82px var(--gutter) 20px;
+}
+
+.career-page__about {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  max-width: var(--content-max);
+  padding: 70px 0;
+}
+
+.career-page__content {
+  position: sticky;
+  top: 85px;
+  z-index: 1;
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.career-page__image {
+  height: 555px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.career-page__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.career-page__title {
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+/* CTA mit Formular – .framer-1ma4do2 / .framer-qdevdq */
+.career-page__apply {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 445px;
+  padding: 0 var(--gutter);
+  background: #fff;
+}
+
+.career-page__apply-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: var(--content-max);
+}
+
+/* preset-15pg806, Deckkraft 0.5 */
+.career-page__claim {
+  font-size: 42px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  text-align: center;
+  opacity: 0.5;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .career-page {
+    padding-top: 150px;
+  }
+
+  .career-page__about {
+    padding: 0;
+  }
+
+  .career-page__content {
+    flex: 0.5 0 0;
+  }
+
+  .career-page__title {
+    flex: 0.8 0 0;
+  }
+}
+
+@media (max-width: 809.98px) {
+  .career-page {
+    padding-top: 100px;
+  }
+
+  .career-page__about {
+    flex-direction: column;
+    gap: 25px;
+    padding: 31px 0;
+  }
+
+  .career-page__content {
+    position: relative;
+    top: auto;
+    order: 1;
+    flex: none;
+    width: 100%;
+    gap: 20px;
+    padding-bottom: 25px;
+  }
+
+  .career-page__title {
+    flex: none;
+    width: 100%;
+  }
+
+  .career-page__apply {
+    min-height: 423px;
+  }
+
+  .career-page__apply-inner {
+    gap: 13px;
+  }
+
+  /* mobil preset-1mruxm2 (20px) */
+  .career-page__claim {
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+}

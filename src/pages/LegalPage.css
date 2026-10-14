@@ -1,0 +1,35 @@
+/* Impressum/Datenschutz – .framer-1yv4uw9 (Abstand 36px, oben 144px), Text preset-18qx21v */
+.legal-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  width: 100%;
+  padding: 144px var(--gutter) 120px;
+}
+
+.legal-page__title,
+.legal-page__text {
+  width: 100%;
+  max-width: 1064px;
+}
+
+.legal-page__text {
+  --rich-spacing: 16px;
+}
+
+.legal-page__text .rich-text__h6 {
+  margin-top: 32px;
+}
+
+@media (max-width: 809.98px) {
+  .legal-page {
+    padding-top: 110px;
+  }
+}
+
+/* „Datenschutzerklärung“ passt bei 42px nicht in 358px: Silbentrennung statt Überlauf */
+.legal-page__title {
+  hyphens: auto;
+  overflow-wrap: break-word;
+}

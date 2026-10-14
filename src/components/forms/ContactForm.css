@@ -1,0 +1,77 @@
+/* Kontaktformular – .framer-hqhav0; Feldbezeichnungen preset-j4jlhn; Schaltfläche .framer-gzgv12 */
+.contact-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.contact-form__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.contact-form .form-field__label {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.contact-form .form-field__control {
+  padding: 0 0 6px;
+  font-size: 16px;
+  line-height: 1.3;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s cubic-bezier(0.25, 0, 0.5, 1);
+}
+
+.contact-form .form-field__control:focus {
+  outline: none;
+  border-bottom-color: #000;
+}
+
+.contact-form .form-field__control:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 4px;
+}
+
+.contact-form .has-error .form-field__control {
+  border-bottom-color: #b3261e;
+}
+
+.contact-form textarea.form-field__control {
+  min-height: 240px;
+  resize: vertical;
+}
+
+.contact-form__submit {
+  width: 100%;
+  height: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+  background: #fff;
+  border: 1px solid #222;
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.contact-form__submit:hover {
+  background: #f2f2f2;
+}
+
+.contact-form__submit:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+@media (max-width: 809.98px) {
+  .contact-form textarea.form-field__control {
+    min-height: 260px;
+  }
+}

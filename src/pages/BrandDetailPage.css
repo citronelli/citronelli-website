@@ -1,0 +1,266 @@
+/* Citronelli-Detail – Werte aus reference/html/work__studio-atlas.html */
+
+.brand-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.brand-detail__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 25px;
+  background: #fff;
+}
+
+.brand-detail__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 0 var(--gutter);
+}
+
+.brand-detail__container > * {
+  width: 100%;
+  max-width: var(--content-max);
+}
+
+.brand-detail__intro {
+  display: flex;
+  align-items: flex-start;
+  padding: 10px 0 60px;
+}
+
+.brand-detail__logo {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+
+.brand-detail__logo img {
+  width: 585px;
+  max-width: 100%;
+  height: 583px;
+  object-fit: contain;
+  object-position: left top;
+}
+
+.brand-detail__info {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 65px;
+}
+
+/* Textblöcke: h3 preset-1lkw9un (42px), Absätze preset-1wf087d (16px), mobil preset-1y9mivf (18px) */
+.brand-detail__text {
+  display: flex;
+  flex-direction: column;
+  gap: 33px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.brand-detail__text-heading {
+  font-size: 42px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.brand-detail__paragraph {
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  white-space: pre-line;
+}
+
+.brand-detail__lemon {
+  position: relative;
+  z-index: 2;
+  aspect-ratio: 1.66857;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.brand-detail__lemon img,
+.brand-detail__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.brand-detail__row {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 40px 0;
+}
+
+.brand-detail__row--reverse {
+  padding: 0;
+}
+
+.brand-detail__image {
+  aspect-ratio: 1.158;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.brand-detail__image--fixed {
+  flex: none;
+  width: 579px;
+}
+
+.brand-detail__image--fluid {
+  flex: 1 0 0;
+  min-width: 0;
+  border-radius: 0;
+}
+
+.brand-detail__text--sticky {
+  position: sticky;
+  top: 60px;
+  flex: 1 0 0;
+  min-width: 0;
+  gap: 32px;
+}
+
+/* Coming Soon: Freiraum laut Screenshots 11–14 vermessen; Desktop/Tablet entsteht er durch die Logofläche */
+.brand-detail__spacer {
+  display: none;
+}
+
+.brand-detail__more {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+  padding-top: 70px;
+}
+
+.brand-detail__cards {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.brand-detail__cards > li {
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .brand-detail__intro {
+    padding: 0 0 50px;
+  }
+
+  .brand-detail__logo img {
+    width: 389px;
+    height: 524px;
+  }
+
+  .brand-detail__info {
+    gap: 50px;
+  }
+
+  .brand-detail__image--fixed {
+    width: 485px;
+  }
+
+  .brand-detail__text--sticky {
+    top: 40px;
+  }
+
+  .brand-detail__more {
+    padding-top: 150px;
+  }
+}
+
+@media (max-width: 809.98px) {
+  .brand-detail {
+    gap: 16px;
+  }
+
+  .brand-detail__container {
+    gap: 16px;
+  }
+
+  .brand-detail__intro {
+    flex-direction: column;
+    gap: 55px;
+    padding: 20px 0 50px;
+  }
+
+  .brand-detail__logo,
+  .brand-detail__info {
+    flex: none;
+    width: 100%;
+  }
+
+  .brand-detail__logo img {
+    width: 358px;
+    height: 90px;
+  }
+
+  .brand-detail__paragraph {
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .brand-detail__lemon {
+    aspect-ratio: 1.19333;
+  }
+
+  .brand-detail__row {
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .brand-detail__row--reverse {
+    padding-bottom: 50px;
+  }
+
+  .brand-detail__row--reverse .brand-detail__image {
+    order: -1;
+  }
+
+  .brand-detail__image,
+  .brand-detail__image--fixed,
+  .brand-detail__image--fluid {
+    flex: none;
+    width: 100%;
+    aspect-ratio: 1.19333;
+  }
+
+  .brand-detail__text--sticky {
+    position: relative;
+    top: auto;
+    flex: none;
+    width: 100%;
+  }
+
+  .brand-detail__spacer {
+    display: block;
+    height: 50px;
+  }
+
+  .brand-detail__more {
+    padding-top: 100px;
+  }
+
+  .brand-detail__cards {
+    flex-direction: column;
+  }
+}

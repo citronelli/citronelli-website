@@ -1,0 +1,27 @@
+.text-link {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  white-space: nowrap;
+}
+
+.text-link__line {
+  display: block;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.4s var(--ease-out);
+}
+
+.text-link:hover .text-link__line,
+.text-link:focus-visible .text-link__line {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-link__line {
+    transition: none;
+  }
+}
