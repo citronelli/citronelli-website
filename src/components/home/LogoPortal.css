@@ -1,0 +1,100 @@
+/* Scroll-Zoom ins Logo: Die Sektion liefert die Scrollstrecke, die Bühne bleibt oben haften. */
+
+.logo-portal {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: calc((1 + var(--portal-length, 2.5)) * 100vh);
+}
+
+.logo-portal__stage {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  padding: 0 20px 22px;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.logo-portal__fill {
+  position: absolute;
+  background: #000;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.logo-portal__logo {
+  position: absolute;
+  inset: 0;
+  width: auto;
+  height: min(50vh, 100vh - 400px); /* niedrige Fenster: Abstand zum Text halten */
+  max-width: 90vw;
+  margin: auto;
+  object-fit: contain;
+  will-change: transform;
+}
+
+.logo-portal__front {
+  position: relative;
+  flex: 1 0 0;
+  min-width: 0;
+  max-width: var(--content-max);
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .logo-portal__stage {
+    padding: 0 16px 16px;
+  }
+
+  .logo-portal__logo {
+    height: min(50vh, 100vh - 460px);
+  }
+}
+
+@media (max-width: 809.98px) {
+  /* Der Text ist hier zu hoch für eine Überlagerung: Logo füllt den freien Platz darüber. */
+  .logo-portal__stage {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 77px 15px 15px;
+    padding-bottom: calc(15px + 100vh - 100svh); /* iOS: Text nicht unter der Browserleiste */
+  }
+
+  .logo-portal__logo {
+    position: static;
+    flex: 1 1 0;
+    min-height: 0;
+    width: 100%;
+    height: auto;
+    max-width: none;
+    margin: 0 0 16px;
+  }
+
+  .logo-portal__front {
+    flex: none;
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-portal {
+    height: 100vh;
+  }
+
+  .logo-portal__stage {
+    position: relative;
+  }
+
+  .logo-portal__fill {
+    display: none;
+  }
+
+  .logo-portal__logo {
+    will-change: auto;
+  }
+}

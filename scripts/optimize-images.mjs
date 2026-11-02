@@ -12,7 +12,7 @@ import path from 'node:path';
 
 const src = new URL('../images-original/', import.meta.url).pathname;
 const out = new URL('../public/images/', import.meta.url).pathname;
-const LOGOS = new Set(['DtnyXjwN5ftscWSSnEeY0Z2Znx4.png', 'JKSKtafwlLG8fjlWNx3eUJTofg.png']);
+const LOGOS = new Set(['DtnyXjwN5ftscWSSnEeY0Z2Znx4.png', 'JKSKtafwlLG8fjlWNx3eUJTofg.png', 'qf_logo_neu.png']);
 
 const mapping = {};
 let before = 0;

@@ -88,6 +88,20 @@
   opacity: 0.6;
 }
 
+/* Startseite: Der Logo-Zoom (LogoPortal) blendet die Leiste kurz aus und invertiert sie auf Schwarz. */
+.site-header__bar {
+  transition: opacity 0.2s ease;
+}
+
+html[data-header-state='hidden'] .site-header:not(.is-open):not(:focus-within) .site-header__bar {
+  opacity: 0;
+  pointer-events: none;
+}
+
+html[data-header-state='dark'] .site-header:not(.is-open) .site-header__bar {
+  filter: invert(1);
+}
+
 /* Tablet & Mobil: Logo-Fläche 301px, Menü-Schalter rechts */
 @media (max-width: 1199.98px) {
   .site-header__logo {
@@ -169,6 +183,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .site-header,
+  .site-header__bar,
   .site-header__link,
   .site-header__toggle {
     transition: none;

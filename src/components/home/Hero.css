@@ -1,29 +1,6 @@
 /* Hero – .framer-mn7meu / .framer-1vpbxgy / .framer-1iekwd5 / .framer-1vdof1p */
 
-.hero {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  width: 100%;
-  height: 100vh;
-  padding: 0 20px 22px;
-  overflow: hidden;
-}
-
-.hero__image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
 .hero__content {
-  position: relative;
-  flex: 1 0 0;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -71,10 +48,6 @@
 }
 
 @media (min-width: 810px) and (max-width: 1199.98px) {
-  .hero {
-    padding: 0 16px 16px;
-  }
-
   .hero__text {
     max-width: none;
   }
@@ -85,10 +58,6 @@
 }
 
 @media (max-width: 809.98px) {
-  .hero {
-    padding: 0 15px 15px;
-  }
-
   .hero__content {
     flex: none;
     width: 100%;

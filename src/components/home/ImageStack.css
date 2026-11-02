@@ -28,6 +28,7 @@
 
 .image-stack__card--brand {
   --stack-top: 0px;
+  background: #000; /* Übergang aus dem Logo-Zoom: kein Weiß, solange das Bild lädt */
 }
 .image-stack__card--company {
   --stack-top: 50px;

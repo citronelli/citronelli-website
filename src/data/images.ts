@@ -10,7 +10,7 @@ const img = (file: string) => `/images/${optimized[file] ?? file}`;
 export const images = {
   logoQuellfrisch: img('DtnyXjwN5ftscWSSnEeY0Z2Znx4.png'),
   logoCitronelli: img('JKSKtafwlLG8fjlWNx3eUJTofg.png'),
-  heroLight: img('GKqXs0kbeO3utX2b4yGC94cuaPw.png'),
+  logoQuellfrischHero: img('qf_logo_neu.png'),
   heroDark: img('0k6RD46DM8tWwiGwt1hkLmC0S8.png'),
   handGlassLight: img('Ojfj3UyZONozJG5oyez4Hv60k.png'),
   handGlassDark: img('HXzNMU2KJNty9m6mPON4tc2swvM.png'),
