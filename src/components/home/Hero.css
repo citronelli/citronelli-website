@@ -3,21 +3,28 @@
 .hero__content {
   display: flex;
   align-items: flex-end;
-  justify-content: center;
-  gap: 10px;
+  justify-content: flex-end;
   max-width: var(--content-max);
 }
 
+/* Auf Schwarz exakt mittig im Bildschirm; bezieht sich auf die Bühne des LogoPortal. */
 .hero__description {
-  flex: 1 0 0;
-  min-width: 0;
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
+  padding: 0 var(--portal-pad-x);
+  pointer-events: none;
+  opacity: var(--portal-text-opacity, 0);
+  transform: translateY(var(--portal-text-y, 20px));
 }
 
 .hero__text {
   flex: 1 0 0;
   max-width: 725px;
+  color: #fff;
+  text-align: center;
   overflow-wrap: break-word;
 }
 
@@ -26,9 +33,10 @@
 }
 
 .hero__scroll {
-  flex: 0.6 0 0;
+  position: relative;
   display: flex;
   justify-content: flex-end;
+  opacity: var(--portal-hint-opacity, 1);
 }
 
 .hero__scroll-label {
@@ -47,21 +55,10 @@
   }
 }
 
-@media (min-width: 810px) and (max-width: 1199.98px) {
-  .hero__text {
-    max-width: none;
-  }
-
-  .hero__scroll {
-    flex: 0.35 0 0;
-  }
-}
-
 @media (max-width: 809.98px) {
   .hero__content {
     flex: none;
     width: 100%;
-    gap: 0;
   }
 
   .hero__text {
@@ -71,14 +68,27 @@
   .hero__br-mobile {
     display: inline;
   }
-
-  .hero__scroll {
-    flex: none;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .hero__scroll-label {
     animation: none;
+  }
+
+  .hero__description {
+    position: static;
+    flex: 1 0 0;
+    min-width: 0;
+    padding: 0;
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Hinweis bleibt auf dem ersten Bildschirm beim Logo. */
+  .hero__scroll {
+    position: absolute;
+    top: 100vh;
+    right: var(--portal-pad-x);
+    transform: translateY(calc(-100% - var(--portal-pad-bottom)));
   }
 }

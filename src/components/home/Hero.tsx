@@ -3,13 +3,14 @@ import { LogoPortal } from './LogoPortal';
 import './Hero.css';
 
 /**
- * Einstieg mit Firmenlogo und Scroll-Zoom. Text wörtlich laut Projektvorgaben (Referenzpaket).
+ * Einstieg mit Firmenlogo und Scroll-Zoom; der Text erscheint erst auf Schwarz. Text wörtlich laut Projektvorgaben (Referenzpaket).
  * Mobil fügt die Quelle zusätzliche Zeilenumbrüche ein (br.hero__br-mobile).
  */
 export function Hero() {
   return (
     <LogoPortal
       scrollLength={2.5}
+      textLength={1.5}
       front={
         <div className="hero__content">
           <div className="hero__description">

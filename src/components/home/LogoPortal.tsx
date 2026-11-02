@@ -21,24 +21,32 @@ const FILL_FADE_START = 0.6;
 const FILL_FADE_END = 0.85;
 const ZOOM_END = 0.9;
 
+/** Textphase auf Schwarz, in Bildschirmhöhen: Einblendstrecke und Hochgleiten in px. */
+const TEXT_FADE = 0.4;
+const TEXT_RISE = 20;
+
 const HEADER_STATE_ATTR = 'data-header-state';
 
 const clamp01 = (value: number) => Math.min(1, Math.max(0, value));
 
 interface LogoPortalProps {
-  /** Inhalt über dem Logo; wird zu Beginn des Zooms ausgeblendet. */
+  /** Inhalt über dem Logo; steuerbar über --portal-text-opacity, --portal-text-y, --portal-hint-opacity. */
   front: ReactNode;
   /** Scrollstrecke des Zooms in Bildschirmhöhen. */
   scrollLength?: number;
+  /** Scrollstrecke der Textphase auf Schwarz (Einblenden und Stehenbleiben) in Bildschirmhöhen. */
+  textLength?: number;
 }
 
 /**
  * Einstieg mit Scroll-Zoom ins schwarze Quadrat des Logos, bis der Bildschirm schwarz ist.
- * Das Logo dreht sich dabei um das Zoomziel 90° nach links.
+ * Das Logo dreht sich dabei um das Zoomziel 90° nach links. Erst auf Schwarz blendet der Text ein
+ * und bleibt eine Weile stehen, danach folgt der nächste Abschnitt.
  * Das Q ist im PNG transparent; die schwarze Fläche liegt daher hinter dem Logo und blendet
- * erst während des Zooms ein. Bei prefers-reduced-motion bleibt das Logo statisch (ohne Zoom).
+ * erst während des Zooms ein. Bei prefers-reduced-motion stehen Logo und Text auf Schwarz
+ * ohne Animation untereinander.
  */
-export function LogoPortal({ front, scrollLength = 2.5 }: LogoPortalProps) {
+export function LogoPortal({ front, scrollLength = 2.5, textLength = 1.5 }: LogoPortalProps) {
   const rootRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLImageElement>(null);
@@ -71,6 +79,8 @@ export function LogoPortal({ front, scrollLength = 2.5 }: LogoPortalProps) {
       for (const el of [logo, fill, frontLayer]) el.removeAttribute('style');
     };
 
+    const getBarHeight = () => document.querySelector('.site-header__bar')?.clientHeight ?? 0;
+
     const measure = () => {
       const fit = Math.min(logo.offsetWidth / LOGO_WIDTH, logo.offsetHeight / LOGO_HEIGHT);
       const side = SQUARE.size * fit;
@@ -96,31 +106,42 @@ export function LogoPortal({ front, scrollLength = 2.5 }: LogoPortalProps) {
         originY,
         side,
         maxScale: Math.max(cover, qGone) * 1.02,
-        barHeight: document.querySelector('.site-header__bar')?.clientHeight ?? 0,
+        barHeight: getBarHeight(),
       };
+    };
+
+    const updateStatic = () => {
+      frame = 0;
+      const barHeight = getBarHeight();
+      const bounds = root.getBoundingClientRect();
+      const onBlack = frontLayer.getBoundingClientRect().top <= barHeight / 2;
+      setHeaderState(onBlack && bounds.bottom > barHeight ? 'dark' : null);
     };
 
     const update = () => {
       frame = 0;
       const { originY, side, maxScale, barHeight } = geometry;
       const bounds = root.getBoundingClientRect();
-      const distance = bounds.height - stage.offsetHeight;
-      const progress = distance > 0 ? clamp01(-bounds.top / distance) : 0;
+      const viewport = stage.offsetHeight;
+      const zoomDistance = scrollLength * viewport;
+      const progress = clamp01(-bounds.top / zoomDistance);
+      const textProgress = clamp01((-bounds.top - zoomDistance) / (TEXT_FADE * viewport));
 
       // Exponentiell, damit der Zoom über die ganze Strecke gleich schnell wirkt.
       const zoom = clamp01(progress / ZOOM_END);
       const scale = maxScale ** zoom;
       const angle = ROTATION * zoom;
       const fillOpacity = clamp01((progress - FILL_FADE_START) / (FILL_FADE_END - FILL_FADE_START));
-      const frontOpacity = 1 - clamp01(progress / FRONT_FADE_END);
+      const hintOpacity = 1 - clamp01(progress / FRONT_FADE_END);
 
       const transform = `rotate(${angle}deg) scale(${scale})`;
       logo.style.transform = transform;
       fill.style.transform = transform;
       fill.style.opacity = String(fillOpacity);
       logo.style.visibility = fillOpacity >= 1 ? 'hidden' : 'visible';
-      frontLayer.style.opacity = String(frontOpacity);
-      frontLayer.style.visibility = frontOpacity <= 0 ? 'hidden' : 'visible';
+      frontLayer.style.setProperty('--portal-hint-opacity', String(hintOpacity));
+      frontLayer.style.setProperty('--portal-text-opacity', String(textProgress));
+      frontLayer.style.setProperty('--portal-text-y', `${TEXT_RISE * (1 - textProgress)}px`);
 
       // Header: aus, sobald das Logo ihn erreicht; invertiert erst, wenn alles schwarz ist.
       const radians = (angle * Math.PI) / 180;
@@ -136,34 +157,31 @@ export function LogoPortal({ front, scrollLength = 2.5 }: LogoPortalProps) {
     };
 
     const requestUpdate = () => {
-      if (!frame) frame = requestAnimationFrame(update);
+      if (!frame) frame = requestAnimationFrame(motion.matches ? updateStatic : update);
     };
 
     const refresh = () => {
       if (motion.matches) {
         reset();
+        updateStatic();
         return;
       }
       measure();
       update();
     };
 
-    const onScroll = () => {
-      if (!motion.matches) requestUpdate();
-    };
-
     refresh();
-    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('scroll', requestUpdate, { passive: true });
     window.addEventListener('resize', refresh);
     motion.addEventListener('change', refresh);
     return () => {
       cancelAnimationFrame(frame);
-      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('scroll', requestUpdate);
       window.removeEventListener('resize', refresh);
       motion.removeEventListener('change', refresh);
       setHeaderState(null);
     };
-  }, []);
+  }, [scrollLength]);
 
   return (
     <section
@@ -171,7 +189,7 @@ export function LogoPortal({ front, scrollLength = 2.5 }: LogoPortalProps) {
       className="hero logo-portal"
       id="hero"
       aria-label="Einführung"
-      style={{ '--portal-length': scrollLength } as CSSProperties}
+      style={{ '--portal-length': scrollLength + textLength } as CSSProperties}
     >
       <div ref={stageRef} className="logo-portal__stage">
         <div ref={fillRef} className="logo-portal__fill" aria-hidden="true" />
