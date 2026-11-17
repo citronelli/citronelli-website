@@ -8,7 +8,7 @@ const optimized = files as Record<string, string>;
 const img = (file: string) => `/images/${optimized[file] ?? file}`;
 
 export const images = {
-  logoQuellfrisch: img('DtnyXjwN5ftscWSSnEeY0Z2Znx4.png'),
+  logoQuellfrisch: img('quellfrisch_schriftzug.png'),
   logoCitronelli: img('JKSKtafwlLG8fjlWNx3eUJTofg.png'),
   logoQuellfrischHero: img('qf_logo_neu.png'),
   heroDark: img('0k6RD46DM8tWwiGwt1hkLmC0S8.png'),

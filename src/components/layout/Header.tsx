@@ -75,8 +75,15 @@ export function Header() {
     <header ref={headerRef} className={`site-header${open ? ' is-open' : ''}`} onKeyDown={onKeyDown}>
       <div className="site-header__bar">
         <div className="site-header__logo">
-          <Link to="/" aria-label="Quellfrisch – Startseite">
-            <img src={images.logoQuellfrisch} alt="" width={585} height={171} />
+          <Link
+            to="/"
+            aria-label="Quellfrisch – Startseite"
+            onClick={() => {
+              // Auf der Startseite selbst führt der Klick zurück nach oben.
+              if (location.pathname === '/') window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          >
+            <img src={images.logoQuellfrisch} alt="" width={1011} height={187} />
           </Link>
         </div>
 

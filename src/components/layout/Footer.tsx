@@ -54,7 +54,7 @@ export function Footer() {
 
         <div className="site-footer__bottom">
           <Link to="/" className="site-footer__logo" aria-label="Quellfrisch – Startseite">
-            <img src={images.logoQuellfrisch} alt="" width={585} height={171} loading="lazy" />
+            <img src={images.logoQuellfrisch} alt="" width={1011} height={187} loading="lazy" />
           </Link>
           <p className="site-footer__copyright">{copyright}</p>
         </div>
